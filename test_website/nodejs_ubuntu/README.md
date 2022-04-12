@@ -16,3 +16,18 @@
 #### 퍼블릭 IPv4 주소:3000 으로 접속이 안된다면?
 ##### 인바운드 규칙으로 들어가서 다음과 같이 처리하면 됨
 <img width="1076" alt="스크린샷 2022-04-12 오후 9 51 42" src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png">
+
+
+#### node 버전을 관리하는 방법
+##### $ brew install nvm
+##### mkdir ~/.nvm
+##### vi ~/.bash_profile
+##### 파일 맨 아래부분에 아래 내용을 붙여놓고 :wq
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+##### source ~/.bash_profile
+### nvm 사용 예시
+- nvm install 10.10.0
+- nvm uninstall 10.10.0
+- nvm use 10.10.0
