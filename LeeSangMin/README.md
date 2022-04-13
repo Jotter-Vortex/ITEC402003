@@ -13,3 +13,6 @@ Kali Linux에서 실행되어 NVT와 CVE를 진단하는 도구
 ID : kali
 
 PW : kali
+
+
+service xrdp start
