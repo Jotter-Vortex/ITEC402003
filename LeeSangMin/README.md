@@ -16,3 +16,19 @@ PW : kali
 
 
 service xrdp start
+
+## Kali Linux 사용
+- 원격 모니터링 
+- $service xrdp start
+
+## OpenVas 에러 해결법
+### 동기화 문제
+- $sudo -u _gvm gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value 80a9329d-a3ae-448b-b350-f827d918a4fb
+- $sudo gvm-stop
+- $sudo runuser -u _gvm -- greenbone-nvt-sync --rsync
+- $sudo greenbone-scapdata-sync 
+- $sudo greenbone-certdata-sync
+- reboot instance
+
+### 계정 설정
+- $sudo gvmd --user=admin --new-password=new_password
