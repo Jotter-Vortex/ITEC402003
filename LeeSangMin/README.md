@@ -32,3 +32,8 @@ service xrdp start
 
 ### 계정 설정
 - $sudo gvmd --user=admin --new-password=new_password
+
+
+## OpenVas 테스트 사이트
+- demo.testfire.net
+- 65.61.137.117
