@@ -31,3 +31,19 @@ export NVM_DIR="$HOME/.nvm"
 - nvm install 10.10.0
 - nvm uninstall 10.10.0
 - nvm use 10.10.0
+
+
+
+
+
+### <이슈사항>
+
+![스크린샷 2022-04-13 오후 11 33 04](https://user-images.githubusercontent.com/54494793/163204446-47be6994-1ab6-4421-b27e-eb0ae45ed58a.png)
+#### 로그인 화면에서 이메일과 패스워드를 입력한 후 로그인을 시도하면 다음과 같은 오류가 발생했음.
+
+![스크린샷 2022-04-13 오후 10 16 20](https://user-images.githubusercontent.com/54494793/163204650-83c2d6c8-f98f-46f9-8c68-b6748c9e8392.png)
+
+#### 이유는 server를 담당하는 express에서 package.json 파일안에 bcrypt 버전이 사용하는 nodejs 버전과 맞지 않아서였음.
+#### dependencies 에서 버전을 수정하고 다시 npm install 후 오류를 해결함.
+
+
