@@ -19,7 +19,7 @@
 
 
 #### node 버전을 관리하는 방법
-- linux -
+##  linux 
 - // nvm install script 실행
 - curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
