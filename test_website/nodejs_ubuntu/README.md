@@ -19,6 +19,14 @@
 
 
 #### node 버전을 관리하는 방법
+- linux -
+- // nvm install script 실행
+- curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+- // 수정된 환경변수를 바로 반영하기
+- source ~/.profile
+
+
 ##### $ brew install nvm
 ##### mkdir ~/.nvm
 ##### vi ~/.bash_profile
