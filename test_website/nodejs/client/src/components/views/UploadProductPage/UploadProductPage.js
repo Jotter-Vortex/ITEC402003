@@ -5,7 +5,6 @@ import Item from 'antd/lib/list/Item';
 
 const {TextArea} = Input;
 
-
 const continents=[
     { key:1, value: "Africa" },
     { key:2, value: "Europe" },
@@ -39,6 +38,10 @@ function UploadProductPage() {
     const continentsChangeHandler = (event) => {
         setContinent(event.currentTarget.value)
     }
+
+    const updateImages = (newImages) => {
+        setImages(newImages)
+    }
     
   return (
     <div>
@@ -49,7 +52,9 @@ function UploadProductPage() {
             <Form>
                 {/* Dropzone */}
 
-                <FileUpload></FileUpload>
+                {/* FileUpload.js 에서 props로 받는다. 왜냐? FileUpload.js에서 사진에 대한 정보를 다 가지고 있는데 
+                서버에 업로드할때는 결국 지금 파일에서 다 모았다가 모든 정보를 보내야하기 때문임. */}
+                <FileUpload refreshFunction={updateImages}></FileUpload> 
                 <br>
                 </br>
                 <label>이름</label>
