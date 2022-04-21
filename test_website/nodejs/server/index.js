@@ -37,7 +37,7 @@ app.use('/api/users', require('./routes/users'));
 
 app.use('/api/product', require('./routes/product'));
 
-//app.post('/api/product/image', ko)
+//app.post('/api/product/image', ko) 원래는 이렇게 해야하는데 너무 길이가 길어지므로..
 
 
 //use this to show the image you have in node js server to client (react js)

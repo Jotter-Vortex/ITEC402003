@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer'); // 가져온 이미지를 저장할때 사용하는 거임.
+const { Product } = require('../models/Product') // ../modles/Product에서 module.export 해온 부분을 가져온거임.
+
 //=================================
 //             Product
 //=================================
@@ -27,6 +29,16 @@ router.post('/image', (req,res) =>{ // req, res는 핸들러임.
         }
         return res.json({success: true, filePath: res.req.file.path , fileName: res.req.file.filename})
     })
+})
+
+router.post('/', (req,res) =>{ // req, res는 핸들러임.
+
+  const product = new Product(req.body) // 새로운 객체로 만들어 주고 저장함.
+
+  product.save((err) => { // 자동적으로 모든 정보들이 product에 저장함.
+    if(err) return res.status(400).json({success:false, err})
+    return res.status(200).json({success:true})
+  })
 })
 
 
