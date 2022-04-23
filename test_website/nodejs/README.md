@@ -55,3 +55,6 @@ export NVM_DIR="$HOME/.nvm"
 #### dependencies 에서 버전을 수정하고 다시 npm install 후 오류를 해결함.
 
 
+<img width="1108" alt="스크린샷 2022-04-23 오후 9 38 59" src="https://user-images.githubusercontent.com/54494793/164894935-2cc0adb5-6840-4989-9a7f-c89075bd90e3.png">
+#### DB에 있는 모든 정보를 가져오려고 하는데 위와 같은 에러가 발생
+
