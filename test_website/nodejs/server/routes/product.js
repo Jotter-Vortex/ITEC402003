@@ -41,5 +41,16 @@ router.post('/', (req,res) =>{ // req, res는 핸들러임.
   })
 })
 
+router.post('/products', (req,res) =>{ 
+
+  // product colletion에 들어 있는 모든 상품 정보를 가져오기
+
+  Product.find()
+  .populate("writer") // writer에 대한 모든 정보를 가져올 수 있음. 유저의 사진이나 이름, 닉네임 모두.
+  .exec((err,productInfo) => {
+    if(err) return res.status(400).json({success:false,err})
+    return res.status(200).json({success:true, productInfo})
+  })
+})
 
 module.exports = router;
