@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { FaCode } from "react-icons/fa";
 import axios from "axios";
-import { response } from 'express';
 
 function LandingPage() {
 
