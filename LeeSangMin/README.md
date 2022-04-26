@@ -37,3 +37,7 @@ service xrdp start
 ## OpenVas 테스트 사이트
 - demo.testfire.net
 - 65.61.137.117
+
+
+## SCP 전송
+- scp -i "ssh키 경로" (전송파일) 원격사용자이름@원격주소:(저장경로)
