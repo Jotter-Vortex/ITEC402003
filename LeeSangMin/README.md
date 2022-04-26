@@ -47,3 +47,4 @@ service xrdp start
 - EC2와 <-> 윈도우, VM 리눅스간 SCP 통신은 SSH 키를 통해 정상적으로 송수신되는 것을 확인함
 - EC2 내부에서 돌아가는 OpenVas에서 SCP를 통한 Export시 에러발생
 - 해결방안 필요
+- https://openvas-discuss.wald.intevation.narkive.com/UpCnZ0u4/alert-method-scp-not-working
