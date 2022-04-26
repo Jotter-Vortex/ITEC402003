@@ -13,6 +13,19 @@
 - server 함수 내부에 console.log(app.get('port') + ' is running'); 추가
 - 저장후에 $npm start
 
+### linux에 node 설치방법
+1. curl
+- sudo apt-get install -y curl
+- sudo apt update
+- sudo apt install nodejs
+- nodejs -v
+- sudo apt install npm
+
+2. nvm
+- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh
+- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash 
+- source ~/.bashrc
+
 #### 퍼블릭 IPv4 주소:3000 으로 접속이 안된다면?
 ##### 인바운드 규칙으로 들어가서 다음과 같이 처리하면 됨
 <img width="1076" alt="스크린샷 2022-04-12 오후 9 51 42" src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png">
