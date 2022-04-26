@@ -16,6 +16,7 @@
   "author": "John ahn",
   "license": "ISC",
   "dependencies": {
+    "balanced-match": "^2.0.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
