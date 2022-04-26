@@ -41,3 +41,9 @@ service xrdp start
 
 ## SCP 전송
 - scp -i "ssh키 경로" (전송파일) 원격사용자이름@원격주소:(저장경로)
+
+
+## SCP 전송간 Error
+- EC2와 <-> 윈도우, VM 리눅스간 SCP 통신은 SSH 키를 통해 정상적으로 송수신되는 것을 확인함
+- EC2 내부에서 돌아가는 OpenVas에서 SCP를 통한 Export시 에러발생
+- 해결방안 필요
