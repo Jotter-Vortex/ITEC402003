@@ -13,6 +13,19 @@
 - server 함수 내부에 console.log(app.get('port') + ' is running'); 추가
 - 저장후에 $npm start
 
+### linux에 node 설치방법
+1. curl
+- sudo apt-get install -y curl
+- sudo apt update
+- sudo apt install nodejs
+- nodejs -v
+- sudo apt install npm
+
+2. nvm
+- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh
+- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash 
+- source ~/.bashrc
+
 #### 퍼블릭 IPv4 주소:3000 으로 접속이 안된다면?
 ##### 인바운드 규칙으로 들어가서 다음과 같이 처리하면 됨
 <img width="1076" alt="스크린샷 2022-04-12 오후 9 51 42" src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png">
@@ -46,6 +59,8 @@ export NVM_DIR="$HOME/.nvm"
 
 ### <이슈사항>
 
+1.
+
 ![스크린샷 2022-04-13 오후 11 33 04](https://user-images.githubusercontent.com/54494793/163204446-47be6994-1ab6-4421-b27e-eb0ae45ed58a.png)
 #### 로그인 화면에서 이메일과 패스워드를 입력한 후 로그인을 시도하면 다음과 같은 오류가 발생했음.
 
@@ -58,3 +73,12 @@ export NVM_DIR="$HOME/.nvm"
 <img width="1108" alt="스크린샷 2022-04-23 오후 9 38 59" src="https://user-images.githubusercontent.com/54494793/164894935-2cc0adb5-6840-4989-9a7f-c89075bd90e3.png">
 #### DB에 있는 모든 정보를 가져오려고 하는데 위와 같은 에러가 발생
 
+
+2.
+
+![image](https://user-images.githubusercontent.com/54494793/165223901-ac2ebb02-3d56-4f1a-afad-f618812c0e9f.png)
+# linux 서버에 파일을 올려서 node를 실행하면 npm ERR! code ELIFECYCLE 에러가 발생함.
+- $ npm cache clean --force
+- $ rm -rf node_modules package-lock.json
+- $ npm install
+## 해결 : npm 캐시파일을 모두 삭제하고 package-lock 의존성을 제거한 후 npm을 재설치하면 됨
