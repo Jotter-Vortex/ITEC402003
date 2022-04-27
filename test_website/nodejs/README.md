@@ -55,6 +55,9 @@ export NVM_DIR="$HOME/.nvm"
 
 
 
+##### 이미지 자동 새로고침 관련
+#### https://ant.design/components/carousel/ 참고
+
 
 
 ### <이슈사항>
@@ -82,3 +85,6 @@ export NVM_DIR="$HOME/.nvm"
 - $ rm -rf node_modules package-lock.json
 - $ npm install
 ## 해결 : npm 캐시파일을 모두 삭제하고 package-lock 의존성을 제거한 후 npm을 재설치하면 됨
+
+
+
