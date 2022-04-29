@@ -13,7 +13,7 @@
 - server 함수 내부에 console.log(app.get('port') + ' is running'); 추가
 - 저장후에 $npm start
 
-### linux에 node 설치방법
+# linux에 node 설치방법
 1. curl
 - sudo apt-get install -y curl
 - sudo apt update
@@ -26,37 +26,44 @@
 - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash 
 - source ~/.bashrc
 
-#### 퍼블릭 IPv4 주소:3000 으로 접속이 안된다면?
+# 퍼블릭 IPv4 주소:3000 으로 접속이 안된다면?
 ##### 인바운드 규칙으로 들어가서 다음과 같이 처리하면 됨
 <img width="1076" alt="스크린샷 2022-04-12 오후 9 51 42" src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png">
 
 
-#### node 버전을 관리하는 방법
+# node 버전을 관리하는 방법
 ##  linux 
 - // nvm install script 실행
 - curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
 - // 수정된 환경변수를 바로 반영하기
-- source ~/.profile
+- $ source ~/.profile
 
-
-##### $ brew install nvm
-##### mkdir ~/.nvm
-##### vi ~/.bash_profile
-##### 파일 맨 아래부분에 아래 내용을 붙여놓고 :wq
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+- $ brew install nvm
+- $ mkdir ~/.nvm
+- $ vi ~/.bash_profile
+- 파일 맨 아래부분에 아래 내용을 붙여놓고 :wq
+- export NVM_DIR="$HOME/.nvm"
+- [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+- [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 ##### source ~/.bash_profile
-### nvm 사용 예시
+# nvm 사용 예시
 - nvm install 10.10.0
 - nvm uninstall 10.10.0
 - nvm use 10.10.0
 
 
 
-##### 이미지 자동 새로고침 관련
+# 이미지 자동 새로고침 관련
 #### https://ant.design/components/carousel/ 참고
+
+# MongoDB에 대해
+1. MongoDB Method
+- LIMIT : 처음 데이터를 가져올때와 특정 버튼을 눌러서 데이터를 가져올때 얼마나 많은 데이터를 한번에 가져올지 정한다.
+- SKIP : 어디서부터 데이터를 가져오는지 위치를 정한다. ex) 처음은 0부터 시작. limit이 6이라면 다음 번에는 2rd Skip = 0 + 6
+
+
+
 
 
 

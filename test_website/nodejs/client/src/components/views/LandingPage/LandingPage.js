@@ -9,9 +9,19 @@ import ImageSlider from '../../utils/ImageSlider';
 function LandingPage() {
 
     const [Products, setProducts] = useState([])
+    const [Skip, setSkip] = useState(0)
+    const [Limit, setLimit] = useState(8)
+    
 
     useEffect(()=> {
-        axios.post('/api/product/products')
+
+        let body = {
+            skip : Skip,
+            limit : Limit
+        }
+
+        // 여기서 limit과 skip을 사용해서 8개만 가져오게함.
+        axios.post('/api/product/products', body)
         .then(response => {
             if (response.data.success){
                 console.log(response.data)
@@ -24,6 +34,10 @@ function LandingPage() {
 
 
      }, [])
+
+     const loadMoreHandler = () =>{
+         
+     }
 
      const renderCards = Products.map((product, index) => {
 
@@ -63,7 +77,7 @@ function LandingPage() {
             
 
             <div style={{justifyContent:'center'}}>
-                <button>더보기</button>
+                <button onClick={loadMoreHandler}>더보기</button>
             </div>
 
         </div>
