@@ -1,11 +1,11 @@
 .home{
     
+    display: flex;
 
-    .title{
-        background-color:rgb(69, 59, 47);
-        color: white;
+
+    .homeContainer{
+        flex :6;
     }
-
 
 }
 
