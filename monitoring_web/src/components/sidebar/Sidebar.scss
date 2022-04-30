@@ -12,9 +12,11 @@
         justify-content: center;
         
         .logo{
-            font-size: 20px;
+            display: flex;
+            font-size: 23px;
             font-weight: bold;
-            color: darkslategrey;
+            color: rgb(20, 91, 91);
+            font-family: 'Oswald', sans-serif;
         }
     }
 
