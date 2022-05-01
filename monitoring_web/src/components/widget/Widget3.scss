@@ -1,0 +1,31 @@
+.widget{
+    display: flex;
+    flex: 2;
+    padding: 10px;
+    justify-content:center;
+
+    -webkit-box-shadow: -7px 5px 10px 1px rgba(0,0,0,0.3); 
+    box-shadow: -7px 5px 10px 1px rgba(0,0,0,0.3);
+    //border-radius: 10px;
+    height: 200px;
+
+    .center{
+        display: flex;
+        flex-direction: column;
+        justify-content:baseline;
+
+
+        .title{
+            font-weight: bold;
+            font-size: 30px;
+            padding-bottom: 10px;
+        }
+        .content{
+            padding-top: 30px;
+            padding-bottom: 50px;
+        }
+        .comment{
+            padding-top: 30px;
+        }
+    }
+}

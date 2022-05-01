@@ -5,25 +5,34 @@ import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import SettingsIcon from '@mui/icons-material/Settings';
+import {Link} from "react-router-dom"
+
+
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">DASH BOARD</span>
+        <Link to="/" style={{textDecoration:"none"}}>
+          <span className="logo">DASH BOARD</span>
+        </Link>
       </div>
       <hr/>
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon"/>
-            <span>Dashboard</span>
-          </li>
-          <li>
-            <ContentPasteSearchIcon className="icon"/>
-            <span>Details</span>
-          </li>
+          <Link to="/" style={{textDecoration:"none"}}>
+            <li>
+              <DashboardIcon className="icon"/>
+              <span>Dashboard</span>
+            </li>
+          </Link>
+          <Link to="/details" style={{textDecoration:"none"}}>
+            <li>
+              <ContentPasteSearchIcon className="icon"/>
+              <span>Details</span>
+            </li>
+          </Link>
           <li>
             <BarChartIcon className="icon"/>
             <span>Charts</span>
