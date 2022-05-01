@@ -1,6 +1,6 @@
 .widget{
     display: flex;
-    flex: 1;
+    flex: 2;
     padding: 10px;
     justify-content:center;
 
@@ -9,7 +9,7 @@
     border-radius: 10px;
     height: 200px;
 
-    .left{
+    .center{
         display: flex;
         flex-direction: column;
         justify-content:baseline;
