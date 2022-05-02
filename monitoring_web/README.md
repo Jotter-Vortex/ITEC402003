@@ -8,11 +8,14 @@
 
 
 
+
 # 사용한 기술 stack
  - JSX 
  - JSX(JavaScript XML)는 JavaScript를 확장한 문법입니다. UI가 어떻게 생겨야 하는지 설명하기 위해 React와 함께 사용할 것을 권장합니다. JSX라고 하면 템플릿 언어가 떠오를 수도 있지만, JavaScript의 모든 기능이 포함되어 있습니다.
  - 브라우저에서 실행하기 전에 바벨을 사용하여 일반 자바스크립트 형태의 코드로 변환된다. 
 
+ 
+ 
  
  # 메인화면
  ![image](https://user-images.githubusercontent.com/33484628/166213871-7b71c32e-dbe9-4d38-9cb8-702a94d41621.png)
