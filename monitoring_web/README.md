@@ -14,6 +14,6 @@
  - 브라우저에서 실행하기 전에 바벨을 사용하여 일반 자바스크립트 형태의 코드로 변환된다. 
 
  
- 
+ # 메인화면
  ![image](https://user-images.githubusercontent.com/33484628/166213871-7b71c32e-dbe9-4d38-9cb8-702a94d41621.png)
 - JSX, SCSS 사용하여 각 컴포넌트, 페이지별 모듈화
