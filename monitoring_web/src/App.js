@@ -12,6 +12,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+    {/* React-Router-Dom -> 페이지간 링크 구축*/}
      <Routes>
        <Route path="/">
          <Route index element = {<Home/>}></Route>

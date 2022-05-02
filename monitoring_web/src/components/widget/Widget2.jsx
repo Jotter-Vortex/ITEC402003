@@ -1,6 +1,6 @@
 import "./Widget.scss";
 import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector, Legend, Cell, ResponsiveContainer } from 'recharts';
 import {CircularProgressbar} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
@@ -21,7 +21,7 @@ const Widget2 = () => {
               endAngle={0}
               data={data}
               cx="50%"
-              cy="65%"
+              cy="80%"
               outerRadius={120}
               fill={COLORS[index]}
               label
@@ -30,6 +30,7 @@ const Widget2 = () => {
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
             </Pie>
+            <Legend verticalAlign="bottom" layout="vertical"/>
           </PieChart>
         </ResponsiveContainer>
         </div>

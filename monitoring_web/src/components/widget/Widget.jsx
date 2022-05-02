@@ -19,7 +19,7 @@ const Widget = () => {
           <PolarAngleAxis dataKey="subject" />
           <PolarRadiusAxis angle={45} domain={[0, 10]} />
           <Radar name="Average" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.4} />
-          <Radar name="Recent" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.8} />
+          <Radar name="Recent" dataKey="B" stroke="#CC0000" fill="#CC0000" fillOpacity={0.4} />
           <Legend />
         </RadarChart>
       </ResponsiveContainer>

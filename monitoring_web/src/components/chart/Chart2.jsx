@@ -34,11 +34,7 @@ const Chart2 = () => {
                 </ResponsiveContainer>  
                 </div>         
             </div>
-        </div>
-
-
-
-           
+        </div>      
   )
 }
 
