@@ -61,13 +61,13 @@ function createData(
           date: 'Tue Apr 26 06:30:00 2022 UTC',
           NVT: 'Cleartext Transmission of Sensitive Information via HTTP',
           Threat: 'Medium',
-          Details: "The host / application transmits sensitive information (username, passwords) in cleartext via HTTP.",
+          Details: "The host application transmits sensitive information (username, passwords) in cleartext via HTTP.",
         },
         {
           date: 'Thu Apr 27 06:30:00 2022 UTC',
           NVT: 'Cleartext Transmission of Sensitive Information via HTTP',
           Threat: 'Medium',
-          Details: "The host / application transmits sensitive information (username, passwords) in cleartext via HTTP.",
+          Details: "The host application transmits sensitive information (username, passwords) in cleartext via HTTP.",
         },
       ],
     };
@@ -109,7 +109,7 @@ function createData(
                     <TableRow>
                       <TableCell>NVT</TableCell>
                       <TableCell>Details</TableCell>
-                      <TableCell align="right">Severity</TableCell>
+                      <TableCell align="left">Severity</TableCell>
                       {/* <TableCell align="right">port</TableCell> */}
                     </TableRow>
                   </TableHead>
@@ -117,10 +117,10 @@ function createData(
                     {row.history.map((historyRow) => (
                       <TableRow key={historyRow.date}>
                         <TableCell component="th" scope="row">
-                          {historyRow.date}
+                          {historyRow.NVT}
                         </TableCell>
-                        <TableCell>{historyRow.NVT}</TableCell>
-                        <TableCell align="right">{historyRow.Threat}</TableCell>
+                        <TableCell>{historyRow.Details}</TableCell>
+                        <TableCell align="left">{historyRow.Threat}</TableCell>
                         {/* <TableCell align="right">
                           {Math.round(historyRow.amount * row.price * 100) / 100}
                         </TableCell> */}
