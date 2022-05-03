@@ -5,6 +5,8 @@ import {Icon, Col, Cards, Row, Card, Carousel} from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import Column from 'antd/lib/table/Column';
 import ImageSlider from '../../utils/ImageSlider';
+import CheckBox from './Sections/CheckBox';
+import { continents } from './Sections/Datas';
 
 function LandingPage() {
 
@@ -81,30 +83,39 @@ function LandingPage() {
 
 
     return (
-        <div style={{ width: "75%", margin: "3rem auto" }}>
-            <div style={{ textAlign: "center" }}>
-                <h2>
-                    Let's Travel Anyware!!!<Icon type="rocket"></Icon>
-                </h2>
-            </div>
-
-            {/* Filter */}
-
-            {/* Search */}
-
-            {/* Cards */}
-
-            <Row gutter={[16, 16]}>{renderCards}</Row>
-
-            <br />
-
-            {PostSize >= Limit &&
-                <div style={{ display: 'flex', justifyContent: "center" }}>
-                    <button onClick={loadMoreHandler}>더보기</button>
-                </div>
-            }
+      <div style={{ width: "75%", margin: "3rem auto" }}>
+        <div style={{ textAlign: "center" }}>
+          <h2>
+            Let's Travel Anyware!!!<Icon type="rocket"></Icon>
+          </h2>
         </div>
-    )
+
+        {/* Filter */}
+
+        {/* CheckBox */}
+        <CheckBox list = {continents}></CheckBox>
+
+
+
+        {/* RadioBox */}
+
+
+
+        {/* Search */}
+
+        {/* Cards */}
+
+        <Row gutter={[16, 16]}>{renderCards}</Row>
+
+        <br />
+
+        {PostSize >= Limit && (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button onClick={loadMoreHandler}>더보기</button>
+          </div>
+        )}
+      </div>
+    );
 }
 
 export default LandingPage
