@@ -55,7 +55,15 @@ router.post('/products', (req,res) =>{
     .limit(limit)
     .exec((err, productInfo) => {
       if (err) return res.status(400).json({ success: false, err })
-      return res.status(200).json({ success: true, productInfo })
+
+      //[{}, {}, {}] 이런 식으로 들어있음. DB에서 3개를 가져왔구나. 라고 알 수 있음. 즉 length = 3
+      
+      //productInfo.length = 4
+
+      return res.status(200).json({
+         success: true, productInfo,
+         postSize: productInfo.length
+        })
     })
 })
 
