@@ -46,7 +46,7 @@ router.post('/products', (req,res) =>{
   // product colletion에 들어 있는 모든 상품 정보를 가져오기
 
   // parseInt ? 만약에 string이면 숫자로 바꿔준다.
-  let limit = req.body.limit ? parseInt(req.body.limit) : 60; // 최대값임.
+  let limit = req.body.limit ? parseInt(req.body.limit) : 20; // 최대값임.
   let skip = req.body.skip ? parseInt(req.body.skip) : 0; // 없다면 처음부터 시작할 수 있게 해줌
 
   Product.find()
