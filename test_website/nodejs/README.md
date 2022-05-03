@@ -1,57 +1,63 @@
-# nodejs를 사용한 서버
-1. aws ec2 ubuntu 18.04 서버를 하나 구축.
-2. ssh -i ~ 를 사용해 인스턴스에 연결함
-3. 
-- $sudo apt update
-- $sudo apt install npm
-- $sudo apt install nodejs
-- $npm -v, nodejs -v  각각 3.5.2 , v8.10.0
-- $sudo apt install node-express-generator 
-- $express [생성할 폴더이름] --view=pug
-- $cd [생성할 폴더이름]
-- $vi ./bin/www
-- server 함수 내부에 console.log(app.get('port') + ' is running'); 추가
-- 저장후에 $npm start
+# ec2 서버 설정
+1. aws ec2 ubuntu 18.04 or 20.04
+2. ssh -i ~ 를 사용해 인스턴스에 연결함.
+3. node, npm 설치방법
+#### for everyOS
+    - $sudo apt update
+    - $sudo apt install npm
+    - $sudo apt install nodejs
+    - $npm -v, nodejs -v  각각 3.5.2 , v8.10.0
+    - $sudo apt install node-express-generator 
+    - $express [생성할 폴더이름] --view=pug
+    - $cd [생성할 폴더이름]
+    - $vi ./bin/www
+    - server 함수 내부에 console.log(app.get('port') + ' is running'); 추가
+    - $npm start
 
-# linux에 node 설치방법
-1. curl
-- sudo apt-get install -y curl
-- sudo apt update
-- sudo apt install nodejs
-- nodejs -v
-- sudo apt install npm
+#### for mac
+#### * a. nvm 설치법 (이미 설치되어 있다면 생략) 
+    - $brew install install
+    - $mkdir ~/.nvm
+    - $vi ~/.bash_profile
+    - export NVM_DIR="$HOME/.nvm"
+    - 밑의 내용을 맨 밑에 적고 :wq로 저장하고 나옴
+    - $ source ~/.bash_profile
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+#### * b. nvm 사용 예시 
+    - nvm install 10.10.0
+    - nvm uninstall 10.10.0
+    - nvm use 10.10.0
 
-2. nvm
-- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh
-- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash 
-- source ~/.bashrc
+#### for linux
+#### * a. curl 설치법 (이미 설치되어 있다면 생략) 
+    - sudo apt-get install -y curl
+    - sudo apt update
+    - sudo apt install nodejs
+    - nodejs -v
+    - sudo apt install npm
+#### * b. nvm 설치법 (이미 설치되어 있다면 생략) 
+    - sudo apt-get install -y curl
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash 
+    - source ~/.bashrc
+
+4. Linux 포트포워딩
+#### * 포트포워딩이란?
+    −  포트 포워딩은 외부에서 접속한 IP 주소와 포트 번호를 내부 호스트에 다시 매핑하는 것을 말합니다.
+
+#### * 외부 네트워크 80번 포트 -> 내부 네트워크 5005번 포트로 포트포워딩하는 예시
+    −  sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 5005
+
+#### * 포트포워딩 확인
+    −  sudo iptables -t nat -L --line-numbers
+
+#### * 포트포워딩 삭제
+    −  sudo iptables -t nat -D PREROUTING {삭제할 번호}
 
 # 퍼블릭 IPv4 주소:3000 으로 접속이 안된다면?
-##### 인바운드 규칙으로 들어가서 다음과 같이 처리하면 됨
+##### 인바운드 규칙으로 들어가서 다음과 같이 처리
 <img width="1076" alt="스크린샷 2022-04-12 오후 9 51 42" src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png">
-
-
-# node 버전을 관리하는 방법
-##  linux 
-- // nvm install script 실행
-- curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-
-- // 수정된 환경변수를 바로 반영하기
-- $ source ~/.profile
-
-- $ brew install nvm
-- $ mkdir ~/.nvm
-- $ vi ~/.bash_profile
-- 파일 맨 아래부분에 아래 내용을 붙여놓고 :wq
-- export NVM_DIR="$HOME/.nvm"
-- [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-- [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-##### source ~/.bash_profile
-# nvm 사용 예시
-- nvm install 10.10.0
-- nvm uninstall 10.10.0
-- nvm use 10.10.0
-
 
 
 # 이미지 자동 새로고침 관련
@@ -61,9 +67,6 @@
 1. MongoDB Method
 - LIMIT : 처음 데이터를 가져올때와 특정 버튼을 눌러서 데이터를 가져올때 얼마나 많은 데이터를 한번에 가져올지 정한다.
 - SKIP : 어디서부터 데이터를 가져오는지 위치를 정한다. ex) 처음은 0부터 시작. limit이 6이라면 다음 번에는 2rd Skip = 0 + 6
-
-
-
 
 
 
