@@ -48,23 +48,61 @@ router.post('/products', (req,res) =>{
   // parseInt ? 만약에 string이면 숫자로 바꿔준다.
   let limit = req.body.limit ? parseInt(req.body.limit) : 20; // 최대값임.
   let skip = req.body.skip ? parseInt(req.body.skip) : 0; // 없다면 처음부터 시작할 수 있게 해줌
+  let term = req.body.searchTerm
 
-  Product.find()
+  let findArgs = {};
+
+  // 여기 로직이 생각보다 어려움. 자주 봐주면 좋음
+  for(let key in req.body.filters){ // key는 LandingPage.js에 있는 continents 아니면 price
+    if(req.body.filters[key].length > 0){ // 하나 이상 들어 있으면
+
+      console.log('key',key)
+
+      if(key === "price") {
+        findArgs[key] = {
+          $gte: req.body.filters[key][0], // grater than equal.. MongoDB에서 사용하는 쿼리문
+          $lte: req.body.filters[key][1]  // less than equal.. MongoDB에서 사용하는 쿼리문
+        }
+      }else{
+        findArgs[key] = req.body.filters[key];
+      }
+    }
+  }
+
+  console.log("findArgs", findArgs);
+
+  if(term){
+    Product.find(findArgs)
+    .find({ "title": { '$regex' : term}}) // mongodb에서 제공하는 것을 이용함. like 기능. 글자를 포함하면 모두 가져옴.
+    //.find({ $text: { $search: term } }) // 정확히 일치하는 것만 가져옴.
     .populate("writer") // writer에 대한 모든 정보를 가져올 수 있음. 유저의 사진이나 이름, 닉네임 모두.
     .skip(skip)
     .limit(limit)
     .exec((err, productInfo) => {
       if (err) return res.status(400).json({ success: false, err })
-
       //[{}, {}, {}] 이런 식으로 들어있음. DB에서 3개를 가져왔구나. 라고 알 수 있음. 즉 length = 3
-      
       //productInfo.length = 4
-
       return res.status(200).json({
          success: true, productInfo,
          postSize: productInfo.length
         })
     })
+  }else{
+    Product.find(findArgs)
+    .populate("writer") // writer에 대한 모든 정보를 가져올 수 있음. 유저의 사진이나 이름, 닉네임 모두.
+    .skip(skip)
+    .limit(limit)
+    .exec((err, productInfo) => {
+      if (err) return res.status(400).json({ success: false, err })
+      //[{}, {}, {}] 이런 식으로 들어있음. DB에서 3개를 가져왔구나. 라고 알 수 있음. 즉 length = 3
+      //productInfo.length = 4
+      return res.status(200).json({
+         success: true, productInfo,
+         postSize: productInfo.length
+        })
+    })
+  }
+  
 })
 
 module.exports = router;

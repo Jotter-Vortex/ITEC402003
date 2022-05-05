@@ -6,7 +6,10 @@ import Meta from 'antd/lib/card/Meta';
 import Column from 'antd/lib/table/Column';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox';
-import { continents } from './Sections/Datas';
+import { continents, price } from './Sections/Datas';
+import Radiobox from './Sections/RadioBox';
+import SearchFreature from './Sections/SearchFreature';
+import { fileToObject } from 'antd/lib/upload/utils';
 
 function LandingPage() {
 
@@ -14,6 +17,11 @@ function LandingPage() {
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
     const [PostSize, setPostSize] = useState(0)
+    const [Filters, setFilters] = useState({
+      continents: [],
+      price: []
+    })
+    const [SearchTerm, setSearchTerm] = useState("")
     
 
     useEffect(()=> {
@@ -57,7 +65,8 @@ function LandingPage() {
         let body = {
             skip : skip,        // 여기선 이 skip이 바뀌어야함
             limit : Limit,
-            loadMore: true                   // 더보기 눌렀을때 가는 정보
+            loadMore: true,                   // 더보기 눌렀을때 가는 정보
+            filters : Filters
         }
 
         getProducts(body)
@@ -81,6 +90,65 @@ function LandingPage() {
         </Col>
      })
 
+     const showFilteredResults = (filters) => {
+
+      let body = {    // contents별 새로고침 body
+        skip : 0, 
+        limit : Limit,
+        filters: filters
+    }
+
+      getProducts(body)
+      setSkip(0)
+
+     }
+
+     const handlePrice = (value) => {
+       const data = price;
+       let array = [];
+       for (let key in data){
+         if(data[key]._id === parseInt(value, 10)){ // 혹시나 string이 들어오면 int로 parsing함
+          array = data[key].array; // array = [100,199]
+        }
+       }
+       return array;
+     }
+
+     const handleFilters = (filters, category) => { // continents를 담고 있는 category.
+
+      const newFilters = {...Filters}
+
+      newFilters[category] = filters // continents array를 가리키고 있음
+
+      console.log('filters', filters);
+
+
+      // price를 처리할 때는 continents랑 다른 것을 해주어야함
+      if(category == "price"){
+        let priceValues = handlePrice(filters)
+        newFilters[category] = priceValues
+      }
+
+
+
+      showFilteredResults(newFilters)
+      setFilters(newFilters)
+     }
+
+     const updateSearchTerm = (newSearchTerm) => {
+      //  console.log(newSearchTerm)
+       let body = {
+         skip : 0, // db에서 처음부터 긁어와야하기 때문임
+         limit: Limit,
+         filters: Filters,
+         searchTerm: newSearchTerm
+       }
+
+       setSkip(0)
+       setSearchTerm(newSearchTerm)
+       getProducts(body)
+     }
+
 
     return (
       <div style={{ width: "75%", margin: "3rem auto" }}>
@@ -92,16 +160,40 @@ function LandingPage() {
 
         {/* Filter */}
 
-        {/* CheckBox */}
-        <CheckBox list = {continents}></CheckBox>
+        <Row gutter={[16, 16]}>
+          <Col lg={12} xs={24}>
+            {/* CheckBox */}
+            <CheckBox
+              list={continents}
+              handleFilters={(filters) => handleFilters(filters, "continents")}
+            ></CheckBox>
+          </Col>
 
-
-
-        {/* RadioBox */}
-
-
+          <Col lg={12} xs={24}>
+            {/* RadioBox */}
+            {/* 처리한 내용을 부모로 전달해야하기 때문에 handleFilters가 여전히 필요함 */}
+            <Radiobox
+              list={price}
+              handleFilters={(filters) => handleFilters(filters, "price")}
+            ></Radiobox>
+          </Col>
+        </Row>
+        <br />
 
         {/* Search */}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            margin: "1rm auto",
+          }}
+        >
+          <SearchFreature
+          refreshFunction ={updateSearchTerm} />
+        </div>
+
+        <br />
 
         {/* Cards */}
 

@@ -15,7 +15,6 @@ const productSchema = mongoose.Schema({
         type: String,
     },
     price:{
-
         type: Number,
         default: 0
     },
@@ -28,6 +27,10 @@ const productSchema = mongoose.Schema({
         maxlength: 100,
         default: 0
     },
+    continents: {
+        type: Number,
+        default:1
+    },
     views:{ // 사람들이 얼마나 봤는지에 대한 정보
         type: Number,
         default:0
@@ -35,6 +38,15 @@ const productSchema = mongoose.Schema({
 
 }, {timestamps : true}) // 자동적으로 등록시간이나 업데이트시간이 등록이 됨.
 
+productSchema.index({
+    title: 'text',
+    description: 'text'
+},{
+    weight:{
+        title:5,
+        description: 1
+    }
+})
 
 const Product = mongoose.model('Product', productSchema);
 
