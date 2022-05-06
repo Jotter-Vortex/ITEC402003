@@ -105,4 +105,27 @@ router.post('/products', (req,res) =>{
   
 })
 
+
+
+// get일때는 post랑 조금 다름.
+router.get('/products_by_id', (req,res) =>{ // req, res는 핸들러임.
+
+  let type = req.query.type   // body가 아니라 query임.
+  let productId = req.query.id
+
+  // productID를 이용해서 DB에서 productID와 같은 상품의 정보를 가져온다.
+
+  Product.find({_id: productId})
+  .populate('writer')
+  .exec((err,product) => {
+    if(err) return res.status(400).send(err)
+    return res.status(200).send({success:true, product})
+  })
+
+})
+
+
+// axios.get(`/api/product/products_by_id?=${productID}&type=single`)
+
+
 module.exports = router;

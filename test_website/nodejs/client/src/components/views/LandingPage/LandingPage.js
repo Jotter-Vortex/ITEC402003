@@ -77,17 +77,16 @@ function LandingPage() {
 
         console.log('product', product)
 
-        return <Col lg={6} md={8} xs={24} key = {index}>
-        
-        <Card
-            cover= {<ImageSlider images = {product.images}></ImageSlider>}>
-            
-            <Meta
-                title = {product.title}
-                description = {`$${product.price}`}></Meta>
-        </Card>
-
-        </Col>
+        return (
+          <Col lg={6} md={8} xs={24} key={index}>
+            <Card cover={<a href = {`/product/${product._id}`}><ImageSlider images={product.images}></ImageSlider></a>}>
+              <Meta
+                title={product.title}
+                description={`$${product.price}`}
+              ></Meta>
+            </Card>
+          </Col>
+        );
      })
 
      const showFilteredResults = (filters) => {
