@@ -63,6 +63,16 @@
 # 이미지 자동 새로고침 관련
 #### https://ant.design/components/carousel/ 참고
 
+# 이미지 DetailPage에서 썸네일을 만들고 싶다면?
+#### gm npm 모듈을 사용하면 됨. https://www.npmjs.com/package/gm
+
+# 이미지를 띄울때 쓰기 좋은 모듈
+#### npm install react-image-gallery https://www.npmjs.com/package/react-image-gallery
+#### 만약 액자 안에서 동작하지 않으면 css를 추가해주면 됨. 
+#### # CSS
+#### @import "~react-image-gallery/styles/css/image-gallery.css";
+#### 위 내용을 index.css의 맨 윗줄에 넣을 것.
+
 # MongoDB에 대해
 1. MongoDB Method
 - LIMIT : 처음 데이터를 가져올때와 특정 버튼을 눌러서 데이터를 가져올때 얼마나 많은 데이터를 한번에 가져올지 정한다.
@@ -72,7 +82,7 @@
 
 ### <이슈사항>
 
-1.
+# 1. ECONNREFUSED 에러
 
 ![스크린샷 2022-04-13 오후 11 33 04](https://user-images.githubusercontent.com/54494793/163204446-47be6994-1ab6-4421-b27e-eb0ae45ed58a.png)
 #### 로그인 화면에서 이메일과 패스워드를 입력한 후 로그인을 시도하면 다음과 같은 오류가 발생했음.
@@ -87,14 +97,17 @@
 #### DB에 있는 모든 정보를 가져오려고 하는데 위와 같은 에러가 발생
 
 
-2.
+# 2. npm ERR! code ELIFECYCLE 에러
 
 ![image](https://user-images.githubusercontent.com/54494793/165223901-ac2ebb02-3d56-4f1a-afad-f618812c0e9f.png)
 # linux 서버에 파일을 올려서 node를 실행하면 npm ERR! code ELIFECYCLE 에러가 발생함.
-- $ npm cache clean --force
-- $ rm -rf node_modules package-lock.json
-- $ npm install
+    - $ npm cache clean --force
+    - $ rm -rf node_modules package-lock.json
+    - $ npm install
 ## 해결 : npm 캐시파일을 모두 삭제하고 package-lock 의존성을 제거한 후 npm을 재설치하면 됨
 
 
-
+# 3. Error: listen EADDRINUSE: address already in use :::5000 에러
+    - $ netstat -ano
+    - 5000번 포트를 사용하는 프로세스의 ID 확인
+    - 해당 프로세스 강제종료하기
