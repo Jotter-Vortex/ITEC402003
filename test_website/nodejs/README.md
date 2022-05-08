@@ -57,7 +57,7 @@
 
 # 퍼블릭 IPv4 주소:3000 으로 접속이 안된다면?
 ##### 인바운드 규칙으로 들어가서 다음과 같이 처리
-<img width="500" height="400"  alt="스크린샷 2022-04-12 오후 9 51 42" src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png">
+<img width="1017" alt="스크린샷 2022-04-12 오후 9 51 42" src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png">
 
 
 # 이미지 자동 새로고침 관련
