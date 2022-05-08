@@ -82,7 +82,7 @@
 ** Redux DevTools - 크롬에서 리덕스를 편하게 사용하는 툴
 1. Redux is a predictable state container for JavaScript apps. ; 상태 관리 라이브러리 2번의 State을 관리해주는 툴이다.
 
-![Redux 설명 이미지](https://user-images.githubusercontent.com/54494793/167301014-8d2a9435-c187-4a44-a975-60cfab2690cf.png){: width="500" height="400" }
+![Redux 설명 이미지](https://user-images.githubusercontent.com/54494793/167301014-8d2a9435-c187-4a44-a975-60cfab2690cf.png)
 
 2. Props VS State
     ##### Props : Components간의 정보 이동. 방향은 위에서 아래로만 가능. 부모 component에서 내려준 값은 자식 component에서 변경이 불가능함.
@@ -98,7 +98,7 @@
      - `};`    
 
 
-![Redux 데이터 flow 이미지](https://user-images.githubusercontent.com/54494793/167300964-e25b733f-eb4b-4cfd-864c-d243ac4cb7c4.png){: width="500" height="400" }
+![Redux 데이터 flow 이미지](https://user-images.githubusercontent.com/54494793/167300964-e25b733f-eb4b-4cfd-864c-d243ac4cb7c4.png)
 
 3. Redux data Flow (strict unidirectional data flow)
     #### A. Action : a plain object describing what happended.
@@ -138,10 +138,10 @@
 
 # 1. ECONNREFUSED 에러
 
-![스크린샷 2022-04-13 오후 11 33 04](https://user-images.githubusercontent.com/54494793/163204446-47be6994-1ab6-4421-b27e-eb0ae45ed58a.png){: width="500" height="400" }
+![스크린샷 2022-04-13 오후 11 33 04](https://user-images.githubusercontent.com/54494793/163204446-47be6994-1ab6-4421-b27e-eb0ae45ed58a.png)
 #### 로그인 화면에서 이메일과 패스워드를 입력한 후 로그인을 시도하면 다음과 같은 오류가 발생했음.
 
-![스크린샷 2022-04-13 오후 10 16 20](https://user-images.githubusercontent.com/54494793/163204650-83c2d6c8-f98f-46f9-8c68-b6748c9e8392.png){: width="500" height="400" }
+![스크린샷 2022-04-13 오후 10 16 20](https://user-images.githubusercontent.com/54494793/163204650-83c2d6c8-f98f-46f9-8c68-b6748c9e8392.png)
 
 #### 이유는 server를 담당하는 express에서 package.json 파일안에 bcrypt 버전이 사용하는 nodejs 버전과 맞지 않아서였음.
 #### dependencies 에서 버전을 수정하고 다시 npm install 후 오류를 해결함.
@@ -153,7 +153,7 @@
 
 # 2. npm ERR! code ELIFECYCLE 에러
 
-![image](https://user-images.githubusercontent.com/54494793/165223901-ac2ebb02-3d56-4f1a-afad-f618812c0e9f.png){: width="500" height="400" }
+![image](https://user-images.githubusercontent.com/54494793/165223901-ac2ebb02-3d56-4f1a-afad-f618812c0e9f.png)
 # linux 서버에 파일을 올려서 node를 실행하면 npm ERR! code ELIFECYCLE 에러가 발생함.
     - $ npm cache clean --force
     - $ rm -rf node_modules package-lock.json
