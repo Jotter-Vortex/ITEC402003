@@ -15,10 +15,12 @@ import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 
+// 여기서 redux-promise, redux-thunk 두개를 추가해주는 것임.
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 
 ReactDOM.render(
     <Provider
+        // 크롬에서 redux를 편하게 보기 위해 해주는 부분
         store={createStoreWithMiddleware(
             Reducer,
             window.__REDUX_DEVTOOLS_EXTENSION__ &&

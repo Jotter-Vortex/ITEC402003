@@ -78,6 +78,55 @@
 - LIMIT : 처음 데이터를 가져올때와 특정 버튼을 눌러서 데이터를 가져올때 얼마나 많은 데이터를 한번에 가져올지 정한다.
 - SKIP : 어디서부터 데이터를 가져오는지 위치를 정한다. ex) 처음은 0부터 시작. limit이 6이라면 다음 번에는 2rd Skip = 0 + 6
 
+# Redux에 대해
+** Redux DevTools - 크롬에서 리덕스를 편하게 사용하는 툴
+1. Redux is a predictable state container for JavaScript apps. ; 상태 관리 라이브러리 2번의 State을 관리해주는 툴이다.
+
+2. Props VS State
+    ##### Props : Components간의 정보 이동. 방향은 위에서 아래로만 가능. 부모 component에서 내려준 값은 자식 component에서 변경이 불가능함.
+     - ex) `<ChatMessages`
+     - `messages = {messages}`
+     - `currentMember = {member} `
+     - `/>`    
+    ##### State : component 안에서 값을 사용할 때. State의 값은 계속 변할 수 있음.
+     - ex) `state = {`
+     - `messages : '',`
+     - `attachFile : undefuned, `
+     - `openMenu : false,`
+     - `};`    
+
+3. Redux data Flow (strict unidirectional data flow)
+    #### A. Action : a plain object describing what happended.
+     - `{type: 'LIKE_ARTICLE', articleId: 42}`
+     - `{type: 'FETCH_USER_SUCCESS', response: {id:3, name:'Mary'}}`
+     - `{type: 'ADD_TODO', text: 'Read the Redux docs.'}`
+
+     #### B. Reducer : a function describing how the application's state changes
+      - `(previousState, action) => nextState`
+      - action을 함으로 인해서 원래 3이었던 state가 action을 통해서 4로 변했다.라는 식. 결국 nextState를 리턴하는 것이 핵심.
+
+      #### C. Store : 여러가지 많은 methos가 있음. 이걸로 state를 관리함. 
+
+4. 설치
+    #### 설치 명령어
+        −  $ npm install redux react-redux redux-promise redux-thunk
+    #### index.js 맨 윗줄에 추가.
+    `import { Provider } from 'react-redux'`;
+
+    `<Provider>`
+    
+    `<App />`
+
+    `</Provider>`
+    #### 1. redux 
+    #### 2. react-redux 
+    #### 3. redux-promise 
+    #### 4. redux-thunk
+    #### redux-promise, redux-thunk 
+        이 둘은 middleware임 {} 같은 객체 형식의 Action아닌 Promise, Functions 형식으로 Action이 왔을 때 적절하게 해결하는 역할을 함.
+
+
+
 
 
 ### <이슈사항>
