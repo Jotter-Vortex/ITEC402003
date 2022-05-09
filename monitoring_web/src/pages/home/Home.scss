@@ -1,15 +1,18 @@
 .home{
     
     display: flex;
+    background-color: #f8f8ff;
 
 
     .homeContainer{
         flex :6;
+        
 
         .widgets, .charts{
             display: flex;
             padding: 20px;
             gap: 20px;
+            
         }
 
         .charts{
@@ -18,14 +21,17 @@
         }
 
         .ReportTable{
-            -webkit-box-shadow: -7px 5px 10px 1px rgba(0,0,0,0.3); 
-            box-shadow: -7px 5px 10px 1px rgba(0,0,0,0.3);
+            -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 5px 5px rgba(0,0,0,0); 
+            box-shadow: 0px 10px 13px -7px #727272, 5px 5px 5px 5px rgba(0,0,0,0);
             padding: 20px;
             margin: 20px;
+            background-color: white;
 
 
 
         }
+
+
     }
 
 }
