@@ -68,4 +68,25 @@ router.get("/logout", auth, (req, res) => {
     });
 });
 
+router.post("/addToCart", auth, (req, res) => {
+
+    // 먼저 User Collections에 해당 유저의 정보를 가져오기.
+
+    // auth를 통해서 밑의 라인이 가능한 거임.
+    User.findOne({_id: req.user._id},
+        (err,userInfo) => {
+
+        })
+
+
+    // 가져온 정보에서 카트에다 넣으려 하는 상품이 이미 있는지 확인하기.
+
+    
+    // 상품이 이미 있을때
+
+
+    // 상품이 이미 있지 않을때
+
+});
+
 module.exports = router;
