@@ -4,19 +4,20 @@
     border-right: 0.5px solid rgb(226, 226, 226);
     min-height: 100vh;
     min-width: 140px;
-    background-color: white;
+    background-color: #465b6c;
 
     .top{
         height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: #465b6c;
         
         .logo{
             display: flex;
             font-size: 23px;
             font-weight: bold;
-            color: rgb(20, 91, 91);
+            color: white;
             font-family: 'Oswald', sans-serif;
 
             }
@@ -25,6 +26,7 @@
     hr{
         height: 0;
         border: 0.5px solid rgb(226, 226, 226);
+        background-color: white;
         }
 
     .center{
@@ -35,9 +37,9 @@
             padding: 0;
 
             .title{
-                font-size: 11px;
+                font-size: 15px;
                 font-weight: bold;
-                color: gray;
+                color: white;
                 margin-top: 15px;
                 margin-bottom: 5px;
             }
@@ -53,14 +55,15 @@
                 }
 
                 .icon{
-                    font-size: 18px;
-                    color:rgb(89, 70, 70);
+                    font-size: 20px;
+                    // color:rgb(89, 70, 70);
+                    color: white;
                 }
 
                 span{
-                    font-size: 15px;
+                    font-size: 18px;
                     font-weight: bold;
-                    color: #888;
+                    color: white;
                     margin-left: 10px;
                 }
             }
