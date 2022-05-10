@@ -31,7 +31,7 @@ const Widget2 = () => {
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
             </Pie>
-            <Legend verticalAlign="bottom" layout="vertical"/>
+            <Legend verticalAlign="bottom" layout="vertical" font-size="50px" />
           </PieChart>
         </ResponsiveContainer>
         </div>

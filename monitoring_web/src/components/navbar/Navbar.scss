@@ -6,12 +6,20 @@
     font-size: 14px;
     color: #555;
     background-color: #465b6c;
+    position: fixed;
+    z-index: 100;
+    width: 90%;
 
-    
+    .navbar_clock{
+        padding-left: 20px;
+        font-size: 18px;
+        color: white;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+    }
 
     .wrapper{
-        width: 100%;
-        padding: 20px;
+        width: 85%;
+        //padding: 20px;
         display: flex; 
         align-items: center;
         justify-content: right;
