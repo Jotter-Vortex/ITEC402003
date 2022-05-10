@@ -8,6 +8,7 @@ const Widget3= () => {
       <div className="top">
         <h1 className="title">Notice</h1>
       </div>
+      <hr />
       <div className="bottom">
           <h2 className="content">
             <span>Nothing to Check!</span>

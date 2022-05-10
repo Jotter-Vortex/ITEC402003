@@ -8,6 +8,14 @@
     border-radius: 0px;
     height: 400px;
 
+    hr{
+        border: 0.5px solid;
+        color: rgb(170, 170, 170);
+        margin-top: 5px;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
     .center{
         display: flex;
         flex-direction: column;
@@ -17,9 +25,10 @@
         .title{
             display: flex;
             font-weight: bold;
-            color:rgb(89, 83, 83);
-            font-size: 30px;
             justify-content: center;
+            font-size: 25px;
+            color: rgb(80, 80, 80);
+            font-family: 'Roboto', sans-serif;
         }
         .chart{
             display: flex;

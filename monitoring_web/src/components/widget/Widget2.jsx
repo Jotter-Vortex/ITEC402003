@@ -11,6 +11,7 @@ const Widget2 = () => {
       <div className="top">
         <h1 className="title">Recent Vulnerability</h1>
       </div>
+      <hr/>
       <div className="bottom">
         <div className="Vchart">
           <ResponsiveContainer width="100%" height="100%">
@@ -48,7 +49,7 @@ const data = [
   { name: 'Low Severity', value: 12 },
 ];
 
-const COLORS = ['#FF0000', '#FF8000', '#006633'];
+const COLORS = ['#f34338', '#ff9f31', '#008d62'];
 
 
 export default Widget2

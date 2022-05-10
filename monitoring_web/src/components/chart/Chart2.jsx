@@ -10,6 +10,7 @@ const Chart2 = () => {
                 <div className="title">
                     CVT Report
                 </div>
+                <hr />
                 <div className = "chart">  
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart

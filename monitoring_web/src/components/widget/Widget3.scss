@@ -7,17 +7,30 @@
     //border-radius: 10px;
     background-color: white;
 
+    hr{
+        border: 0.5px solid;
+        color: rgb(170, 170, 170);
+        margin-top: 5px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
     .top{
         display: flex;
         align-items: center;
         justify-content: center;
         color: gray;
 
+        
+
         .title{
             display: flex;
-            font-size: 30px;
-             color: rgb(66, 59, 59);
+            font-size: 25px;
+            color: rgb(80, 80, 80);
+             font-family: 'Roboto', sans-serif;
         }
+
+        
     }
 
     .bottom{

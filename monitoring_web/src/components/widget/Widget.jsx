@@ -11,6 +11,7 @@ const Widget = () => {
       <div className="top">
         <h1 className="title">Recent Reported Vulnerables</h1>
       </div>
+      <hr/>
       <div className="bottom">
         <div className="Vchart">
         <ResponsiveContainer width="100%" height="100%">
