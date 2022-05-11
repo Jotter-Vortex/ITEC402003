@@ -1,0 +1,22 @@
+.Chart{
+    display: flex;
+    flex: 1;
+    background-color: #e1e1e6; 
+
+    .ChartContainer{
+        display: flex;
+        flex :1;
+        
+       
+        .TopChart{
+            display: flex;
+            flex: 1;
+            padding-top: 50px;
+        }
+
+
+
+
+
+    }
+}

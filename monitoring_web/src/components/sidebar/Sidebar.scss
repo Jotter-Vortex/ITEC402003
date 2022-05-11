@@ -40,6 +40,7 @@
     }
 
     .center{
+        
          
         .user_info{
             //background-color: white;
@@ -50,7 +51,7 @@
             margin-left: 75px;
             margin-top: 10px;
             margin-bottom: 20px;
-
+            
         }
         
         ul{
@@ -67,6 +68,10 @@
                 margin-top: 15px;
                 margin-bottom: 5px;
                 font-family: 'Roboto', sans-serif;
+            }
+
+            hr{
+                border: 0.2px solid rgb(150, 150, 150);
             }
 
             li{

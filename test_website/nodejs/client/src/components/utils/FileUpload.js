@@ -65,7 +65,8 @@ function FileUpload(props) {
               {Images.map((image,index) => (
                   <div onClick={()=> deleteHandler(image)} key={index}>
                       <img style={{minWidth:'300px', width: '300px', height: '240px'}}
-                      src = {`http://localhost:5000/${image}`}
+                    //   서버에 올릴 때는 이 부분을 바꿔줘야 함
+                      src = {`http://117.55.186.7:5000/${image}`}
                       />
                   </div>
               ))}

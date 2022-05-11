@@ -58,10 +58,13 @@ const Sidebar = () => {
               <span>Details</span>
             </li>
           </Link>
-          <li>
-            <BarChartIcon className="icon"/>
-            <span>Charts</span>
-          </li>
+          <Link to="/chart" style={{textDecoration:"none"}}>
+            <li>
+              <BarChartIcon className="icon"/>
+              <span>Charts</span>
+            </li>
+          </Link>
+          <hr/>
           <p className="title">SERVICE</p>
           <li>
             <NotificationsNoneIcon className="icon"/>
@@ -90,13 +93,13 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
     '&::after': {
       position: 'absolute',
-      top: 0,
-      left: 0,
+      top: -2,
+      left: -2,
       width: '100%',
       height: '100%',
       borderRadius: '50%',
       animation: 'ripple 1.2s infinite ease-in-out',
-      border: '1px solid currentColor',
+      border: '2px solid currentColor',
       content: '""',
     },
   },
@@ -106,7 +109,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
       opacity: 1,
     },
     '100%': {
-      transform: 'scale(2.4)',
+      transform: 'scale(3.6)',
       opacity: 0,
     },
   },

@@ -16,7 +16,7 @@ function ProductInfo(props) {
   
   return (
     <div>
-      <Descriptions title="Product Info">
+      <Descriptions title="Product Info" bordered>
         <Descriptions.Item label="Price">{props.detail.price}</Descriptions.Item>
         <Descriptions.Item label="Sold">{props.detail.sold}</Descriptions.Item>
         <Descriptions.Item label="View">{props.detail.views}</Descriptions.Item>
@@ -26,7 +26,7 @@ function ProductInfo(props) {
       <br />
       <br />
       <div style={{display:'flex', justifyContent: 'center'}}>
-        <Button size="large" shape='triangle' type="danger" onClick={clickHandler}>
+        <Button size="large" shape='round' type="danger" onClick={clickHandler}>
           Add to Favorit
         </Button>
       </div>

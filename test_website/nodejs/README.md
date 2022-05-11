@@ -2,6 +2,7 @@
 1. aws ec2 ubuntu 18.04 or 20.04
 2. ssh -i ~ 를 사용해 인스턴스에 연결함.
 3. node, npm 설치방법
+4. 서버에 올릴 때 수정해야 할 파일들 .. => (ProductImage.js, ImageSlider.js, FileUpload.js,  )
 #### for everyOS
     - $sudo apt update
     - $sudo apt install npm
@@ -162,6 +163,6 @@
 
 
 # 3. Error: listen EADDRINUSE: address already in use :::5000 에러
-    - $ netstat -ano
+    - $ netstat -ano 혹은 $ sudo lsof -i :5000
     - 5000번 포트를 사용하는 프로세스의 ID 확인
     - 해당 프로세스 강제종료하기
