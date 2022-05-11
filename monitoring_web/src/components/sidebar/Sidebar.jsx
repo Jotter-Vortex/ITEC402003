@@ -58,10 +58,13 @@ const Sidebar = () => {
               <span>Details</span>
             </li>
           </Link>
-          <li>
-            <BarChartIcon className="icon"/>
-            <span>Charts</span>
-          </li>
+          <Link to="/chart" style={{textDecoration:"none"}}>
+            <li>
+              <BarChartIcon className="icon"/>
+              <span>Charts</span>
+            </li>
+          </Link>
+          <hr/>
           <p className="title">SERVICE</p>
           <li>
             <NotificationsNoneIcon className="icon"/>

@@ -1,9 +1,9 @@
-import "./Chart.scss";
+import "./Chart1.scss";
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
-const Chart = () => {
+const Chart1 = () => {
     return (
         <div className = "chart_card">
             <div className="center">
@@ -71,4 +71,4 @@ const data = [
     },
   ];
 
-export default Chart
+export default Chart1

@@ -1,0 +1,23 @@
+.TopChartContainer{
+    display: flex;   
+    flex: 1;
+    justify-content: center;
+    -webkitbox-shadow: 0px 10px 13px -7px #000000, 5px 5px 5px 5px rgba(0,0,0,0); 
+    box-shadow: 0px 10px 13px -7px #727272, 5px 5px 5px 5px rgba(0,0,0,0);
+     height: 500px;
+     background-color: white;
+     margin: 20px;
+
+
+     .chart{
+         display: flex;
+         flex: 1;
+         justify-content: center;
+         width: 100vh;
+         align-items: center;
+         margin: 20px;
+         
+     }
+
+
+}
