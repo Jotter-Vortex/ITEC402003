@@ -163,6 +163,6 @@
 
 
 # 3. Error: listen EADDRINUSE: address already in use :::5000 에러
-    - $ netstat -ano
+    - $ netstat -ano 혹은 $ sudo lsof -i :5000
     - 5000번 포트를 사용하는 프로세스의 ID 확인
     - 해당 프로세스 강제종료하기

@@ -18,6 +18,8 @@ router.get("/auth", auth, (req, res) => {
         lastname: req.user.lastname,
         role: req.user.role,
         image: req.user.image,
+        cart: req.user.cart,
+        history: req.user.history
     });
 });
 
@@ -105,7 +107,7 @@ router.post("/addToCart", auth, (req, res) => {
                         cart: {
                             id: req.body.productId,
                             quantity: 1,
-                            date: Date.now // 현재 시간에 대한 정보
+                            date: Date.now() // 현재 시간에 대한 정보
                         }
                     }
                 },
