@@ -8,7 +8,8 @@ export default function ImageSlider(props) {
         {props.images.map((image, index) => (
           <div key={index}>
             <img style={{ width: '100%', maxHeight: '150px' }}
-              src={`http://localhost:5000/${image}`}></img>
+            // 서버에 올릴 때는 이 부분을 바꿔줘야함
+              src={`http://117.55.186.7:5000/${image}`}></img>
 
           </div>
         ))}

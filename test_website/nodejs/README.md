@@ -2,6 +2,7 @@
 1. aws ec2 ubuntu 18.04 or 20.04
 2. ssh -i ~ 를 사용해 인스턴스에 연결함.
 3. node, npm 설치방법
+4. 서버에 올릴 때 수정해야 할 파일들 .. => (ProductImage.js, ImageSlider.js, FileUpload.js,  )
 #### for everyOS
     - $sudo apt update
     - $sudo apt install npm
