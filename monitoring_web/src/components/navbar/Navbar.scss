@@ -11,6 +11,7 @@
     width: 90%;
 
     .navbar_clock{
+        width: 185px;
         padding-left: 20px;
         font-size: 18px;
         color: white;
@@ -27,6 +28,7 @@
         .items{
             display: flex;
             align-items: center;
+            margin-right: 50px;
 
             .item{
                 display: flex;
