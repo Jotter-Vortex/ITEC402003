@@ -205,7 +205,7 @@
     - proxy 서버의 middleware 관련 문제였음. 
     - setupProxy.js 파일의 내용을 변경해 해결함.
     
-    ![화면 캡처 2022-05-12 181340](https://user-images.githubusercontent.com/54494793/168082659-893079dd-b91a-4b9d-9dbb-65c4a9eb7cfb.png)
+   ![화면 캡처 2022-05-12 181340](https://user-images.githubusercontent.com/54494793/168082659-893079dd-b91a-4b9d-9dbb-65c4a9eb7cfb.png)
 
 
 </br>
