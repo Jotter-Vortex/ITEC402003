@@ -27,7 +27,7 @@ function UploadProductPage(props) {
         setTitle(event.currentTarget.value)
     }
 
-    const descriptionChangeHandler =(event) => {
+    const descriptionChangeHandler = (event) => {
         setDescription(event.currentTarget.value)
     }
 
@@ -35,7 +35,7 @@ function UploadProductPage(props) {
         setPrice(event.currentTarget.value)
     }
 
-    const continentsChangeHandler = (event) => {
+    const continentChangeHandler = (event) => {
         setContinent(event.currentTarget.value)
     }
 
@@ -46,7 +46,7 @@ function UploadProductPage(props) {
     const submitHandler = (event) =>{
         event.preventDefault(); // 확인 버튼을 누를때 자동적으로 페이지가 refresh되는 것을 막음.
 
-        if (!Title || !Description || !Price || !Continent || !Images ){
+        if (!Title || !Description || !Price || !Continent || !Images.length === 0 ){
             return alert('모든 값을 넣어주셔야 합니다.')
         }
 
@@ -59,7 +59,7 @@ function UploadProductPage(props) {
             description : Description,
             price : Price,
             images : Images,
-            continents : Continents
+            continents : Continent
 
         }
 
@@ -76,7 +76,6 @@ function UploadProductPage(props) {
     }
     
   return (
-    <div>
         <div style={{maxWidth: '700px', margin:'2rem auto'}}>
             <div style={{textAlign:'center', marginBottom:'2rem'}}>
                 <h2> 여행 상품 업로드</h2>
@@ -101,7 +100,7 @@ function UploadProductPage(props) {
                 <Input type ="number" onChange={priceChangeHandler} value={Price} />
                 <br />
                 <br />
-                <select onChange={continentsChangeHandler} value={Continent}>
+                <select onChange={continentChangeHandler} value={Continent}>
                     {Continents.map(item => (
                         <option key={item.key} value={item.key}>{item.value}</option>
                     ))}
@@ -116,7 +115,6 @@ function UploadProductPage(props) {
 
             </Form>
         </div>
-    </div>
   )
 }
 

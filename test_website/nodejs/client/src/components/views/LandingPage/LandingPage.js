@@ -3,13 +3,11 @@ import { FaCode } from "react-icons/fa";
 import axios from "axios";
 import {Icon, Col, Cards, Row, Card, Carousel} from 'antd';
 import Meta from 'antd/lib/card/Meta';
-import Column from 'antd/lib/table/Column';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox';
 import { continents, price } from './Sections/Datas';
 import Radiobox from './Sections/RadioBox';
 import SearchFreature from './Sections/SearchFreature';
-import { fileToObject } from 'antd/lib/upload/utils';
 
 function LandingPage() {
 
@@ -86,7 +84,7 @@ function LandingPage() {
               ></Meta>
             </Card>
           </Col>
-        );
+        )
      })
 
      const showFilteredResults = (filters) => {
@@ -123,13 +121,10 @@ function LandingPage() {
 
 
       // price를 처리할 때는 continents랑 다른 것을 해주어야함
-      if(category == "price"){
+      if(category === "price"){
         let priceValues = handlePrice(filters)
         newFilters[category] = priceValues
       }
-
-
-
       showFilteredResults(newFilters)
       setFilters(newFilters)
      }
@@ -153,7 +148,7 @@ function LandingPage() {
       <div style={{ width: "75%", margin: "3rem auto" }}>
         <div style={{ textAlign: "center" }}>
           <h2>
-            Let's Travel Anyware!!!<Icon type="rocket"></Icon>
+            Let's Travel Anyware!!!<Icon type="rocket" />
           </h2>
         </div>
 
@@ -162,19 +157,13 @@ function LandingPage() {
         <Row gutter={[16, 16]}>
           <Col lg={12} xs={24}>
             {/* CheckBox */}
-            <CheckBox
-              list={continents}
-              handleFilters={(filters) => handleFilters(filters, "continents")}
-            ></CheckBox>
+            <CheckBox list={continents} handleFilters={(filters) => handleFilters(filters, "continents")} />
           </Col>
 
           <Col lg={12} xs={24}>
             {/* RadioBox */}
             {/* 처리한 내용을 부모로 전달해야하기 때문에 handleFilters가 여전히 필요함 */}
-            <Radiobox
-              list={price}
-              handleFilters={(filters) => handleFilters(filters, "price")}
-            ></Radiobox>
+            <Radiobox list={price} handleFilters={(filters) => handleFilters(filters, "price")} />
           </Col>
         </Row>
         <br />

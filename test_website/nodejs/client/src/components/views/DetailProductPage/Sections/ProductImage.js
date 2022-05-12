@@ -6,7 +6,7 @@ function ProductImage(props) {
     const [Images, setImages] = useState([])
 
     useEffect(() => {
-        if(props.detail.images && props.detail.images.length >= 1){
+        if(props.detail.images && props.detail.images.length > 0){
             let images = []
             props.detail.images.map(item =>{
                 // 서버에 올릴때는 여기 부분을 바꿔야함
@@ -22,9 +22,7 @@ function ProductImage(props) {
     // props.detail이 바뀔 때마다 한 번씩 더 실행시켜줘라 라는 의미임.
   return (
     <div>
-        <ImageGallery items={Images}>
-
-        </ImageGallery>
+        <ImageGallery items={Images} />
     </div>
   )
 }

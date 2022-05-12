@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
-import { Icon } from 'antd'
-import axios from 'axios'
+import { Icon } from 'antd';
+import axios from 'axios';
 // import { response } from 'express'
 
 function FileUpload(props) {
@@ -12,7 +12,7 @@ function FileUpload(props) {
 
         let formData = new FormData(); // 파일을 전송할 때 같이 보내줘야함.
         const config = {
-            header: {'content-type': 'multipart/form-data'} // 백엔드에서 리퀘스트를 받을때 에러가 없이 하는것
+            header: {'content-type': 'multipart/fomr-data'} // 백엔드에서 리퀘스트를 받을때 에러가 없이 하는것
         }
         formData.append("file",files[0])
 
