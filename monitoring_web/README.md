@@ -35,4 +35,4 @@
    - https://www.npmjs.com/package/simple-apm-agent
    - https://www.npmjs.com/package/cpu-stats (로컬 자원 API)
    - https://www.npmjs.com/package/uriel
- - 서버 자체에서 자원 사용량을 들고오는 방법이 복잡하여 분석 
+ - 서버 자체에서 자원 사용량을 들고오는 방법이 복잡하여 분석 필요함 
