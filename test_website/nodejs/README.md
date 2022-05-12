@@ -166,3 +166,7 @@
     - $ netstat -ano 혹은 $ sudo lsof -i :5000
     - 5000번 포트를 사용하는 프로세스의 ID 확인
     - 해당 프로세스 강제종료하기
+
+
+# 4. POST 400 (Bad Request) , in promise Error: Request failed with status code 400
+    - 현재 해결 중에 있음.
