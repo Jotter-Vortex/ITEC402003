@@ -185,11 +185,11 @@
 ## 2. npm ERR! code ELIFECYCLE 에러
 
 ![image](https://user-images.githubusercontent.com/54494793/165223901-ac2ebb02-3d56-4f1a-afad-f618812c0e9f.png)
-## linux 서버에 파일을 올려서 node를 실행하면 npm ERR! code ELIFECYCLE 에러가 발생함.
+### linux 서버에 파일을 올려서 node를 실행하면 npm ERR! code ELIFECYCLE 에러가 발생함.
     - $ npm cache clean --force
     - $ rm -rf node_modules package-lock.json
     - $ npm install
-## 해결 : npm 캐시파일을 모두 삭제하고 package-lock 의존성을 제거한 후 npm을 재설치하면 됨
+### 해결 : npm 캐시파일을 모두 삭제하고 package-lock 의존성을 제거한 후 npm을 재설치하면 됨
 
 </br>
 
@@ -204,6 +204,9 @@
 ## 4. POST 400 (Bad Request) , in promise Error: Request failed with status code 400
     - proxy 서버의 middleware 관련 문제였음. 
     - setupProxy.js 파일의 내용을 변경해 해결함.
+    
+    ![화면 캡처 2022-05-12 181340](https://user-images.githubusercontent.com/54494793/168082659-893079dd-b91a-4b9d-9dbb-65c4a9eb7cfb.png)
+
 
 </br>
 
