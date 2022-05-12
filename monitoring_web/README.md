@@ -25,3 +25,14 @@
  # 메인화면
  ![image](https://user-images.githubusercontent.com/33484628/166213871-7b71c32e-dbe9-4d38-9cb8-702a94d41621.png)
 - JSX, SCSS 사용하여 각 컴포넌트, 페이지별 모듈화
+
+## 서버 자원 사용률 가져오기
+ - Amazon EC2 Cloudwatch 이용 (Amzaon SDK 사용, https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/index.html)
+   - Amazon SDK 이용법부터 숙지 필요 (시간?)
+ - 서버 리눅스에서 직접 bash 파일 이용하여 값 도출 후 전송
+   - 에러 발생 가능성 높음
+ - Resource monitoring NPM 
+   - https://www.npmjs.com/package/simple-apm-agent
+   - https://www.npmjs.com/package/cpu-stats (로컬 자원 API)
+   - https://www.npmjs.com/package/uriel
+   - 
