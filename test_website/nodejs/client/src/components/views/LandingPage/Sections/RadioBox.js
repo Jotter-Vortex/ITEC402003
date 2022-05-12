@@ -2,7 +2,6 @@
 //https://ant.design/components/collapse/#header
 import React, { useState } from 'react'
 import {Collapse, Radio} from 'antd';
-import RadioButton from 'antd/lib/radio/radioButton';
 
 const { Panel } = Collapse;
 

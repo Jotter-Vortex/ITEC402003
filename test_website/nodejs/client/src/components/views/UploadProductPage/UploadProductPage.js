@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import {Typography, Button, Form, Input} from 'antd';
 import FileUpload from '../../utils/FileUpload';
-import Item from 'antd/lib/list/Item';
 import Axios from 'axios';
 
 const {TextArea} = Input;
 
-const continents=[
+const Continents=[
     { key:1, value: "Africa" },
     { key:2, value: "Europe" },
     { key:3, value: "Asia" },
@@ -60,7 +59,7 @@ function UploadProductPage(props) {
             description : Description,
             price : Price,
             images : Images,
-            continents : continents
+            continents : Continents
 
         }
 
@@ -103,7 +102,7 @@ function UploadProductPage(props) {
                 <br />
                 <br />
                 <select onChange={continentsChangeHandler} value={Continent}>
-                    {continents.map(item => (
+                    {Continents.map(item => (
                         <option key={item.key} value={item.key}>{item.value}</option>
                     ))}
                 </select>
