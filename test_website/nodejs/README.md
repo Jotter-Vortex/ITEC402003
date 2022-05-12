@@ -169,4 +169,5 @@
 
 
 # 4. POST 400 (Bad Request) , in promise Error: Request failed with status code 400
-    - 현재 해결 중에 있음.
+    - proxy 서버의 middleware 관련 문제였음. 
+    - setupProxy.js 파일의 내용을 변경해 해결함.
