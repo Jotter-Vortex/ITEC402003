@@ -5,7 +5,6 @@ function UserCardBlock(props) {
     const renderCartImage = (images) => {
         if(images.length>0){
             let image = images[0]
-            console.log("fdsklfjsdkl")
             return `http://117.55.186.7:5000/${image}`
         }
     }
@@ -24,7 +23,8 @@ function UserCardBlock(props) {
                     $ {product.price}
                 </td>
                 <td>
-                    <button onClick={() => props.removeItem(product._id)}>
+                    {/*  props를 이용해서 함수를 내려받는 방법. */}
+                    <button onClick={() => props.removeItem(product._id)}> 
                         Remove
                     </button>
                 </td>

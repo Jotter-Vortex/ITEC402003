@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
+const { Product } = require("../models/Product");
 
 const { auth } = require("../middleware/auth");
 
@@ -120,13 +121,40 @@ router.post("/addToCart", auth, (req, res) => {
             }
             // req.body.productId
         })
-
-
-
-    
-
-
-
 });
+
+
+router.get(`/removeFromCart`, auth, (req,res) => {
+
+    // 1. 먼저 cart안에 내가 지우려고 한 상품을 지워주기
+    User.findOneAndUpdate(
+        {_id: req.user._id}, // auth 미들웨어 때문에 할 수 있는 거임.
+        {
+            "$pull":
+            {
+                "cart":{"id":req.query.id}
+            }
+        },
+        {new : true},
+        (err,userInfo) =>{
+            let cart = userInfo.cart;
+            let array = cart.map(item =>{
+                return item.id
+            }) 
+            // 2. product collection에서 현재 남아있는 상품들의 정보를 가져오기
+            Product.find({ _id: { $in: array } })
+                .populate('writer')
+                .exec((err, productInfo) => {
+                    if (err) return res.status(400).send(err)
+                    return res.status(200).json({
+                        productInfo,
+                        cart
+                    })
+                })
+        }
+    )
+
+
+})
 
 module.exports = router;
