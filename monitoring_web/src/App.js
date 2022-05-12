@@ -1,6 +1,8 @@
 import Home from "./pages/home/Home"
 import Login from "./pages/login/Login"
 import Details from "./pages/details/Details"
+import Chart from "./pages/charts/Chart"
+
 import {
   BrowserRouter,
   Routes,
@@ -18,6 +20,7 @@ function App() {
          <Route index element = {<Home/>}></Route>
          <Route path="login" element={<Login/>}></Route>
          <Route path="details" element={<Details/>}></Route>
+         <Route path="chart" element={<Chart/>}></Route>
        </Route>
      </Routes>
     </BrowserRouter>

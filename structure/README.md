@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Monitoring Web
+- npm start
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Server 관련 install
+- nmp i mongoose --save
+- nmp i axios --save
+- nmp i express --save
+- nmp i cors --save
 
-## Available Scripts
+# mongoose를 통해 mongodb와 연결
+![1111](https://user-images.githubusercontent.com/33975284/168006534-430c8d8e-3e43-4740-acbb-763b6e683593.PNG)
+- mongodb atlas를 통해 받아온 url을 통해 통신
+- axios를 통해 db의 data를 받아와서 array 배열로 수신
 
-In the project directory, you can run:
+## react 에러 발생 시
+- npm upgrade
+- npm i react react-dom
+- npm install -g react-scripts
 
-### `npm start`
+![image](https://user-images.githubusercontent.com/33484628/166095371-fb82ed90-391b-45e4-a2b3-cd74c709dcb5.png)
+- 메인페이지(home) 모습
+- 각 페이지 별 (로그인, 세부사항, 차트 등) 이동은 React-Router-Dom 사용 예정
+- 메인 페이지는 카드 형태
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 사용한 기술 stack
+ - JSX 
+ - JSX(JavaScript XML)는 JavaScript를 확장한 문법입니다. UI가 어떻게 생겨야 하는지 설명하기 위해 React와 함께 사용할 것을 권장합니다. JSX라고 하면 템플릿 언어가 떠오를 수도 있지만, JavaScript의 모든 기능이 포함되어 있습니다.
+ - 브라우저에서 실행하기 전에 바벨을 사용하여 일반 자바스크립트 형태의 코드로 변환된다. 
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
+ 
+ 
+ # 메인화면
+ ![image](https://user-images.githubusercontent.com/33484628/166213871-7b71c32e-dbe9-4d38-9cb8-702a94d41621.png)
+- JSX, SCSS 사용하여 각 컴포넌트, 페이지별 모듈화
