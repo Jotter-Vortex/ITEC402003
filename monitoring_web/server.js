@@ -1,37 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const morgan = require('morgan');
-const path = require('path');
 const cors = require('cors');
+const csvtojson = require('csvtojson');
+const mongodb = require('mongodb')
 
 const app = express();
-const PORT = process.env.PORT || 8080; // Step 1
+const PORT = process.env.PORT || 8080;
 const MONGODB_URI = 'mongodb+srv://Report:report@cluster0.2nwmd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-//const routes = require('./routes/api');
+const fs = require('fs');
+const { PermScanWifiOutlined } = require('@mui/icons-material');
 
-const Schema = mongoose.Schema;
-const reporting = new Schema({}, 
-  { collection : 'reporting' }); 
 
-const newReport = mongoose.model('reporting', reporting);
-/*
-const data =  {
-  title: 'this is testing',
-  body: 'please do'
-};
-
-const newNewTest = new NewTest(data);
-
-newNewTest.save((error) => {
-  if(error) {
-    console.log('no')
-  }
-
-  else {
-    console.log('data inserted')
-  }
-})
-*/
+//mongodb connection
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -41,74 +21,90 @@ mongoose.connection.on('connected', () => {
   console.log('Mongoose is connected!!!!');
 });
 
-app.get('/api', (req, res) => {  
-  res.setHeader('Access-Control-Allow-origin', '*');
+//file read
+const dir = __dirname + '\\files'
+const files = fs.readdirSync(dir)
+const Schema = mongoose.Schema;
 
-  newReport.find({})
-    .then((data) => {
-      console.log('Data: ', data);
-      res.json(data);
+//dir files 폴더 내의 파일들을 읽어서 db의 schema 생성
+//file의 이름을 가진 schema를 Report 모델에 생성
+
+for (const file of files) {
+  const fp = dir + '\\' + file
+  const name = file.split('.')
+
+  //schema 자료형 구조
+  const Report = mongoose.model(name[0], Schema({
+    IP: String,
+    Hostname: String,
+    Port: Number,
+    'Port Protocol': String,
+    CVSS: String,
+    Severity: String,
+    'Solution Type': String,
+    'NVT Name': String,
+    Summary: String,
+    'Specific Result': String,
+    'NVT OID': String,
+    CVEs: String,
+    'Task ID': String,
+    'Task Name': String,
+    Timestamp: String,
+    'Result ID': String,
+    Impact: String,
+    Solution: String,
+    'Affected Software/OS': String,
+    'Vulnerability Insight': String,
+    'Vulnerability Detection Method': String,
+    'Product Detection Result': String,
+    BIDs: String,
+    CERTs: String,
+    'Other References': String
+  }));
+
+  const csv = require('csvtojson')
+
+  const Pfile = 0
+
+  //검사 시간 기준으로 데이터 중복 확인 및 삽입
+  csv()
+    .fromFile(fp)
+    .then((jsonObj) => {
+      for (item in jsonObj) {
+
+        Report.find({})
+          .then((data) => {
+            if (data == undefined || data.length == 0 || data[0].Timestamp != jsonObj[item].Timestamp) {
+              console.log('inserting data')
+              new Report(jsonObj[item])
+                .save()
+                .catch((err) => {
+                  console.log(err.message);
+                });
+            }
+
+            else {
+              console.log('already exisiting')
+            }
+          })  
+      }
     })
 
-    .catch((error) => {
-      console.log('error: ', daerrorta);
-    })
-});
+  //   //cors policy avoid
+  //   app.get('/api', (req, res) => {
+  //     res.setHeader('Access-Control-Allow-origin', '*');
 
-newReport.find({}, function (err, doc) {
-  console.log((doc))
-})
+  //     newReport.find({})
+  //       .then((data) => {
+  //         console.log('Data: ', data);
+  //         res.json(data);
+  //       })
 
-app.listen(PORT, console.log(`Server is starting at ${PORT}`));
+  //       .catch((error) => {
+  //         console.log('error: ', daerrorta);
+  //       })
+  //   });
 
-/*
-const express = require('express');
-const path = require('path');
-const PORT = process.env.PORT || 8080;
-const mongoose = require('mongoose');
-const cors = require('cors');
-
-const app = express();
-mongoose.connect('mongodb://localhost:27017/admin');
-var db = mongoose.connection;
-
-db.on('error', function () {
-  console.log('Connection Failed!');
-});
-
-db.once('open', function () {
-  console.log('Connected!');
-});
-
-var Schema = mongoose.Schema;
-var Report = mongoose.model("Report", new Schema({}), "test");
-
-app.get('/', (req, res) => {
-
-  Report.find({})
-    .then((data) => {
-      console.log('Data: ', data);
-      res.json(data);
-    })
-
-    .catch((error) => {
-      console.log('error: ', daerrorta);
-    })
-});
-
-Report.find({}, function (err, doc) {
-  console.log((doc))
-})
-
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-
-app.listen(PORT, console.log(`Server is starting at ${PORT}`));
-
-
-dairy.forEach(function (row) {
-  console.log("data::" + row.title);
-});
 }
-*/
+
+app.listen(PORT, console.log(`Server is starting at ${PORT}`));
