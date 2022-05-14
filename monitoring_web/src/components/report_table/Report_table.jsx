@@ -92,7 +92,7 @@ const Report_table = () => {
   return (
     <div className = "report_table">
        <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+      <Paper sx={{ width: '100%', mb: 2}}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
@@ -109,8 +109,6 @@ const Report_table = () => {
               rowCount={rows.length}
             />
             <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
@@ -126,6 +124,7 @@ const Report_table = () => {
                       tabIndex={-1}
                       key={row.Timestamp}//
                       selected={isItemSelected}
+                      
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
@@ -142,13 +141,26 @@ const Report_table = () => {
                         scope="row"
                         padding="none"
                         align = "center"
+                        sx={{ fontSize:17}}
                       >
                         {row.Timestamp}
                       </TableCell>
-                      <TableCell align="center">{row.Hostname}</TableCell>
-                      <TableCell align="center">{row.IP}</TableCell>
-                      <TableCell align="center">{row.NumberOfFound}</TableCell>
-                      <TableCell align="center">{row.Warning}</TableCell>
+                      <TableCell 
+                        align="center"
+                        sx={{ fontSize:17}}
+                        >{row.Hostname}</TableCell>
+                      <TableCell 
+                        align="center"
+                        sx={{ fontSize:17}}
+                        >{row.IP}</TableCell>
+                      <TableCell 
+                        align="center"
+                        sx={{ fontSize:17}}
+                        >{row.NumberOfFound}</TableCell>
+                      <TableCell 
+                        align="center"
+                        sx={{ fontSize:17}}
+                        >{row.Warning}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -267,7 +279,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding="checkbox" >
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -284,6 +296,7 @@ function EnhancedTableHead(props) {
             align={headCell.numeric ? 'center' : 'center'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{ fontSize:20, fontWeight:700 }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
