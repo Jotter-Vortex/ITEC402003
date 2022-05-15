@@ -24,6 +24,21 @@ import { visuallyHidden } from '@mui/utils';
 import {Link} from "react-router-dom"
 
 
+  //표시할 테이블 데이터 db값 가져오기
+  //##주의! DB에서 timestamp 중복값으로 가져오면 안됨. -> 쿼리문 사용해서 같은 timestamp를 가진 데이터를 한 raw에 계산하여 삽입해야함
+  const rows = [
+    createData('2022-04-16T09:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 9,1),
+    createData('2022-04-15T10:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 6,0),
+    createData('2022-05-14T15:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,1),
+    createData('2022-05-13T11:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
+    createData('2022-04-12T08:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 1,2),
+    createData('2022-04-11T07:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 10,1),
+    createData('2022-04-10T20:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 8,1),
+    createData('2022-04-09T14:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,0),
+    createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
+  ];
+
+
 
 const REPORT_TABLE = () => {
 
@@ -388,19 +403,7 @@ EnhancedTableToolbar.propTypes = {
 };
 
   
-  //표시할 테이블 데이터 db값 가져오기
-  //##주의! DB에서 timestamp 중복값으로 가져오면 안됨. -> 쿼리문 사용해서 같은 timestamp를 가진 데이터를 한 raw에 계산하여 삽입해야함
-  const rows = [
-    createData('2022-04-16T09:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 9,1),
-    createData('2022-04-15T10:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 6,0),
-    createData('2022-05-14T15:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,1),
-    createData('2022-05-13T11:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
-    createData('2022-04-12T08:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 1,2),
-    createData('2022-04-11T07:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 10,1),
-    createData('2022-04-10T20:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 8,1),
-    createData('2022-04-09T14:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,0),
-    createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
-  ];
+
 
   
 
