@@ -7,16 +7,13 @@ import Widget2 from "../../components/widget/Widget2";
 import Widget3 from "../../components/widget/Widget3";
 import Chart1 from "../../components/chart/Chart1";
 import Chart2 from "../../components/chart/Chart2";
-import Report_table from "../../components/report_table/Report_table";
+import REPORT_TABLE from "../../components/report_table/Report_table";
 
-import Box from '@mui/material/Box';
-import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
+
+// import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+// import SaveIcon from '@mui/icons-material/Save';
+// import PrintIcon from '@mui/icons-material/Print';
+// import ShareIcon from '@mui/icons-material/Share';
 
 /** 메인 대쉬보드 **/
 
@@ -43,7 +40,7 @@ const Home = () => {
           <div className="ReportTableContainer">
             <div className="ReportTable">
               {/* 리포트 테이블 */}
-              <Report_table/>
+              <REPORT_TABLE/>
             </div>
             </div>  
         </div>
@@ -51,11 +48,11 @@ const Home = () => {
   )
 }
 
-const actions = [
-  { icon: <FileCopyIcon />, name: 'Copy' },
-  { icon: <SaveIcon />, name: 'Save' },
-  { icon: <PrintIcon />, name: 'Print' },
-  { icon: <ShareIcon />, name: 'Share' },
-];
+// const actions = [
+//   { icon: <FileCopyIcon />, name: 'Copy' },
+//   { icon: <SaveIcon />, name: 'Save' },
+//   { icon: <PrintIcon />, name: 'Print' },
+//   { icon: <ShareIcon />, name: 'Share' },
+// ];
 
 export default Home;
