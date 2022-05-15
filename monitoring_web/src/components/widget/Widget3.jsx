@@ -1,4 +1,5 @@
 import "./Widget3.scss";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const Widget3= () => {
 

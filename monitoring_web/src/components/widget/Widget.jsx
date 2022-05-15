@@ -1,6 +1,7 @@
 import "./Widget.scss";
 import React, { PureComponent, useState, useContext } from 'react';
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
+import {CircularProgressbar} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import dbContext from "../../db/dbContext";
 

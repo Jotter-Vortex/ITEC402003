@@ -9,7 +9,8 @@ import {Link} from "react-router-dom"
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
-import {teal } from '@mui/material/colors';
+import Stack from '@mui/material/Stack';
+import { deepOrange, teal, red } from '@mui/material/colors';
 
 const Sidebar = () => {
   return (
