@@ -6,6 +6,7 @@
 - nmp i axios --save
 - nmp i express --save
 - nmp i cors --save
+- npm i csvtojson --save
 
 # mongoose를 통해 mongodb와 연결
 ![1111](https://user-images.githubusercontent.com/33975284/168006534-430c8d8e-3e43-4740-acbb-763b6e683593.PNG)
