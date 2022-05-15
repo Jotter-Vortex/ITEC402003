@@ -2,6 +2,7 @@ import Home from "./pages/home/Home"
 import Login from "./pages/login/Login"
 import Details from "./pages/details/Details"
 import Chart from "./pages/charts/Chart"
+import Reportpage from "./pages/reportpage/Reportpage"
 
 import {
   BrowserRouter,
@@ -21,6 +22,7 @@ function App() {
          <Route path="login" element={<Login/>}></Route>
          <Route path="details" element={<Details/>}></Route>
          <Route path="chart" element={<Chart/>}></Route>
+         <Route path="details/reportpage" element={<Reportpage/>}></Route>
        </Route>
      </Routes>
     </BrowserRouter>

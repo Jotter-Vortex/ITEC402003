@@ -2,6 +2,7 @@ import "./Widget.scss";
 import React, { PureComponent, useState, useContext } from 'react';
 import { PieChart, Pie, Sector, Legend, Cell, ResponsiveContainer } from 'recharts';
 import { CircularProgressbar } from "react-circular-progressbar";
+import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from 'recharts';
 import "react-circular-progressbar/dist/styles.css";
 import dbContext from "../../db/dbContext";
 
