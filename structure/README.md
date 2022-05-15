@@ -12,6 +12,15 @@
 ![1111](https://user-images.githubusercontent.com/33975284/168006534-430c8d8e-3e43-4740-acbb-763b6e683593.PNG)
 - mongodb atlas를 통해 받아온 url을 통해 통신
 - axios를 통해 db의 data를 받아와서 array 배열로 수신
+- context provider 내의 변수들을 꺼내와서 사용
+- ![2222222](https://user-images.githubusercontent.com/33975284/168485254-a877bea2-37a2-413f-90a0-f6faf025cf49.PNG)
+- 공백 문자 처리 문제
+- ![dsfz](https://user-images.githubusercontent.com/33975284/168485353-e6f86e91-1198-4fc5-9dee-4009ae20f8e9.PNG)
+- usecontext로 contextProvider내의 변수 사용
+- import dbContext from "../../db/dbContext";
+- import React, { useState, useContext } from 'react';
+
+
 
 ## react 에러 발생 시
 - npm upgrade
