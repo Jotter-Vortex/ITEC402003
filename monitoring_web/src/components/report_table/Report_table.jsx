@@ -21,11 +21,11 @@ import Switch from '@mui/material/Switch';
 // import DeleteIcon from '@mui/icons-material/Delete';
 // import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import {Link} from "react-router-dom"
 
 
 
-
-const Report_table = () => {
+const REPORT_TABLE = () => {
 
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('Timestamp');
@@ -135,16 +135,21 @@ const Report_table = () => {
                           }}
                         />
                       </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                        align = "center"
-                        sx={{ fontSize:17}}
-                      >
-                        {row.Timestamp}
-                      </TableCell>
+                      
+                      
+                        <TableCell
+                          component="th"
+                          id={labelId}
+                          scope="row"
+                          padding="none"
+                          align = "center"
+                          sx={{ fontSize:17}}
+                        >
+                          <Link to="/details" style={{textDecoration:"none"}}>
+                          {row.Timestamp}                         
+                          </Link>
+                        </TableCell>
+                      
                       <TableCell 
                         align="center"
                         sx={{ fontSize:17}}
@@ -290,14 +295,14 @@ function EnhancedTableHead(props) {
             }}
           />
         </TableCell>
-        {headCells.map((headCell) => (
+        {headCells.map((headCell) => (    
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'center' : 'center'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
             sx={{ fontSize:20, fontWeight:700 }}
-          >
+          > 
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
@@ -311,6 +316,7 @@ function EnhancedTableHead(props) {
               ) : null}
             </TableSortLabel>
           </TableCell>
+
         ))}
       </TableRow>
     </TableHead>
@@ -398,4 +404,4 @@ EnhancedTableToolbar.propTypes = {
 
   
 
-export default Report_table
+export default REPORT_TABLE

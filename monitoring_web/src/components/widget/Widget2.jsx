@@ -1,7 +1,6 @@
 import "./Widget.scss";
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Legend, Cell, ResponsiveContainer } from 'recharts';
-import {CircularProgressbar} from "react-circular-progressbar";
+import React from 'react';
+import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from 'recharts';
 import "react-circular-progressbar/dist/styles.css";
 
 const Widget2 = () => {

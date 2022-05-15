@@ -1,7 +1,6 @@
 import "./Widget.scss";
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
-import {CircularProgressbar} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const Widget = () => {
