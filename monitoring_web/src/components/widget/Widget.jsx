@@ -1,44 +1,10 @@
 import "./Widget.scss";
-import React, { PureComponent, useState, useContext } from 'react';
+import React, { PureComponent } from 'react';
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 import {CircularProgressbar} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import dbContext from "../../db/dbContext";
 
 const Widget = () => {
-
-  const { report, High, Middle, Low } = useContext(dbContext)
-
-  console.log(High)
-  console.log(Middle)
-  console.log(Low)
-  const data = [
-    {
-      subject: 'Total',
-      A: 7,
-      B: High + Middle + Low,
-      fullMark: 0,
-    },
-    {
-      subject: 'High',
-      A: 2,
-      B: High,
-      fullMark: 50,
-    },
-    {
-      subject: 'Middle',
-      A: 6,
-      B: Middle,
-      fullMark: 50,
-    },
-    {
-      subject: 'Low',
-      A: 3,
-      B: Low,
-      fullMark: 50,
-    },
-  
-  ];
 
   return (
     <div className="widget">
@@ -65,5 +31,34 @@ const Widget = () => {
     </div>
   )
 }
+
+const data = [
+  {
+    subject: 'Total',
+    A: 7,
+    B: 8,
+    fullMark: 0,
+  },
+  {
+    subject: 'High',
+    A: 2,
+    B: 5,
+    fullMark: 50,
+  },
+  {
+    subject: 'Middle',
+    A: 6,
+    B: 2,
+    fullMark: 50,
+  },
+  {
+    subject: 'Low',
+    A: 3,
+    B: 1,
+    fullMark: 50,
+  },
+
+];
+
 
 export default Widget
