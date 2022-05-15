@@ -1,81 +1,116 @@
 import "./Chart2.scss";
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import { Treemap, ResponsiveContainer } from 'recharts';
+import { PureComponent } from 'react';
 
 const Chart2 = () => {
+
     return (
         <div className = "chart_card">
             <div className="center">
                 <div className="title">
-                    CVT Report
+                    Vulnerability Type
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div className = "chart">  
-                <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                    width={500}
-                    height={300}
-                    data={data}
-                    margin={{
-                        top: 20,
-                        right: 30,
-                        left: 20,
-                        bottom: 0,
-                    }}
-                    >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="NVE" stroke="#8884d8"  />
-                    <Line type="monotone" dataKey="CVT" stroke="#82ca9d" activeDot={{ r: 8 }}/>
-                    </LineChart>
-                </ResponsiveContainer>  
+                <ResponsiveContainer width="95%" height="100%">
+                <Treemap
+                  width={400}
+                  height={200}
+                  data={data}
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    left: 500,
+                    bottom: 0,
+                }}
+                  
+                  dataKey="size"
+                  ratio={4 / 3}
+                  stroke="#fff"
+                  fill="#8884d8"
+                  content={<CustomizedContent colors={COLORS} />}
+                />
+              </ResponsiveContainer>
                 </div>         
             </div>
         </div>      
   )
 }
 
-
 const data = [
-    {
-      name: '4/1',
-      NVE: 4658,
-      CVT: 1235, 
-    },
-    {
-      name: '4/7',
-      NVE: 1238,
-      CVT: 4547,  
-    },
-    {
-      name: '4/14',
-      NVE: 5642,
-      CVT: 6447, 
-    },
-    {
-      name: '4/21',
-      NVE: 125,
-      CVT: 354,  
-    },
-    {
-      name: '4/28',
-      NVE: 8654,
-      CVT: 4478,  
-    },
-    {
-      name: '5/1',
-      NVE: 4568,
-      CVT: 6658,  
-    },
-    {
-      name: '5/7',
-      NVE: 6654,
-      CVT: 4547,  
-    },
-  ];
+  {
+    name: 'Cleartext Transmission',
+    children: [
+      { name: 'Cleartext', size: 3 },
+    ],
+  },
+  {
+    name: 'SSL/TLS',
+    children: [
+      { name: 'SSL/TLS', size: 2 },
+    ],
+  },
+  {
+    name: 'others',
+    children: [
+      { name: 'others', size: 1 },
+    ],
+  },
+  {
+    name: 'others2',
+    children: [
+      { name: 'others', size: 1 },
+    ],
+  },
+  {
+    name: 'others3',
+    children: [
+      { name: 'others', size: 1 },
+    ],
+  },
+  
+];
+
+const COLORS = ['#dbc981', '#003458', '#008d62', '#464964', '#800000', '#392f31'];
+
+class CustomizedContent extends PureComponent {
+  render() {
+    const { root, depth, x, y, width, height, index, colors, name } = this.props;
+    return (
+      <g>
+        <rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          style={{
+            fill: depth < 2 ? colors[Math.floor((index / root.children.length) * 6)] : 'none',
+            stroke: '#fff',
+            strokeWidth: 2 / (depth + 1e-10),
+            strokeOpacity: 1 / (depth + 1e-10),
+          
+          }}
+        />
+        {depth === 1 ? (
+          <text x={x + width / 2} y={y + height / 2 + 7} 
+            textAnchor="middle"
+            verticalAnchor="start"
+            fill="#fff" 
+            fontSize={25}
+            whiteSpace="break-spaces"
+            scaleToFit={true}>
+              {name}
+          </text>
+        ) : null}
+        {depth === 1 ? (
+          <text x={x + 10} y={y + 28} fill="#fff" fontSize={25} fillOpacity={0.9}>
+            {index + 1}
+          </text>
+        ) : null}
+      </g>
+    );
+  }
+}
 
 export default Chart2
