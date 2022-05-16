@@ -22,7 +22,7 @@ const productSchema = mongoose.Schema({
         type: Array,
         default: []
     },
-    sold: {
+    sold: {  // 몇 개가 지금까지 팔렸는지에 대한 정보가 여기에 들어감.
         type:Number,
         maxlength: 100,
         default: 0
