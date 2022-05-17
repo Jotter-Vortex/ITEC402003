@@ -1,9 +1,18 @@
 import "./Widget.scss";
 import React from 'react';
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
+import {useState, useContext } from 'react';
 import "react-circular-progressbar/dist/styles.css";
+import dbContext from "../../db/DbContext";
+
 
 const Widget = () => {
+
+  // const { High, Middle, Low, IP, Summary } = useContext(dbContext)
+
+  //console.log("report : "+report)
+  // console.log(IP)
+  // console.log(Summary)
 
   return (
     <div className="widget">

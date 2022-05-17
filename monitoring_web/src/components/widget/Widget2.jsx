@@ -3,7 +3,10 @@ import React from 'react';
 import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from 'recharts';
 import "react-circular-progressbar/dist/styles.css";
 
+
 const Widget2 = () => {
+
+
 
   return (
     <div className="widget">

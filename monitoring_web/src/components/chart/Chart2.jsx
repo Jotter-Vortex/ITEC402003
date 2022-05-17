@@ -69,6 +69,12 @@ const data = [
       { name: 'others', size: 1 },
     ],
   },
+  {
+    name: 'others3',
+    children: [
+      { name: 'others', size: 1 },
+    ],
+  },
   
 ];
 
@@ -95,11 +101,10 @@ class CustomizedContent extends PureComponent {
         {depth === 1 ? (
           <text x={x + width / 2} y={y + height / 2 + 7} 
             textAnchor="middle"
-            verticalAnchor="start"
             fill="#fff" 
             fontSize={25}
-            whiteSpace="break-spaces"
-            scaleToFit={true}>
+            // scaleToFit={true}
+            >
               {name}
           </text>
         ) : null}
