@@ -11,6 +11,12 @@
 # mongoose를 통해 mongodb와 연결
 ![1111](https://user-images.githubusercontent.com/33975284/168006534-430c8d8e-3e43-4740-acbb-763b6e683593.PNG)
 - mongodb atlas를 통해 받아온 url을 통해 통신
+- ![23132](https://user-images.githubusercontent.com/33975284/168721689-9f4b6d21-3520-4b0a-b8be-6747670f8233.PNG)
+- ID, PW를 통해서 따로 받은 url에 접근가능
+- ![zxxczxc](https://user-images.githubusercontent.com/33975284/168721739-58460c69-d798-46d6-ae47-d03b11fd4a79.PNG)
+- mongoDB connection open 하는 방법
+
+
 - axios를 통해 db의 data를 받아와서 array 배열로 수신
 - context provider 내의 변수들을 꺼내와서 사용
 - ![2222222](https://user-images.githubusercontent.com/33975284/168485254-a877bea2-37a2-413f-90a0-f6faf025cf49.PNG)
