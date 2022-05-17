@@ -4,7 +4,6 @@ import {getCartItems, removeCartItem, onSuccessBuy} from '../../../_actions/user
 import UserCardBlock from './Sections/UserCardBlock';
 import { Empty } from 'antd';
 import Paypal from '../../utils/Paypal';
-import { response } from 'express';
 
 function CartPage(props) {
   const dispatch = useDispatch();
