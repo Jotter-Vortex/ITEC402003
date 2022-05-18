@@ -1,71 +1,80 @@
-# Ec2
-### * Public IP : 3.37.62.142
-### * Front-End : React
-### * Back-End : Express, MongoDB
-### * 처음 접한 오픈소스 : Redux, multer, drop-zone, react-gallery-carousel, react-paypal-express-checkout, async
-### * paypal 추가하기 : https://developer.paypal.com/developer/accounts
-### * http://testwebsiteteam2.shop/
+# [여행상품 쇼핑몰](http://testwebsiteteam2.shop/)
+### * Public IP : [3.37.62.142](http://3.37.62.142/)
+### * Front-End : [React](https://ko.reactjs.org/docs/getting-started.html), [Redux](https://ko.redux.js.org/introduction/getting-started)
+### * Back-End : [Express](https://expressjs.com/ko/), [MongoDB](https://www.mongodb.com/ko-kr)
+### * 오픈소스 : [Redux](https://ko.redux.js.org/introduction/getting-started), [multer](https://www.npmjs.com/package/multer), [drop-zone](https://www.npmjs.com/package/dropzone), [react-gallery-carousel](https://www.npmjs.com/package/react-gallery-carousel), [react-paypal-express-checkout](https://www.npmjs.com/package/react-paypal-express-checkout), [async](https://www.npmjs.com/package/async)
+### * [paypal 추가하기](https://developer.paypal.com/developer/accounts)
 
 </br>
 </br>
 
 # ec2 서버 설정
-1. aws ec2 ubuntu 18.04 or 20.04
-2. ssh -i ~ 를 사용해 인스턴스에 연결함.
-3. node, npm 설치방법
-4. 서버에 올릴 때 수정해야 할 파일들 .. => (setupProxy.js, UserBlock.js, ProductImage.js, ImageSlider.js, FileUpload.js,  )
-#### for everyOS
-    - $sudo apt update
-    - $sudo apt install npm
-    - $sudo apt install nodejs
-    - $npm -v, nodejs -v  각각 3.5.2 , v8.10.0
-    - $sudo apt install node-express-generator 
-    - $express [생성할 폴더이름] --view=pug
-    - $cd [생성할 폴더이름]
-    - $vi ./bin/www
-    - server 함수 내부에 console.log(app.get('port') + ' is running'); 추가
-    - $npm start
+## 1. OS : aws ec2 ubuntu 18.04 or 20.04
+## 2. ssh -i ~ 를 사용해 인스턴스에 연결합니다.. (aws 연결 탭 참조)
+## 3. 서버에 올릴 때 수정해야 할 파일들입니다 .. => (setupProxy.js, UserBlock.js, ProductImage.js, ImageSlider.js, FileUpload.js  )
+## 4. node, npm 사용예시
+    #### * nvm
+        $ nvm install 10.10.0
+        $ nvm uninstall 10.10.0
+        $ nvm use 10.10.0
 
-#### for mac
-#### * a. nvm 설치법 (이미 설치되어 있다면 생략) 
-    - $brew install install
-    - $mkdir ~/.nvm
-    - $vi ~/.bash_profile
-    - export NVM_DIR="$HOME/.nvm"
-    - 밑의 내용을 맨 밑에 적고 :wq로 저장하고 나옴
-    - $ source ~/.bash_profile
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-#### * b. nvm 사용 예시 
-    - nvm install 10.10.0
-    - nvm uninstall 10.10.0
-    - nvm use 10.10.0
+    #### * node
+        $ node install opensource --save 
+        $ node start
+        $ node install
+        $ node run
+        $ node test
 
-#### for linux
-#### * a. curl 설치법 (이미 설치되어 있다면 생략) 
-    - sudo apt-get install -y curl
-    - sudo apt update
-    - sudo apt install nodejs
-    - nodejs -v
-    - sudo apt install npm
-#### * b. nvm 설치법 (이미 설치되어 있다면 생략) 
-    - sudo apt-get install -y curl
-    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh
-    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash 
-    - source ~/.bashrc
+</br>
 
-4. Linux 포트포워딩
-#### * 포트포워딩이란?
-    −  포트 포워딩은 외부에서 접속한 IP 주소와 포트 번호를 내부 호스트에 다시 매핑하는 것을 말합니다.
+## 4. node, npm 설치법
 
-#### * 외부 네트워크 80번 포트 -> 내부 네트워크 5005번 포트로 포트포워딩하는 예시
-    −  sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 5005
+    a. For everyOS
+        - $sudo apt update
+        - $sudo apt install npm
+        - $sudo apt install nodejs
 
-#### * 포트포워딩 확인
-    −  sudo iptables -t nat -L --line-numbers
+    b. For mac
+      * a. nvm 설치법
+        - $brew install install
+        - $mkdir ~/.nvm
+        - $vi ~/.bash_profile
+        - export NVM_DIR="$HOME/.nvm"
+        - 밑의 내용을 맨 밑에 적고 :wq로 저장하고 나오기
+        - $ source ~/.bash_profile
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  #    This loads nvm bash_completion
 
-#### * 포트포워딩 삭제
-    −  sudo iptables -t nat -D PREROUTING {삭제할 번호}
+
+    c. For linux
+      * a. curl 설치법
+        - sudo apt-get install -y curl
+        - sudo apt update
+        - sudo apt install nodejs
+        - nodejs -v
+        - sudo apt install npm
+      * b. nvm 설치법
+        - sudo apt-get install -y curl
+        - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh
+        - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash 
+        - source ~/.bashrc
+
+    d. For windows
+      * curl을 통한 방법 : linux와 동일
+      * nodejs 홈페이지에서 msi 파일로 다운로드 하는 방법 : https://nodejs.org/en/
+
+## 5. Linux 포트포워딩
+      * 포트포워딩이란?
+        −  포트 포워딩은 외부에서 접속한 IP 주소와 포트 번호를 내부 호스트에 다시 매핑하는 것을 말합니다.
+
+      * 외부 네트워크 80번 포트 -> 내부 네트워크 5005번 포트로 포트포워딩하는 예시
+        −  sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 5005
+
+      * 포트포워딩 확인
+        −  sudo iptables -t nat -L --line-numbers
+
+      * 포트포워딩 삭제
+        −  sudo iptables -t nat -D PREROUTING {삭제할 번호}
 
 </br>
 </br>
@@ -86,17 +95,19 @@
 ### 3. 이미지를 띄울때 쓰기 좋은 모듈
 #### npm install react-image-gallery https://www.npmjs.com/package/react-image-gallery
 #### 만약 액자 안에서 동작하지 않으면 css를 추가해주면 됨. 
-#### # CSS
-#### @import "~react-image-gallery/styles/css/image-gallery.css";
+    #CSS
+    @import "~react-image-gallery/styles/css/image-gallery.css";
 #### 위 내용을 index.css의 맨 윗줄에 넣을 것.
 
 </br>
 
 ### 4. Redux
-#### ** Redux DevTools - 크롬에서 리덕스를 편하게 사용하는 툴
-1. Redux is a predictable state container for JavaScript apps. ; 상태 관리 라이브러리 2번의 State을 관리해주는 툴이다.
+** Redux DevTools - 크롬에서 리덕스를 편하게 사용하는 툴
+1. Redux is a predictable state container for JavaScript apps. (번역) 상태 관리 라이브러리 2번의 State을 관리해주는 툴이다.
 
-![Redux 설명 이미지](https://user-images.githubusercontent.com/54494793/167301014-8d2a9435-c187-4a44-a975-60cfab2690cf.png)
+<div align="center">
+<img src="https://user-images.githubusercontent.com/54494793/167301014-8d2a9435-c187-4a44-a975-60cfab2690cf.png" width="65%" height="65%" style="border-radius:5%;">
+</div>
 
 2. Props VS State
     ##### Props : Components간의 정보 이동. 방향은 위에서 아래로만 가능. 부모 component에서 내려준 값은 자식 component에서 변경이 불가능함.
@@ -113,7 +124,9 @@
 
 </br>
 
-![Redux 데이터 flow 이미지](https://user-images.githubusercontent.com/54494793/167300964-e25b733f-eb4b-4cfd-864c-d243ac4cb7c4.png)
+<div align="center">
+<img src="https://user-images.githubusercontent.com/54494793/167300964-e25b733f-eb4b-4cfd-864c-d243ac4cb7c4.png" width="55%" height="55%" style="border-radius:5%;">
+</div>
 
 3. Redux data Flow (strict unidirectional data flow)
     #### A. Action : a plain object describing what happended.
@@ -167,25 +180,36 @@
 
 ## 1. ECONNREFUSED 에러
 
-![스크린샷 2022-04-13 오후 11 33 04](https://user-images.githubusercontent.com/54494793/163204446-47be6994-1ab6-4421-b27e-eb0ae45ed58a.png)
-#### 로그인 화면에서 이메일과 패스워드를 입력한 후 로그인을 시도하면 다음과 같은 오류가 발생했음.
+<div align="center">
+<img src="https://user-images.githubusercontent.com/54494793/163204446-47be6994-1ab6-4421-b27e-eb0ae45ed58a.png" width="45%" height="45%" style="border-radius:5%;">
+</div>
 
-![스크린샷 2022-04-13 오후 10 16 20](https://user-images.githubusercontent.com/54494793/163204650-83c2d6c8-f98f-46f9-8c68-b6748c9e8392.png)
+#### 로그인 화면에서 이메일과 패스워드를 입력한 후 로그인을 시도하면 다음과 같은 오류가 발생했습니다.
 
-#### 이유는 server를 담당하는 express에서 package.json 파일안에 bcrypt 버전이 사용하는 nodejs 버전과 맞지 않아서였음.
-#### dependencies 에서 버전을 수정하고 다시 npm install 후 오류를 해결함.
+<div align="center">
+<img src="https://user-images.githubusercontent.com/54494793/163204650-83c2d6c8-f98f-46f9-8c68-b6748c9e8392.png" width="65%" height="65%" style="border-radius:5%;">
+</div>
+
+#### 이유는 server를 담당하는 express에서 package.json 파일안에 bcrypt 버전이 사용하는 nodejs 버전과 맞지 않아서 였습니다.
+#### dependencies 에서 버전을 수정하고 다시 npm install 후 오류를 해결했습니다.
 
 </br>
 
-<img width="600" height="400" alt="스크린샷 2022-04-23 오후 9 38 59" src="https://user-images.githubusercontent.com/54494793/164894935-2cc0adb5-6840-4989-9a7f-c89075bd90e3.png">
 
-#### DB에 있는 모든 정보를 가져오려고 하는데 위와 같은 에러가 발생
+<div align="center">
+<img src="https://user-images.githubusercontent.com/54494793/164894935-2cc0adb5-6840-4989-9a7f-c89075bd90e3.png" width="55%" height="55%" style="border-radius:5%;">
+</div>
+
+#### DB에 있는 모든 정보를 가져오려고 하는데 위와 같은 에러가 발생했습니다.
 
 </br>
 
 ## 2. npm ERR! code ELIFECYCLE 에러
 
-![image](https://user-images.githubusercontent.com/54494793/165223901-ac2ebb02-3d56-4f1a-afad-f618812c0e9f.png)
+<div align="center">
+<img src="https://user-images.githubusercontent.com/54494793/165223901-ac2ebb02-3d56-4f1a-afad-f618812c0e9f.png" width="55%" height="55%" style="border-radius:5%;">
+</div>
+
 ### linux 서버에 파일을 올려서 node를 실행하면 npm ERR! code ELIFECYCLE 에러가 발생함.
     - $ npm cache clean --force
     - $ rm -rf node_modules package-lock.json
@@ -206,11 +230,16 @@
     - proxy 서버의 middleware 관련 문제였음. 
     - setupProxy.js 파일의 내용을 변경해 해결함.
     
-   ![화면 캡처 2022-05-12 181340](https://user-images.githubusercontent.com/54494793/168082659-893079dd-b91a-4b9d-9dbb-65c4a9eb7cfb.png)
+   <div align="center">
+    <img src="https://user-images.githubusercontent.com/54494793/168082659-893079dd-b91a-4b9d-9dbb-65c4a9eb7cfb.png" width="55%" height="55%" style="border-radius:5%;">
+    </div>
 
 
 </br>
 
 ## 퍼블릭 IPv4 주소:3000 으로 접속이 안된다면?
 ##### 인바운드 규칙으로 들어가서 다음과 같이 처리
-<img width="1017" alt="스크린샷 2022-04-12 오후 9 51 42" src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png">
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/54494793/162966738-bf69a374-2124-4011-bf97-14c9dd7febc2.png" width="65%" height="65%" style="border-radius:5%;">
+</div>
