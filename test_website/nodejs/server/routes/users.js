@@ -5,6 +5,7 @@ const { Product } = require("../models/Product");
 const { Payment } = require("../models/Payment");
 
 const { auth } = require("../middleware/auth");
+const async = require('async');
 
 //=================================
 //             User
@@ -194,11 +195,43 @@ router.post(`/successBuy`, auth, (req,res) => {
             if (err) return res.json({success : false, err})
 
             // payment에다가 trasaction 정보 저장
-            const payment  = new payment(transactionData)
+            const payment  = new Payment(transactionData)
             payment.save((err, doc) => {
-                if(err) return res.req({success : false, err})
+                if(err) return res.json({success : false, err})
 
-            // 3. Product Collection 안에 있는 sold 필드 정보 업데이트 시켜주기.
+                // 3. Product Collection 안에 있는 sold 필드 정보 업데이트 시켜주기.
+
+                // 상품 당 몇 개의 quantity를 샀는지를 알아야함.
+
+                let products = [];
+                // doc variable안에는 payment 지불 정보가 들어와있음.
+                doc.product.forEach(item=>{
+                    products.push({id: item._id, quantity: item.quantity})
+                })
+
+                // 그 다음에 Products를 업데이트 해줘야하는데 이때, for문으로 db product collection을 모두 업데이트 시켜야하는데
+                // 인덱스값을 맞추는등 매우 복잡하기때문에 이때 npm async라는 오픈소스를 사용한다.
+
+                async.eachSeries(products, (item, callback) =>{
+
+                    Product.update(
+                        {_id: item.id},
+                        {
+                            $inc: {
+                                "sold" : item.quantity
+                            }
+                        },
+                        {new:false}, // 이번에는 굳이 프론트엔드로 전해주지 않아도 되기 때문에 false로 함.
+                        callback
+                    )
+                },(err)=>{
+                    if(err) return res.status(400).json({success:false, err})
+                    res.status(200).json({
+                        success: true,
+                        cart: user.cart,
+                        cartDetail: []
+                    })
+                } )
 
 
 

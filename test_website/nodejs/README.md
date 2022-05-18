@@ -2,7 +2,7 @@
 ### * Public IP : 3.37.62.142
 ### * Front-End : React
 ### * Back-End : Express, MongoDB
-### * 처음 접한 오픈소스 : Redux, multer, drop-zone, react-gallery-carousel, react-paypal-express-checkout
+### * 처음 접한 오픈소스 : Redux, multer, drop-zone, react-gallery-carousel, react-paypal-express-checkout, async
 ### * paypal 추가하기 : https://developer.paypal.com/developer/accounts
 ### * http://testwebsiteteam2.shop/
 
