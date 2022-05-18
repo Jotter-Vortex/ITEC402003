@@ -99,7 +99,8 @@ for (const file of files) {
                             BIDs: jsonObj[item].BIDs,
                             CERTs: jsonObj[item].CERTs,
                             Other_References: jsonObj[item]['Other References'],
-                            ITEM: files.length
+                            Len: jsonObj.length,
+                            File: files.length
                         });
                     }
 
