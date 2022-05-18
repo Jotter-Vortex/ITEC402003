@@ -23,16 +23,40 @@ export function DbProvider({ children }) {
     fetchReports()
   }, [])
 
-  console.log(report)
+  var arr = [], dbList = []
+  var fileLen = 0, prev = 0
 
-  var high = 0, middle = 0, low = 0;
+  for (let key in report) {
+    if (report.length != 0) {
+      report[key]["key"] = key;
+      arr.push(report[key]);
+    }
+  }
 
-  for (var i = 0; i < report.length; i++) {
-    if (report[i].Severity === 'High') {
+  if (arr.length != 0) {
+    fileLen = arr[0].File
+  }
+
+  arr.sort((a, b) => a.Timestamp.localeCompare(b.Timestamp));
+
+  for (var i = 0; i < fileLen; i++) {
+    if (arr.length != 0) {
+      dbList[i] = []
+      for (var j = prev; j < prev + arr[prev].Len; j++) {
+        dbList[i].push(arr[j])
+      }
+      prev = arr[i].Len + prev
+    }
+  }
+
+  var high = 0, middle = 0, low = 0, i = 0
+
+  if (dbList.length !== 0) {
+    if (dbList[i].Severity === 'High') {
       high++
     }
 
-    else if (report[i].Severity === 'Medium') {
+    else if (dbList[i].Severity === 'Medium') {
       middle++
     }
 
@@ -43,34 +67,35 @@ export function DbProvider({ children }) {
 
   return (
     <dbContext.Provider value={{
-      IP: report.IP,
-      Hostname: report.Hostname,
-      Port: report.Port,
-      // 'Port Protocol': String,
-      CVSS: report.CVSS,
-      Severity: report.Severity,
-      // 'Solution Type': report('Port Protocol'),
-      // 'NVT Name': String,
-      Summary: report.Summary,
-      // 'Specific Result': String,
-      // 'NVT OID': String,
-      CVEs: report.CVEs,
-      // 'Task ID': String,
-      // 'Task Name': String,
-      Timestamp: report.Timestamp,
-      // 'Result ID': String,
-      Impact: report.Impact,
-      Solution: report.Solution,
-      // 'Affected Software/OS': String,
-      // 'Vulnerability Insight': String,
-      // 'Vulnerability Detection Method': String,
-      // 'Product Detection Result': String,
-      BIDs: report.BIDs,
-      CERTs: report.CERTs,
-      // 'Other References': report,
+      Content: dbList,
       High: high,
       Middle: middle,
       Low: low
+      // IP: report.IP,
+      // Hostname: report.Hostname,
+      // Port: report.Port,
+      // Port_Protocol: report.Port_Protocol,
+      // CVSS: report.CVSS,
+      // Severity: report.Severity,
+      // Solution_Type: report.Solution_Type,
+      // NVT_Name: report.NVT_Name,
+      // Summary: report.Summary,
+      // Specific_Result: report.Specific_Result,
+      // NVT_OID: report.NVT_OID,
+      // CVEs: report.CVEs,
+      // Task_ID: report.Task_ID,
+      // Task_Name: report.Task_Name,
+      // Timestamp: report.Timestamp,
+      // Result_ID: report.Result_ID,
+      // Impact: report.Impact,
+      // Solution: report.Solution,
+      // Affected_Software_OS: report.Affected_Software_OS,
+      // Vulnerability_Insight: report.Vulnerability_Insight,
+      // Vulnerability_Detection_Method: report.Vulnerability_Detection_Method,
+      // Product_Detection_Result: report.Product_Detection_Result,
+      // BIDs: report.BIDs,
+      // CERTs: report.CERTs,
+      // Other_References: report.Other_References,
     }}>
       {children}
     </dbContext.Provider>
