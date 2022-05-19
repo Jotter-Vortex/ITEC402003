@@ -3,14 +3,18 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const csvtojson = require('csvtojson');
 const mongodb = require('mongodb')
+const fs = require('fs');
+const csv = require('csvtojson')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const ID = 'Report'
 const PW = 'report'
 const MONGODB_URI = 'mongodb+srv://' + ID + ':' + PW + '@cluster0.2nwmd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-const fs = require('fs');
-const csv = require('csvtojson')
+const dir = __dirname + '\\files'
+const files = fs.readdirSync(dir)
+
+var coll = [], DataSend = []
 
 //mongodb connection
 mongoose.connect(MONGODB_URI, {
@@ -19,12 +23,18 @@ mongoose.connect(MONGODB_URI, {
 });
 
 mongoose.connection.on('connected', () => {
+    mongoose.connection.db.listCollections().toArray(function(err, names) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            names.forEach(function(e,i,a) {
+                coll.push(e.name)
+            });
+        }
+    });
     console.log('Mongoose is connected!!!!');
 });
-
-//file read
-const dir = __dirname + '\\files'
-const files = fs.readdirSync(dir)
 
 //schema 자료형 구조
 const Report = new mongoose.Schema({
@@ -55,8 +65,6 @@ const Report = new mongoose.Schema({
     'Other References': String
 });
 
-const DataSend = []
-
 //dir files 폴더 내의 파일들을 읽어서 db의 schema 생성
 //file의 이름을 가진 schema를 Report 모델에 생성
 //file 이름 기준 중복 방지
@@ -72,42 +80,9 @@ for (const file of files) {
             const reportModel = mongoose.model(time, Report);
             reportModel.find({})
                 .then((data) => {
-                    for (item in jsonObj) {
-                        DataSend.push({
-                            IP: jsonObj[item].IP,
-                            Hostname: jsonObj[item].Hostname,
-                            Port: jsonObj[item].Port,
-                            Port_Protocol: jsonObj[item]['Port Protocol'],
-                            CVSS: jsonObj[item].CVSS,
-                            Severity: jsonObj[item].Severity,
-                            Solution_Type: jsonObj[item]['Solution Type'],
-                            NVT_Name: jsonObj[item]['NVT Name'],
-                            Summary: jsonObj[item].Summary,
-                            Specific_Result: jsonObj[item]['Specific Result'],
-                            NVT_OID: jsonObj[item]['NVT OID'],
-                            CVEs: jsonObj[item].CVEs,
-                            Task_ID: jsonObj[item]['Task ID'],
-                            Task_Name: jsonObj[item]['Task Name'],
-                            Timestamp: jsonObj[item].Timestamp,
-                            Result_ID: jsonObj[item]['Result ID'],
-                            Impact: jsonObj[item].Impact,
-                            Solution: jsonObj[item].Solution,
-                            Affected_Software_OS: jsonObj[item]['Affected Software/OS'],
-                            Vulnerability_Insight: jsonObj[item]['Vulnerability Insight'],
-                            Vulnerability_Detection_Method: jsonObj[item]['Vulnerability Detection Method'],
-                            Product_Detection_Result: jsonObj[item]['Product Detection Result'],
-                            BIDs: jsonObj[item].BIDs,
-                            CERTs: jsonObj[item].CERTs,
-                            Other_References: jsonObj[item]['Other References'],
-                            Len: jsonObj.length,
-                            File: files.length
-                        });
-                    }
-
                     if (data == undefined || data.length == 0) {
                         console.log('inserting data')
                         for (item in jsonObj) {
-                            console.log(jsonObj[item])
                             new reportModel(jsonObj[item])
                                 .save()
                                 .catch((err) => {
@@ -123,12 +98,26 @@ for (const file of files) {
         })
 }
 
+var i = 0
 //cors policy avoid
-for (const file of files) {
-    app.get('/api', (req, res) => {
+app.get('/api', (req, res) => {
+    for (item in coll) {
+        const dbReport = mongoose.model(coll[item], Report)
+
+        if (i === 0) {
+            dbReport.find({})
+                .then((data) => {
+                    DataSend.push(data)
+                    i += data.length
+                })
+        }
+    }
+
+    if (i != 0) {
+        console.log('sent')
         res.setHeader('Access-Control-Allow-origin', '*');
         res.json(DataSend)
-    })
-}
+    }
+})
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
