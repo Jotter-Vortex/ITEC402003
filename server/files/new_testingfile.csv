@@ -3,7 +3,7 @@ IP,Hostname,Port,Port Protocol,CVSS,Severity,Solution Type,NVT Name,Summary,Spec
   cleartext via HTTP.","The following input fields where identified (URL:input name):
 
 http://altoromutual.com/login.jsp:passw
-",1.3.6.1.4.1.25623.1.0.108440,,b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-05-09T09:27:27Z,ba370da2-aa0a-4288-a69c-063a5af93431,"An attacker could use this situation to compromise or eavesdrop on the
+",1.3.6.1.4.1.25623.1.0.108440,,b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-03-29T09:27:27Z,ba370da2-aa0a-4288-a69c-063a5af93431,"An attacker could use this situation to compromise or eavesdrop on the
   HTTP communication between the client and the server using a man-in-the-middle attack to get access to
   sensitive data like usernames or passwords.","Enforce the transmission of sensitive data via an encrypted SSL/TLS connection.
   Additionally make sure the host / application is redirecting all users to the secured SSL/TLS connection before
@@ -21,11 +21,11 @@ Cleartext Transmission of Sensitive Information via HTTP
 (OID: 1.3.6.1.4.1.25623.1.0.108440)
 Version used: 2020-08-24T15:18:35Z
 ",,,,
-1223.3342,ddfx,80,ddd,4.8,Low,sf,d,"The host / application transmits sensitive information (username, passwords) in
+changedIP,ddfx,80,ddd,4.8,Low,sf,d,"The host / application transmits sensitive information (username, passwords) in
   cleartext via HTTP.","The following input fields where identified (URL:input name):
 
 http://demo.testfire.net/login.jsp:passw
-",1.3.6.1.4.1.25623.1.0.108440,,b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-05-09T09:27:27Z,0bfafcf7-1e1f-4655-a3df-8baf1bcd3699,"An attacker could use this situation to compromise or eavesdrop on the
+",1.3.6.1.4.1.25623.1.0.108440,,b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-03-29T09:27:27Z,0bfafcf7-1e1f-4655-a3df-8baf1bcd3699,"An attacker could use this situation to compromise or eavesdrop on the
   HTTP communication between the client and the server using a man-in-the-middle attack to get access to
   sensitive data like usernames or passwords.","Enforce the transmission of sensitive data via an encrypted SSL/TLS connection.
   Additionally make sure the host / application is redirecting all users to the secured SSL/TLS connection before
@@ -45,7 +45,7 @@ Version used: 2020-08-24T15:18:35Z
 ",,,,
 dsssssssssss,altoromutual.com,443,tcp,4.3,Medium,Mitigation,SSL/TLS: Deprecated TLSv1.0 and TLSv1.1 Protocol Detection,"It was possible to detect the usage of the deprecated TLSv1.0
   and/or TLSv1.1 protocol on this system.","In addition to TLSv1.2+ the service is also providing the deprecated TLSv1.0 and TLSv1.1 protocols and supports one or more ciphers. Those supported ciphers can be found in the 'SSL/TLS: Report Supported Cipher Suites' (OID: 1.3.6.1.4.1.25623.1.0.802067) VT.
-",1.3.6.1.4.1.25623.1.0.117274,"CVE-2011-3389,CVE-2015-0204",b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-05-09T09:27:27Z,9918e37a-a85f-4d51-8618-25e5e24805a7,"An attacker might be able to use the known cryptographic flaws
+",1.3.6.1.4.1.25623.1.0.117274,"CVE-2011-3389,CVE-2015-0204",b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-03-29T09:27:27Z,9918e37a-a85f-4d51-8618-25e5e24805a7,"An attacker might be able to use the known cryptographic flaws
   to eavesdrop the connection between clients and the service to get access to sensitive data
   transferred within the secured connection.
 
@@ -69,7 +69,7 @@ Version used: 2021-07-19T08:11:48Z
 zxczxczx,altoromutual.com,443,tcp,4,Medium,Workaround,SSL/TLS: Diffie-Hellman Key Exchange Insufficient DH Group Strength Vulnerability,"The SSL/TLS service uses Diffie-Hellman groups with insufficient strength
   (key size < 2048).","Server Temporary Key Size: 1024 bits
 
-",1.3.6.1.4.1.25623.1.0.106223,,b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-05-09T09:27:27Z,58f87e1d-d68e-442e-88db-703f2c82017c,An attacker might be able to decrypt the SSL/TLS communication offline.,"Deploy (Ephemeral) Elliptic-Curve Diffie-Hellman (ECDHE) or use
+",1.3.6.1.4.1.25623.1.0.106223,,b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-03-29T09:27:27Z,58f87e1d-d68e-442e-88db-703f2c82017c,An attacker might be able to decrypt the SSL/TLS communication offline.,"Deploy (Ephemeral) Elliptic-Curve Diffie-Hellman (ECDHE) or use
   a 2048-bit or stronger Diffie-Hellman group (see the references).
 
   For Apache Web Servers:
@@ -85,7 +85,7 @@ Version used: 2021-02-12T06:42:15Z
 akzxjivnd,altoromutual.com,443,tcp,4,Medium,Workaround,SSL/TLS: Diffie-Hellman Key Exchange Insufficient DH Group Strength Vulnerability,"The SSL/TLS service uses Diffie-Hellman groups with insufficient strength
   (key size < 2048).","Server Temporary Key Size: 1024 bits
 
-",1.3.6.1.4.1.25623.1.0.106223,,b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-05-09T09:27:27Z,bd68b6c9-19a2-486e-91c2-62d00196a564,An attacker might be able to decrypt the SSL/TLS communication offline.,"Deploy (Ephemeral) Elliptic-Curve Diffie-Hellman (ECDHE) or use
+",1.3.6.1.4.1.25623.1.0.106223,,b82e19c1-ca15-4905-9dab-4e82ea554be6,DemoTestfire,2022-03-29T09:27:27Z,bd68b6c9-19a2-486e-91c2-62d00196a564,An attacker might be able to decrypt the SSL/TLS communication offline.,"Deploy (Ephemeral) Elliptic-Curve Diffie-Hellman (ECDHE) or use
   a 2048-bit or stronger Diffie-Hellman group (see the references).
 
   For Apache Web Servers:

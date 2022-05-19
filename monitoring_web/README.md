@@ -49,3 +49,20 @@
    - https://www.npmjs.com/package/cpu-stats (로컬 자원 API)
    - https://www.npmjs.com/package/uriel
  - 서버 자체에서 자원 사용량을 들고오는 방법이 복잡하여 분석 필요함 
+
+
+# 프론트엔드 이슈사항
+
+## 렌더링 시 콘솔 및 함수가 여러번 호출되는 경우
+ - React의 strict mode 때문
+ - https://ko.reactjs.org/docs/strict-mode.html
+ - Strict 모드는 Fragment와 같이 동작하며 child까지 모두 엄격하게 검사하는 것. (개발모드에서만 작동하지만, 함수값 설정시 오류 발생 가능)
+ ---
+ - 해결방법
+ - index.js 내부에 ```<React.StrictMode>``` 해제
+ ![image](https://user-images.githubusercontent.com/33484628/169258132-bc27ca6c-5284-4279-b9a7-8d9ab5b03876.png)
+
+
+
+
+

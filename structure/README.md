@@ -26,6 +26,15 @@
 - import dbContext from "../../db/dbContext";
 - import React, { useState, useContext } from 'react';
 
+## MongoDB 저장 방식
+- ![db](https://user-images.githubusercontent.com/33975284/169108733-21b728bf-0264-4475-8b1a-ea399c7d3712.PNG)
+- MyFirstDatabase 라는 데이터베이스 이름 내에 가져올 파일들의 날짜를 collection 이름으로 저장하여 사용
+
+## dbProvider 사용 시 주의점
+- axios를 통한 정보를 받는 것이 느려 가끔 Content가 undefined로 처리되는 에러가 생김
+- ![2222](https://user-images.githubusercontent.com/33975284/169108961-e789f687-b42f-4fa0-97d0-64498258e918.PNG)
+- 이미지와 같이 content가 비어있는지 확인한 후 사용하면 axios에서 받은 데이터를 통해 사용
+
 
 
 ## react 에러 발생 시
