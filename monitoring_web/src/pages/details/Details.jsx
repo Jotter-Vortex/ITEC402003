@@ -19,7 +19,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 const Details = () => {
 
-  console.log(rows);
+  //console.log(rows);
   return (
     <div className="Details">
         <Sidebar/>

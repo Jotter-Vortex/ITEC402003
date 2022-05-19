@@ -21,7 +21,7 @@ Cleartext Transmission of Sensitive Information via HTTP
 (OID: 1.3.6.1.4.1.25623.1.0.108440)
 Version used: 2020-08-24T15:18:35Z
 ",,,,
-1223.3342,ddfx,80,ddd,4.8,Low,sf,d,"The host / application transmits sensitive information (username, passwords) in
+changedIP,ddfx,80,ddd,4.8,Low,sf,d,"The host / application transmits sensitive information (username, passwords) in
   cleartext via HTTP.","The following input fields where identified (URL:input name):
 
 http://demo.testfire.net/login.jsp:passw

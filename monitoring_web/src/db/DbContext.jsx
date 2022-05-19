@@ -51,6 +51,9 @@ export function DbProvider({ children }) {
 
   var high = 0, middle = 0, low = 0, i = 0
 
+
+  console.log(dbList)
+
   if (dbList.length !== 0) {
     if (dbList[i].Severity === 'High') {
       high++
