@@ -37,18 +37,22 @@ export function DbProvider({ children }) {
     fileLen = arr[0].File
   }
 
-  arr.sort((a, b) => a.Timestamp.localeCompare(b.Timestamp));
+  if (arr.length != 0) {
+    arr.sort(sortFunction);
 
-  for (var i = 0; i < fileLen; i++) {
-    if (arr.length != 0) {
-      dbList[i] = []
-      for (var j = prev; j < prev + arr[prev].Len; j++) {
-        dbList[i].push(arr[j])
+    function sortFunction(a, b) {
+      if (a[0].Timestamp === b[0].Timestamp) {
+        return 0;
       }
-      prev = arr[i].Len + prev
+
+      else {
+        return (a[0].Timestamp < b[0].Timestamp) ? -1 : 1;
+      }
     }
   }
 
+  console.log(arr)
+  
   var high = 0, middle = 0, low = 0, i = 0
 
   if (dbList.length !== 0) {
