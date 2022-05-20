@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>Injection Error</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/writing.css') }}" rel="stylesheet">
+
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        })
+
+        function posting() {
+            let title = $('#title').val()
+            let content = $("#content").val()
+            let file = $('#file')[0].files[0]
+            // 파일을 받을때 쓰는 방식. $('#file')[0].files 여기까지 하면 올라가있는 파일들 목록임.
+
+            let form_data = new FormData()
+            form_data.append("file_give", file)
+            form_data.append("title_give", title)
+            form_data.append("content_give", content)
+
+            $.ajax({
+                type: "POST",
+                url: "/knu_upload/write",
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response["msg"]);
+                    window.location.href = '/board';
+                }
+            });
+        }
+    </script>
+</head>
+
+<body style="margin-top: 10%; margin-left: 10%; margin-right: 10%; background-image: url('static/img/earth.jpg');">
+<div class="wrap" >
+    <div class="jumbotron jumbotron-fluid"style="border-radius: 10%;">
+        <div class="container">
+            <div class="posting-box">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file">
+                    <label class="custom-file-label">사진선택하기</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="title" placeholder="제목을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="content" rows="3"
+                              placeholder="내용을 입력하세요"></textarea>
+                </div>
+                <button onclick="posting()" type="button" class="btn btn-primary">저장</button>
+                <button onclick="window.location.href='/board'" type="button" class="btn btn-primary">취소</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -41,7 +41,7 @@
             <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/knu_detail">knu_detail</a>
+            <a class="nav-link" href="/knu_upload">knu_upload</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/knu_post">knu_post</a>
@@ -73,11 +73,9 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-         Contact Form - Enter your email address on line
+        It maybe occurs SQL Injection, XSS Attack, Xquery Injection, PasswordError
         </br>
-         Please Wait a few seconds for the button to come out. 
         </br>
-         It maybe 4~5seconds
         </br>
          DO NOT SEND ME ANYTHING WEIRD!
         <form name="sentMessage" id="contactForm" novalidate>
@@ -153,7 +151,7 @@
 
   <!-- Contact Form JavaScript -->
   <script src="{{ url_for('static', filename='js/jqBootstrapValidation.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/contact_me.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/middleware.js') }}"></script>
 
   <!-- Custom scripts for this template -->
   <script src="{{ url_for('static', filename='js/clean-blog.min.js') }}"></script>
