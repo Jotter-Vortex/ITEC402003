@@ -76,19 +76,19 @@ function dataset(Content){
         if(Inneritem_1.Severity === 'High'){
           if(isRecent===1){
             recent_contents_high++
-            console.log("recent_contents_high :" + recent_contents_high)  
+            //console.log("recent_contents_high :" + recent_contents_high)  
           }
         }
         else if(Inneritem_1.Severity === 'Medium'){
           if(isRecent===1){
             recent_contents_medium++
-            console.log("recent_contents_medium :" + recent_contents_medium)  
+            //console.log("recent_contents_medium :" + recent_contents_medium)  
           }
         }
         else if(Inneritem_1.Severity === 'Low'){
           if(isRecent===1){
             recent_contents_low++
-            console.log("recent_contents_low :" + recent_contents_low)  
+            //console.log("recent_contents_low :" + recent_contents_low)  
           }
         }     
       })

@@ -1,9 +1,27 @@
 import "./Chart1.scss";
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import dbContext from "../../db/DbContext";
+import {useContext } from 'react';
 
 const Chart1 = () => {
+
+  const {Content} = useContext(dbContext)
+
+  const data = [
+    {
+      name: '',
+      NVE: 0, 
+    },
+  ];
+
+  const newData = data.concat();
+  newData.shift();
+  for(var i =0; i<Content.length; i++){
+    var timestamp = Content[i][0].Timestamp.substring(0,10)
+    newData.push({name: timestamp, NVE: Content[i].length})
+  }
+
     return (
         <div className = "chart_card">
             <div className="center">
@@ -16,7 +34,7 @@ const Chart1 = () => {
                     <LineChart
                     width={500}
                     height={300}
-                    data={data}
+                    data={newData}
                     margin={{
                         top: 20,
                         right: 30,
@@ -29,7 +47,7 @@ const Chart1 = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="NVE" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey="NVE" stroke="#8884d8" activeDot={{ r: 5 }} />
                     {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
                     </LineChart>
                 </ResponsiveContainer>  
@@ -39,36 +57,5 @@ const Chart1 = () => {
   )
 }
 
-
-const data = [
-    {
-      name: '4/1',
-      NVE: 4658, 
-    },
-    {
-      name: '4/7',
-      NVE: 1238, 
-    },
-    {
-      name: '4/14',
-      NVE: 5642, 
-    },
-    {
-      name: '4/21',
-      NVE: 125, 
-    },
-    {
-      name: '4/28',
-      NVE: 8654, 
-    },
-    {
-      name: '5/1',
-      NVE: 4568, 
-    },
-    {
-      name: '5/7',
-      NVE: 6654, 
-    },
-  ];
 
 export default Chart1

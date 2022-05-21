@@ -12,7 +12,6 @@ var recent_contents_high = 0, recent_contents_medium = 0, recent_contents_low = 
 var total_report_count =0
 
 
-
 const Widget = () => {
 
   const { Content} = useContext(dbContext)
@@ -91,7 +90,7 @@ function dataset(Content){
     //전체 data 생성
     const element_1 = Content.map((item_1) =>{
       const inner_elements_1 = item_1.map((Inneritem_1)=>{
-        //console.log(Inneritem)
+        //console.log(Inneritem_1)
         if(Inneritem_1.Severity === 'High'){
           contents_high++
           if(isRecent===1){

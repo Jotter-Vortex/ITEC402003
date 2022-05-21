@@ -19,15 +19,17 @@
     }
 
     .bottom{
-        padding: 20px;
+        padding: 50px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-top: 50px;
 
         .Vchart{
             width: 450px;
             height: 350px;
+            
         }
 
     }
