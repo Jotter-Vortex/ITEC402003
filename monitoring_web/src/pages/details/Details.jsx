@@ -115,7 +115,8 @@ function Row(props) {
         <TableCell sx={{ fontSize:15}} align="center">{row.Warning}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}
+        >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
@@ -124,6 +125,9 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <div>
                   내용
+                </div>
+                <div>
+                  {row.Timestamp}
                 </div>
                 {/* <TableHead>
                   <TableRow>

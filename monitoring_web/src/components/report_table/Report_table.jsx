@@ -39,13 +39,10 @@ import {useContext } from 'react';
   //   createData('2022-04-09T14:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,0),
   //   createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
   // ];
-
+  const rows = [];
 
 
 const REPORT_TABLE = () => {
-
-
-
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('Timestamp');
   const [selected, setSelected] = React.useState([]);
@@ -109,11 +106,9 @@ const REPORT_TABLE = () => {
 
 
 
-    //data 생성
-  const rows = [];
-
+  //data 생성
   const {Content} = useContext(dbContext)
-   
+   rows.splice(0, rows.length)
     for(var i =0; i<Content.length; i++){
       rows.push(createData(Content[i][0].Timestamp,Content[i][0].IP, Content[i][0].Hostname, Content[i].length,1))
     }
