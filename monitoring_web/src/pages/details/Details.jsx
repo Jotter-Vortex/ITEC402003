@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "./Details.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
@@ -16,10 +18,63 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import dbContext from "../../db/DbContext";
+import {useContext } from 'react';
+
+//같은 timestamp당 1개의 row
+// const rows = [
+//   createData('2022-04-16T09:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 9,1
+//   , 
+//   ),
+//   createData('2022-04-15T10:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 6,0),
+//   createData('2022-05-14T15:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,1),
+//   createData('2022-05-13T11:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
+//   createData('2022-04-12T08:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 1,2),
+//   createData('2022-04-11T07:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 10,1),
+//   createData('2022-04-10T20:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 8,1),
+//   createData('2022-04-09T14:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,0),
+//   createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
+// ];
+
+
+const rows = [];
+const rowsIS = [];
+const rowsIScontents = [];
 
 const Details = () => {
 
-  //console.log(rows);
+  const {Content} = useContext(dbContext)
+
+  var count = 0;
+  const element = Content.map((item) =>{
+    rowsIScontents.splice(0, rowsIScontents.length)
+   const inner_elements = item.map((Inneritem)=>{
+    rowsIScontents.push(createDataIS(Inneritem.Impact, Inneritem.Summary))
+   })
+   rowsIS.push(rowsIScontents)
+ })
+
+
+  rows.splice(0, rows.length)
+   for(var i =1; i<=Content.length; i++){
+     rows.push(
+       createData(
+        Content[Content.length-i][0].Timestamp,
+        Content[Content.length-i][0].Hostname, 
+        Content[Content.length-i][0].IP, 
+        Content[Content.length-i].length,
+        1,
+        rowsIS[Content.length-i],
+        rowsIS[Content.length-i]
+        ))
+    }
+
+
+  
+  //console.log(rowsIS);
+  console.log(rows);
+
+
   return (
     <div className="Details">
         <Sidebar/>
@@ -55,41 +110,62 @@ const Details = () => {
   )
 }
 
-//같은 timestamp당 1개의 row
-const rows = [
-  createData('2022-04-16T09:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 9,1
-  , 
-  ),
-  createData('2022-04-15T10:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 6,0),
-  createData('2022-05-14T15:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,1),
-  createData('2022-05-13T11:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
-  createData('2022-04-12T08:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 1,2),
-  createData('2022-04-11T07:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 10,1),
-  createData('2022-04-10T20:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 8,1),
-  createData('2022-04-09T14:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,0),
-  createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
-];
 
 
 
 
 //DB 상세 내용 넣어야 할 부분
-function createData(Timestamp, Hostname, IP, NumberOfFound, Warning, Details, Summary, SpecificResult) {
+function createData(Timestamp, Hostname, IP, NumberOfFound, Warning,Impact, Summary) {
   return {
     Timestamp,
     Hostname,
     IP,
     NumberOfFound,
     Warning,
-    Details,
-    Summary,
-    SpecificResult,
+    Impact, 
+    Summary
+  };
+}
+
+function createDataIS(Impact, Summary) {
+  return {
+    Impact,
+    Summary
+    //SpecificResult,
   };
 }
 
 function Row(props) {
-  const { row } = props;
+  const { row} = props;
+
   const [open, setOpen] = React.useState(false);
+
+  console.log(row)
+
+
+
+  const rowISList = row.Impact.map(
+    (rowdata, i)=>(
+      <div key={i}>
+        <h2>
+          Detected #{i}
+        </h2>
+        <p2>
+        Problem Summary : {rowdata.Summary}
+        </p2>
+        <br/>
+        <p2>
+        Possible Impact : {rowdata.Impact+'\n\n\n'}
+        </p2>
+        <br/>
+        <br/>
+        <br/>
+        </div>
+      // <div key={i}>{rowdata.Impact}</div>
+    )
+  )
+
+
 
   return (
     <React.Fragment>
@@ -119,26 +195,14 @@ function Row(props) {
         >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Detailed Report
+              <Typography variant="h4" gutterBottom component="div">
+                Detailed Report of {row.Timestamp.substring(0,10)} Test
               </Typography>
               <Table size="small" aria-label="purchases">
-                <div>
-                  내용
-                </div>
-                <div>
-                  {row.Timestamp}
-                </div>
-                {/* <TableHead>
-                  <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
-                  </TableRow>
-                </TableHead> */}
-                {/* <TableBody>
-                  {row.history.map((historyRow) => (
+                <TableHead>
+                </TableHead>
+                <TableBody>
+                  {/* {row.history.map((historyRow) => (
                     <TableRow key={historyRow.date}>
                       <TableCell component="th" scope="row">
                         {historyRow.date}
@@ -149,8 +213,26 @@ function Row(props) {
                         {Math.round(historyRow.amount * row.price * 100) / 100}
                       </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody> */}
+                  ))} */}
+                  <TableCell>
+                    <h1>Report</h1>
+                    <h2> Target IP : {row.IP}</h2>
+                    <h2> Target Hostname : {row.Hostname}</h2>
+                    <h2> Detected Vulnerabilities : {row.Impact.length}</h2>
+                    <br/><br/>
+                    <div>
+
+                    </div>
+                    <div>
+                      {rowISList}
+                    </div>
+                    <div>
+                      {/* {row.Impact} */}
+                    </div>
+
+
+                  </TableCell>
+                </TableBody>
               </Table>
             </Box>
           </Collapse>

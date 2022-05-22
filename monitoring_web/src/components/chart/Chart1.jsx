@@ -30,9 +30,9 @@ const Chart1 = () => {
                 </div>
                 <hr />
                 <div className = "chart">  
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="90%" height="100%">
                     <LineChart
-                    width={500}
+                    width={300}
                     height={300}
                     data={newData}
                     margin={{
