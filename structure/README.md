@@ -1,5 +1,8 @@
 # Monitoring Web
-- npm start
+- Frontend Public IP: 13.125.217.213/3000
+- Backend Public IP: 13.125.217.213/5000
+- 5천번 port의 정보를 3000번 port에서 가져오는 형식
+- ssh -i "frontendkey.pem" ubuntu@ec2-13-125-217-213.ap-northeast-2.compute.amazonaws.com 을 통해 ec2 instance를 연결
 
 # Server 관련 install
 - nmp i mongoose --save
@@ -7,6 +10,7 @@
 - nmp i express --save
 - nmp i cors --save
 - npm i csvtojson --save
+- npm i nodemon --save
 
 # mongoose를 통해 mongodb와 연결
 ![1111](https://user-images.githubusercontent.com/33975284/168006534-430c8d8e-3e43-4740-acbb-763b6e683593.PNG)
