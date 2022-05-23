@@ -1,6 +1,6 @@
 # Monitoring Web
-- Frontend Public IP: 13.125.217.213/3000
-- Backend Public IP: 13.125.217.213/5000
+- Frontend Public IP: 43.200.5.235
+- Backend Public IP: 43.200.5.235/5000
 - 5천번 port의 정보를 3000번 port에서 가져오는 형식
 - ssh -i "frontendkey.pem" ubuntu@ec2-13-125-217-213.ap-northeast-2.compute.amazonaws.com 을 통해 ec2 instance를 연결
 
