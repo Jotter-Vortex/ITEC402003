@@ -61,6 +61,11 @@
  - 해결방법
  - index.js 내부에 ```<React.StrictMode>``` 해제
  ![image](https://user-images.githubusercontent.com/33484628/169258132-bc27ca6c-5284-4279-b9a7-8d9ab5b03876.png)
+ 
+ 
+ 
+ ## Details Page db값 에러 (진행중)
+ - db 배열값 처리하는 과정에서 에러가 있으니 감안 부탁드립니다. (WIP)
 
 
 
