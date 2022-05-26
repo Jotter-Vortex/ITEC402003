@@ -55,20 +55,6 @@ export function DbProvider({ children }) {
   
   var high = 0, middle = 0, low = 0, i = 0
 
-  if (arr.length !== 0) {
-    if (arr[i].Severity === 'High') {
-      high++
-    }
-
-    else if (arr[i].Severity === 'Medium') {
-      middle++
-    }
-
-    else {
-      low++
-    }
-  }
-
   return (
     <dbContext.Provider value={{
       Content: arr,

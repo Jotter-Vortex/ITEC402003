@@ -21,6 +21,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import dbContext from "../../db/DbContext";
 import {useContext } from 'react';
 
+
 //같은 timestamp당 1개의 row
 // const rows = [
 //   createData('2022-04-16T09:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 9,1
@@ -43,13 +44,17 @@ const rowsIScontents = [];
 
 const Details = () => {
 
+
+
   const {Content} = useContext(dbContext)
+
+  //console.log(Content)
 
   var count = 0;
   const element = Content.map((item) =>{
     rowsIScontents.splice(0, rowsIScontents.length)
    const inner_elements = item.map((Inneritem)=>{
-    rowsIScontents.push(createDataIS(Inneritem.Impact, Inneritem.Summary))
+    rowsIScontents.push(createDataIS(Inneritem.Impact, Inneritem.Summary, Inneritem['NVT Name'], Inneritem.Solution))
    })
    rowsIS.push(rowsIScontents)
  })
@@ -64,15 +69,11 @@ const Details = () => {
         Content[Content.length-i][0].IP, 
         Content[Content.length-i].length,
         1,
-        rowsIS[Content.length-i],
         rowsIS[Content.length-i]
+        //rowsIS[Content.length-i],
+        //rowsIS[Content.length-i]
         ))
     }
-
-
-  
-  //console.log(rowsIS);
-  console.log(rows);
 
 
   return (
@@ -115,22 +116,25 @@ const Details = () => {
 
 
 //DB 상세 내용 넣어야 할 부분
-function createData(Timestamp, Hostname, IP, NumberOfFound, Warning,Impact, Summary) {
+function createData(Timestamp, Hostname, IP, NumberOfFound, Warning, ShowDetails) {
   return {
     Timestamp,
     Hostname,
     IP,
     NumberOfFound,
     Warning,
-    Impact, 
-    Summary
+    ShowDetails, 
+    //Summary,
+    //NVTName
   };
 }
 
-function createDataIS(Impact, Summary) {
+function createDataIS(Impact, Summary, NVT_Name, Solution) {
   return {
     Impact,
-    Summary
+    Summary,
+    NVT_Name,
+    Solution
     //SpecificResult,
   };
 }
@@ -144,29 +148,39 @@ function Row(props) {
 
 
 
-  const rowISList = row.Impact.map(
+  const rowISList = row.ShowDetails.map(
     (rowdata, i)=>(
       <div key={i}>
         <h2>
-          Detected #{i}
+          Detected #{i} : {rowdata.NVT_Name}
         </h2>
-        <p2>
-        Problem Summary : {rowdata.Summary}
-        </p2>
         <br/>
-        <p2>
-        Possible Impact : {rowdata.Impact+'\n\n\n'}
-        </p2>
+        <p1>
+        #Problem Summary
+        </p1>
         <br/>
+        <p2> - {rowdata.Summary}</p2>
         <br/>
         <br/>
-        </div>
+        <p1>
+        #Possible Impact
+        </p1>
+        <br/>
+        <p2> - {rowdata.Impact+'\n\n\n'}</p2>
+        <br/><br/>
+        <p1>
+        #Solution
+        </p1>
+        <br/>
+        <p2> - {rowdata.Solution+'\n\n\n'}</p2>   
+          <br/><br/><br/>
+          <hr/><br/>
+        </div>      
       // <div key={i}>{rowdata.Impact}</div>
     )
   )
 
-
-
+  
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -202,26 +216,15 @@ function Row(props) {
                 <TableHead>
                 </TableHead>
                 <TableBody>
-                  {/* {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
-                    </TableRow>
-                  ))} */}
                   <TableCell>
                     <h1>Report</h1>
+                    <br/>    
                     <h2> Target IP : {row.IP}</h2>
                     <h2> Target Hostname : {row.Hostname}</h2>
-                    <h2> Detected Vulnerabilities : {row.Impact.length}</h2>
-                    <br/><br/>
+                    <h2> Detected Vulnerabilities : {row.ShowDetails.length}</h2>
+                    <br/>
+                      <hr/><br/>          
                     <div>
-
                     </div>
                     <div>
                       {rowISList}
@@ -229,8 +232,6 @@ function Row(props) {
                     <div>
                       {/* {row.Impact} */}
                     </div>
-
-
                   </TableCell>
                 </TableBody>
               </Table>
@@ -241,6 +242,7 @@ function Row(props) {
     </React.Fragment>
   );
 }
+
 
 
 // Row.propTypes = {
