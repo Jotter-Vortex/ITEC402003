@@ -7,16 +7,16 @@ import {useContext } from 'react';
 import "react-circular-progressbar/dist/styles.css";
 import dbContext from "../../db/DbContext";
 
-var contents_high = 0, contents_medium = 0, contents_low = 0
-var recent_contents_high = 0, recent_contents_medium = 0, recent_contents_low = 0
-var total_report_count =0
+// var contents_high = 0, contents_medium = 0, contents_low = 0
+// var recent_contents_high = 0, recent_contents_medium = 0, recent_contents_low = 0
+// var total_report_count =0
 
 
 const Widget = () => {
 
   const { Content, rHigh, rMiddle, rLow, rTotal, tHigh, tMiddle, tLow, tTotal } = useContext(dbContext)
 
-  dataset(Content)
+  // dataset(Content)
 
   const data = [
     {
@@ -105,51 +105,51 @@ const Widget = () => {
 }
 
 
-function dataset(Content) {
+// function dataset(Content) {
 
-  // 값 초기화
-  contents_high = 0, contents_medium = 0, contents_low = 0
-  recent_contents_high = 0, recent_contents_medium = 0, recent_contents_low = 0
-  total_report_count =0
+//   // 값 초기화
+//   contents_high = 0, contents_medium = 0, contents_low = 0
+//   recent_contents_high = 0, recent_contents_medium = 0, recent_contents_low = 0
+//   total_report_count =0
   
   
-    var isRecent =1;
+//     var isRecent =1;
   
-    //전체 data 생성
-    const element_1 = Content.map((item_1) =>{
-      const inner_elements_1 = item_1.map((Inneritem_1)=>{
-        //console.log(Inneritem_1)
-        if(Inneritem_1.Severity === 'High'){
-          contents_high++
-          if(isRecent===1){
-            recent_contents_high++
-            //console.log("recent_contents_high :" + recent_contents_high)  
-          }
-          //console.log("contents_high :" + contents_high)
-        }
-        else if(Inneritem_1.Severity === 'Medium'){
-          contents_medium++
-          if(isRecent===1){
-            recent_contents_medium++
-            //console.log("recent_contents_medium :" + recent_contents_medium)  
-          }
-          //console.log("contents_medium :" + contents_medium)
-        }
-        else if(Inneritem_1.Severity === 'Low'){
-          contents_low++
-          if(isRecent===1){
-            recent_contents_low++
-            //console.log("recent_contents_low :" + recent_contents_low)  
-          }
-          //console.log("contents_low :" + contents_low)
-        }  
-      })
-      isRecent =0;
-      total_report_count++
-      //console.log("total count : " + total_report_count)
-    })
+//     //전체 data 생성
+//     const element_1 = Content.map((item_1) =>{
+//       const inner_elements_1 = item_1.map((Inneritem_1)=>{
+//         //console.log(Inneritem_1)
+//         if(Inneritem_1.Severity === 'High'){
+//           contents_high++
+//           if(isRecent===1){
+//             recent_contents_high++
+//             //console.log("recent_contents_high :" + recent_contents_high)  
+//           }
+//           //console.log("contents_high :" + contents_high)
+//         }
+//         else if(Inneritem_1.Severity === 'Medium'){
+//           contents_medium++
+//           if(isRecent===1){
+//             recent_contents_medium++
+//             //console.log("recent_contents_medium :" + recent_contents_medium)  
+//           }
+//           //console.log("contents_medium :" + contents_medium)
+//         }
+//         else if(Inneritem_1.Severity === 'Low'){
+//           contents_low++
+//           if(isRecent===1){
+//             recent_contents_low++
+//             //console.log("recent_contents_low :" + recent_contents_low)  
+//           }
+//           //console.log("contents_low :" + contents_low)
+//         }  
+//       })
+//       isRecent =0;
+//       total_report_count++
+//       //console.log("total count : " + total_report_count)
+//     })
   
-  }
+//   }
 
 
 
