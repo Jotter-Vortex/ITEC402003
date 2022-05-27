@@ -14,37 +14,65 @@ var total_report_count =0
 
 const Widget = () => {
 
-  const { Content} = useContext(dbContext)
+  const { Content, rHigh, rMiddle, rLow, rTotal, tHigh, tMiddle, tLow, tTotal } = useContext(dbContext)
 
   dataset(Content)
 
   const data = [
     {
       subject: 'Total',
-      A: (contents_high+contents_medium+contents_low)/total_report_count,
-      B: recent_contents_high+recent_contents_medium+recent_contents_low,
+      A: tTotal,
+      B: rTotal,
       fullMark: 0,
     },
     {
       subject: 'High',
-      A: contents_high/total_report_count,
-      B: recent_contents_high,
+      A: rTotal,
+      B: rHigh,
       fullMark: 50,
     },
     {
       subject: 'Middle',
-      A: contents_medium/total_report_count,
-      B: recent_contents_medium,
+      A: tMiddle,
+      B: rMiddle,
       fullMark: 50,
     },
     {
       subject: 'Low',
-      A: contents_low/total_report_count,
-      B: recent_contents_low,
+      A: tLow,
+      B: rLow,
       fullMark: 50,
     },
   
-  ];
+  ]
+
+  // const data = [
+  //   {
+  //     subject: 'Total',
+  //     A: (contents_high+contents_medium+contents_low)/total_report_count,
+  //     B: recent_contents_high+recent_contents_medium+recent_contents_low,
+  //     fullMark: 0,
+  //   },
+  //   {
+  //     subject: 'High',
+  //     A: contents_high/total_report_count,
+  //     B: recent_contents_high,
+  //     fullMark: 50,
+  //   },
+  //   {
+  //     subject: 'Middle',
+  //     A: contents_medium/total_report_count,
+  //     B: recent_contents_medium,
+  //     fullMark: 50,
+  //   },
+  //   {
+  //     subject: 'Low',
+  //     A: contents_low/total_report_count,
+  //     B: recent_contents_low,
+  //     fullMark: 50,
+  //   },
+  
+  // ]
 
   console.log(data)
 
@@ -77,7 +105,7 @@ const Widget = () => {
 }
 
 
-function dataset(Content){
+function dataset(Content) {
 
   // 값 초기화
   contents_high = 0, contents_medium = 0, contents_low = 0
