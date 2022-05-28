@@ -68,6 +68,18 @@
  - db 배열값 처리하는 과정에서 에러가 있으니 감안 부탁드립니다. (WIP)
 
 
+## Details Page 데이터구조
+
+![image](https://user-images.githubusercontent.com/33484628/170834255-194ab17c-b323-4dd7-9cb4-d71fa1f9f3c5.png)
+
+- rows안에 배열 형식으로 값 저장.
+- Timestamp, Hostname, IP는 csv값 그대로 사용
+- NumberOfFound : 발견된 취약점 수
+- Warning : (일단 0으로 설정)
+- ShowDetails : 객체 배열로 설정 -> 내부에 각각의 Result ID, Impact, Summary, NVT_Name, Solution 값을 배열로
+- ex) Timestamp가 001인 취약점 A, B, C가 있으면
+ ![image](https://user-images.githubusercontent.com/33484628/170834516-cf28195e-e62b-42b6-bbbb-abf80eae5cab.png)
+
 
 
 
