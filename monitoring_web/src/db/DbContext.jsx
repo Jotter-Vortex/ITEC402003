@@ -5,9 +5,10 @@ import { createContext, useEffect, useState } from 'react'
 const dbContext = createContext();
 
 export function DbProvider({ children }) {
-  var rHigh = 0, rMiddle = 0, rLow = 0, rTotal = 0, tHigh = 0, tMiddle = 0, tLow = 0, tTotal = 0
+  var rHigh = 0, rMiddle = 0, rLow = 0, rTotal = 0, tHigh = 0, tMiddle = 0, tLow = 0, tTotal = 0, nveArr = []
   const [report, setReport] = useState([])
   const [vul, setVul] = useState([])
+  const [nve, setNve] = useState([])
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -40,6 +41,26 @@ export function DbProvider({ children }) {
 
     fetchReports()
   }, [])
+
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/nve');
+        setNve(response.data)
+      }
+      catch (err) {
+        if (err.response) {
+          console.log('error')
+        }
+      }
+    }
+
+    fetchReports()
+  }, [])
+
+  if(nve.length !== 0) {
+    nveArr = nve
+  }
 
   if (vul.length !== 0) {
     rHigh = vul[0].rH
@@ -76,7 +97,8 @@ export function DbProvider({ children }) {
       tHigh : tHigh,
       tMiddle : tMiddle,
       tLow : tLow,
-      tTotal : tTotal
+      tTotal : tTotal,
+      nveArray : nveArr
     }}>
       {children}
     </dbContext.Provider>

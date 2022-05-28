@@ -7,5 +7,6 @@ connect();
 
 app.use("/all", require("./db/allCollections"));
 app.use("/rvul", require("./db/vulnerability"));
+app.use("/nve", require("./db/nve"));
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
