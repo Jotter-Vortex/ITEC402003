@@ -1,10 +1,8 @@
-/* eslint-disable */
-
 import "./Details.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 import React from 'react'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -19,8 +17,48 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import dbContext from "../../db/DbContext";
-import {useContext } from 'react';
+import { useContext } from 'react';
 
+const Details = () => {
+  var rows = []
+  const { Content, table, details } = useContext(dbContext)
+
+  rows = Array.from(table)
+  //console.log(rows);
+  return (
+    <div className="Details">
+      <Sidebar />
+      <div className="DetailsContainer">
+        <Navbar />
+        <div className="TableContainers">
+          {/* <Link to="/details/reportpage" 
+                state={{ DBurl: "db에서 해당하는 timestamp 값 넘겨주기" }}>
+              <h3>여기 클릭하면 넘어감</h3>
+            </Link> */}
+          <TableContainer component={Paper}>
+            <Table aria-label="collapsible table" >
+              <TableHead>
+                <TableRow >
+                  <TableCell />
+                  <TableCell sx={{ fontSize: 17 }}>Diagnosis Date</TableCell>
+                  <TableCell sx={{ fontSize: 17 }} align="center">Hostname</TableCell>
+                  <TableCell sx={{ fontSize: 17 }} align="center">IP</TableCell>
+                  <TableCell sx={{ fontSize: 17 }} align="center">Number of vulnerabilities found</TableCell>
+                  <TableCell sx={{ fontSize: 17 }} align="center">Warning</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {details.map((row) => (
+                  <Row key={row.Timestamp} row={row} details={details}/>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 //같은 timestamp당 1개의 row
 // const rows = [
@@ -37,150 +75,24 @@ import {useContext } from 'react';
 //   createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
 // ];
 
-
-const rows = [];
-const rowsIS = [];
-const rowsIScontents = [];
-
-const Details = () => {
-
-
-
-  const {Content} = useContext(dbContext)
-
-  //console.log(Content)
-
-  var count = 0;
-  const element = Content.map((item) =>{
-    rowsIScontents.splice(0, rowsIScontents.length)
-   const inner_elements = item.map((Inneritem)=>{
-    rowsIScontents.push(createDataIS(Inneritem.Impact, Inneritem.Summary, Inneritem['NVT Name'], Inneritem.Solution))
-   })
-   rowsIS.push(rowsIScontents)
- })
-
-
-  rows.splice(0, rows.length)
-   for(var i =1; i<=Content.length; i++){
-     rows.push(
-       createData(
-        Content[Content.length-i][0].Timestamp,
-        Content[Content.length-i][0].Hostname, 
-        Content[Content.length-i][0].IP, 
-        Content[Content.length-i].length,
-        1,
-        rowsIS[Content.length-i]
-        //rowsIS[Content.length-i],
-        //rowsIS[Content.length-i]
-        ))
-    }
-
-
-  return (
-    <div className="Details">
-        <Sidebar/>
-        <div className="DetailsContainer">
-            <Navbar/>
-            <div className = "TableContainers">
-            {/* <Link to="/details/reportpage" 
-                state={{ DBurl: "db에서 해당하는 timestamp 값 넘겨주기" }}>
-              <h3>여기 클릭하면 넘어감</h3>
-            </Link> */}
-              <TableContainer component={Paper}>
-              <Table aria-label="collapsible table" >
-                <TableHead>
-                  <TableRow >
-                    <TableCell />
-                    <TableCell sx={{ fontSize:17}}>Diagnosis Date</TableCell>
-                    <TableCell sx={{ fontSize:17}}  align="center">Hostname</TableCell>
-                    <TableCell sx={{ fontSize:17}}  align="center">IP</TableCell>
-                    <TableCell sx={{ fontSize:17}}  align="center">Number of vulnerabilities found</TableCell>
-                    <TableCell sx={{ fontSize:17}}  align="center">Warning</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <Row key={row.Timestamp} row={row} />
-                  ))}
-                </TableBody>
-              </Table>
-              </TableContainer> 
-          </div>      
-        </div>
-    </div>
-  )
-}
-
-
-
-
-
 //DB 상세 내용 넣어야 할 부분
-function createData(Timestamp, Hostname, IP, NumberOfFound, Warning, ShowDetails) {
-  return {
-    Timestamp,
-    Hostname,
-    IP,
-    NumberOfFound,
-    Warning,
-    ShowDetails, 
-    //Summary,
-    //NVTName
-  };
-}
-
-function createDataIS(Impact, Summary, NVT_Name, Solution) {
-  return {
-    Impact,
-    Summary,
-    NVT_Name,
-    Solution
-    //SpecificResult,
-  };
-}
+// function createData(Timestamp, Hostname, IP, NumberOfFound, Warning, Details, Summary, SpecificResult) {
+//   return {
+//     Timestamp,
+//     Hostname,
+//     IP,
+//     NumberOfFound,
+//     Warning,
+//     Details,
+//     Summary,
+//     SpecificResult,
+//   };
+// }
 
 function Row(props) {
-  const { row} = props;
-
+  const { row } = props;
   const [open, setOpen] = React.useState(false);
 
-  console.log(row)
-
-
-
-  const rowISList = row.ShowDetails.map(
-    (rowdata, i)=>(
-      <div key={i}>
-        <h2>
-          Detected #{i} : {rowdata.NVT_Name}
-        </h2>
-        <br/>
-        <p1>
-        #Problem Summary
-        </p1>
-        <br/>
-        <p2> - {rowdata.Summary}</p2>
-        <br/>
-        <br/>
-        <p1>
-        #Possible Impact
-        </p1>
-        <br/>
-        <p2> - {rowdata.Impact+'\n\n\n'}</p2>
-        <br/><br/>
-        <p1>
-        #Solution
-        </p1>
-        <br/>
-        <p2> - {rowdata.Solution+'\n\n\n'}</p2>   
-          <br/><br/><br/>
-          <hr/><br/>
-        </div>      
-      // <div key={i}>{rowdata.Impact}</div>
-    )
-  )
-
-  
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -193,46 +105,57 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row" sx={{ fontSize:15}}>
-        <Link to="/details/reportpage" style={{textDecoration:"none"}}
+        <TableCell component="th" scope="row" sx={{ fontSize: 15 }}>
+          <Link to="/details/reportpage" style={{ textDecoration: "none" }}
             state={{ DBurl: row.Timestamp }}>
-          {row.Timestamp}
+            {row.Timestamp}
           </Link>
         </TableCell>
-        <TableCell sx={{ fontSize:15}} align="center">{row.Hostname}</TableCell>
-        <TableCell sx={{ fontSize:15}} align="center">{row.IP}</TableCell>
-        <TableCell sx={{ fontSize:15}} align="center">{row.NumberOfFound}</TableCell>
-        <TableCell sx={{ fontSize:15}} align="center">{row.Warning}</TableCell>
+        <TableCell sx={{ fontSize: 15 }} align="center">{row.Hostname}</TableCell>
+        <TableCell sx={{ fontSize: 15 }} align="center">{row.IP}</TableCell>
+        <TableCell sx={{ fontSize: 15 }} align="center">{row.NumberOfFound}</TableCell>
+        <TableCell sx={{ fontSize: 15 }} align="center">{row.Warning}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}
         >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h4" gutterBottom component="div">
-                Detailed Report of {row.Timestamp.substring(0,10)} Test
+              <Typography variant="h6" gutterBottom component="div">
+                Detailed Report
               </Typography>
               <Table size="small" aria-label="purchases">
+                {/* <div>
+                  내용
+                </div>
+                <div>
+                  {row.Timestamp}
+                </div> */}
                 <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Result ID</TableCell>
+                    <TableCell align="center">Impact</TableCell>
+                    <TableCell align="center">Summary</TableCell>
+                    <TableCell align="center">NVT Name</TableCell>
+                    <TableCell align="center">Solution</TableCell>
+                  </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableCell>
-                    <h1>Report</h1>
-                    <br/>    
-                    <h2> Target IP : {row.IP}</h2>
-                    <h2> Target Hostname : {row.Hostname}</h2>
-                    <h2> Detected Vulnerabilities : {row.ShowDetails.length}</h2>
-                    <br/>
-                      <hr/><br/>          
-                    <div>
-                    </div>
-                    <div>
-                      {rowISList}
-                    </div>
-                    <div>
-                      {/* {row.Impact} */}
-                    </div>
-                  </TableCell>
+                  {row.Details.map((historyRow) => (
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        {historyRow.Result_ID}
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {historyRow.Impact}
+                      </TableCell>
+                      <TableCell>{historyRow.Summary}</TableCell>
+                      <TableCell align="right">{historyRow.NVT_Name}</TableCell>
+                      <TableCell align="right">
+                        {historyRow.Solution}
+                      </TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </Box>
@@ -242,7 +165,6 @@ function Row(props) {
     </React.Fragment>
   );
 }
-
 
 
 // Row.propTypes = {

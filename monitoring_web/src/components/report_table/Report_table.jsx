@@ -21,26 +21,25 @@ import Switch from '@mui/material/Switch';
 // import DeleteIcon from '@mui/icons-material/Delete';
 // import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import dbContext from "../../db/DbContext";
-import {useContext } from 'react';
+import { useContext } from 'react';
 
 
-  //표시할 테이블 데이터 db값 가져오기
-  //##주의! DB에서 timestamp 중복값으로 가져오면 안됨. -> 쿼리문 사용해서 같은 timestamp를 가진 데이터를 한 raw에 계산하여 삽입해야함
-  // const rows = [
-  //   createData('2022-04-16T09:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 9,1),
-  //   createData('2022-04-15T10:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 6,0),
-  //   createData('2022-05-14T15:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,1),
-  //   createData('2022-05-13T11:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
-  //   createData('2022-04-12T08:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 1,2),
-  //   createData('2022-04-11T07:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 10,1),
-  //   createData('2022-04-10T20:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 8,1),
-  //   createData('2022-04-09T14:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,0),
-  //   createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
-  // ];
-  const rows = [];
-
+//표시할 테이블 데이터 db값 가져오기
+//##주의! DB에서 timestamp 중복값으로 가져오면 안됨. -> 쿼리문 사용해서 같은 timestamp를 가진 데이터를 한 raw에 계산하여 삽입해야함
+// const rows = [
+//   createData('2022-04-16T09:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 9,1),
+//   createData('2022-04-15T10:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 6,0),
+//   createData('2022-05-14T15:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,1),
+//   createData('2022-05-13T11:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
+//   createData('2022-04-12T08:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 1,2),
+//   createData('2022-04-11T07:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 10,1),
+//   createData('2022-04-10T20:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 8,1),
+//   createData('2022-04-09T14:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,0),
+//   createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
+// ];
+var rows = [];
 
 const REPORT_TABLE = () => {
   const [order, setOrder] = React.useState('asc');
@@ -107,122 +106,124 @@ const REPORT_TABLE = () => {
 
 
   //data 생성
-  const {Content} = useContext(dbContext)
-   rows.splice(0, rows.length)
-    for(var i =0; i<Content.length; i++){
-      rows.push(createData(Content[i][0].Timestamp,Content[i][0].IP, Content[i][0].Hostname, Content[i].length,1))
-    }
-   
+  const { Content, table } = useContext(dbContext)
+
+  rows = Array.from(table)
+  console.log(rows)
+  // rows.splice(0, rows.length)
+  // for (var i = 0; i < Content.length; i++) {
+  //   rows.push(createData(Content[i][0].Timestamp, Content[i][0].IP, Content[i][0].Hostname, Content[i].length, 1))
+  // }
 
   return (
-    <div className = "report_table">
-       <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-          >
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}handleClick
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.Timestamp);//
-                  const labelId = `enhanced-table-checkbox-${index}`;
+    <div className="report_table">
+      <Box sx={{ width: '100%' }}>
+        <Paper sx={{ width: '100%', mb: 2 }}>
+          <EnhancedTableToolbar numSelected={selected.length} />
+          <TableContainer>
+            <Table
+              sx={{ minWidth: 750 }}
+              aria-labelledby="tableTitle"
+              size={dense ? 'small' : 'medium'}
+            >
+              <EnhancedTableHead
+                numSelected={selected.length}
+                order={order} handleClick
+                orderBy={orderBy}
+                onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={rows.length}
+              />
+              <TableBody>
+                {stableSort(rows, getComparator(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    const isItemSelected = isSelected(row.Timestamp);//
+                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.Timestamp)}//
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.Timestamp}//
-                      selected={isItemSelected}
-                      
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      
-                      
+                    return (
+                      <TableRow
+                        hover
+                        onClick={(event) => handleClick(event, row.Timestamp)}//
+                        role="checkbox"
+                        aria-checked={isItemSelected}
+                        tabIndex={-1}
+                        key={row.Timestamp}//
+                        selected={isItemSelected}
+
+                      >
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            color="primary"
+                            checked={isItemSelected}
+                            inputProps={{
+                              'aria-labelledby': labelId,
+                            }}
+                          />
+                        </TableCell>
+
+
                         <TableCell
                           component="th"
                           id={labelId}
                           scope="row"
                           padding="none"
-                          align = "center"
-                          sx={{ fontSize:17}}
+                          align="center"
+                          sx={{ fontSize: 17 }}
                         >
-                          <Link to="/details" style={{textDecoration:"none"}}>
-                          {row.Timestamp}                         
+                          <Link to="/details" style={{ textDecoration: "none" }}>
+                            {row.Timestamp}
                           </Link>
                         </TableCell>
-                      
-                      <TableCell 
-                        align="center"
-                        sx={{ fontSize:17}}
-                        >{row.Hostname}</TableCell>
-                      <TableCell 
-                        align="center"
-                        sx={{ fontSize:17}}
-                        >{row.IP}</TableCell>
-                      <TableCell 
-                        align="center"
-                        sx={{ fontSize:17}}
-                        >{row.NumberOfFound}</TableCell>
-                      <TableCell 
-                        align="center"
-                        sx={{ fontSize:17}}
-                        >{row.Warning}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: (dense ? 33 : 53) * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 20]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Shrinking"
-      />
-    </Box>
 
-         
+                        <TableCell
+                          align="center"
+                          sx={{ fontSize: 17 }}
+                        >{row.Hostname}</TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ fontSize: 17 }}
+                        >{row.IP}</TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ fontSize: 17 }}
+                        >{row.NumberOfFound}</TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ fontSize: 17 }}
+                        >{row.Warning}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                {emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: (dense ? 33 : 53) * emptyRows,
+                    }}
+                  >
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 20]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+        <FormControlLabel
+          control={<Switch checked={dense} onChange={handleChangeDense} />}
+          label="Shrinking"
+        />
+      </Box>
+
+
     </div>
   )
 }
@@ -268,7 +269,7 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'Timestamp', 
+    id: 'Timestamp',
     numeric: false,
     disablePadding: true,
     label: 'Diagnosis Date',
@@ -320,14 +321,14 @@ function EnhancedTableHead(props) {
             }}
           />
         </TableCell>
-        {headCells.map((headCell) => (    
+        {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'center' : 'center'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
-            sx={{ fontSize:20, fontWeight:700 }}
-          > 
+            sx={{ fontSize: 20, fontWeight: 700 }}
+          >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
@@ -382,7 +383,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography
-          sx={{ flex: '1 1 100%', fontSize : 25}}
+          sx={{ flex: '1 1 100%', fontSize: 25 }}
           variant="h6"
           id="tableTitle"
           component="div"
@@ -412,9 +413,9 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-  
 
 
-  
+
+
 
 export default REPORT_TABLE
