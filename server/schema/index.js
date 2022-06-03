@@ -6,14 +6,15 @@ const path = require('path');
 const router = express.Router();
 const Report = require('./schema')
 const app = express();
+// const jwt = require("jsonwebtoken");
+// const Joi = require("joi");
+// const passwordComplexity = require("joi-password-complexity");
 
 const ID = 'Report'
 const PW = 'report'
 const MONGODB_URI = 'mongodb+srv://' + ID + ':' + PW + '@cluster0.2nwmd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const dir = path.join(__dirname, '..\\') + '\\files'
 const files = fs.readdirSync(dir)
-
-var coll = [], DataSend = []
 
 module.exports = () => {
   const connect = () => {

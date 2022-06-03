@@ -1,10 +1,8 @@
 # Monitoring Web
 - Frontend Public IP: 43.200.5.235
 - Backend Public IP: 43.200.5.235/5000
-
-# sequence diagram
-- ![diagram](https://user-images.githubusercontent.com/33975284/172131215-a6777325-6a30-4bb3-a7ad-0fd7ead73d7a.PNG)
-
+- 5천번 port의 정보를 3000번 port에서 가져오는 형식
+- ssh -i "frontendkey.pem" ubuntu@ec2-13-125-217-213.ap-northeast-2.compute.amazonaws.com 을 통해 ec2 instance를 연결
 
 # Server 관련 install
 - nmp i mongoose --save
@@ -25,32 +23,22 @@
 
 - axios를 통해 db의 data를 받아와서 array 배열로 수신
 - context provider 내의 변수들을 꺼내와서 사용
+- ![2222222](https://user-images.githubusercontent.com/33975284/168485254-a877bea2-37a2-413f-90a0-f6faf025cf49.PNG)
 - 공백 문자 처리 문제
 - ![dsfz](https://user-images.githubusercontent.com/33975284/168485353-e6f86e91-1198-4fc5-9dee-4009ae20f8e9.PNG)
 - usecontext로 contextProvider내의 변수 사용
 - import dbContext from "../../db/dbContext";
 - import React, { useState, useContext } from 'react';
 
-## MongoDB 구조 
+## MongoDB 저장 방식
 - ![db](https://user-images.githubusercontent.com/33975284/169108733-21b728bf-0264-4475-8b1a-ea399c7d3712.PNG)
 - MyFirstDatabase 라는 데이터베이스 이름 내에 가져올 파일들의 날짜를 collection 이름으로 저장하여 사용
-- 취약점 검사 파일들을 모아놓은 db
-- ![user](https://user-images.githubusercontent.com/33975284/172110274-94798732-8575-45a2-b346-509b992fbeca.PNG)
-- ![id passw](https://user-images.githubusercontent.com/33975284/172110286-e95a9a9b-655f-43e2-9dfa-7059c92f8b51.PNG)
-- user db 내에 각 user의 아이디를 collection name으로 저장하여 id, password, email들을 저장해둡니다
-
-## server 구조
-- ![dd](https://user-images.githubusercontent.com/33975284/172110704-570adba3-4c5c-4da6-a5fa-e750223f0c73.PNG)
-- auth.js, user.js에서는 frontend의 axios요청들을 post형식으로 받아와 mongodb의 data들과 비교하여 회원가입 및 로그인의 역할을 수행
-- details에서는 report table의 상세 취약점들을 mongodb에서 가져와서 frontend로 전달, table에서 더 자세하고 각각의 취약점과 해결방법, impact등을 가져오는 역할
-- high는 가장 최근 분석한 사이트의 취약점의 severity를 가져오는 역할
-- nve는 분석한 사이트들의 취약점 개수를 전달
-- vulnerability와 vultype은 모든 검사한 사이트의 취약점 수와 어떤 취약점이 있는지를 전달
 
 ## dbProvider 사용 시 주의점
 - axios를 통한 정보를 받는 것이 느려 가끔 Content가 undefined로 처리되는 에러가 생김
 - ![2222](https://user-images.githubusercontent.com/33975284/169108961-e789f687-b42f-4fa0-97d0-64498258e918.PNG)
 - 이미지와 같이 content가 비어있는지 확인한 후 사용하면 axios에서 받은 데이터를 통해 사용
+
 
 
 ## react 에러 발생 시
@@ -66,26 +54,14 @@
 
 
 
-# domain 운용을 위해 사용한 tool
-- aws ec2
+# 사용한 기술 stack
+ - JSX 
+ - JSX(JavaScript XML)는 JavaScript를 확장한 문법입니다. UI가 어떻게 생겨야 하는지 설명하기 위해 React와 함께 사용할 것을 권장합니다. JSX라고 하면 템플릿 언어가 떠오를 수도 있지만, JavaScript의 모든 기능이 포함되어 있습니다.
+ - 브라우저에서 실행하기 전에 바벨을 사용하여 일반 자바스크립트 형태의 코드로 변환된다. 
 
-- nginx
-- ![xx](https://user-images.githubusercontent.com/33975284/172111741-05cc267d-5033-435a-af94-e687fbda2e40.jpg)
-- frontend는 nginx를 통해서 운용 중
-
-- pm2
-- ![cc](https://user-images.githubusercontent.com/33975284/172111766-afe7f5b4-f300-4350-8aa5-75d5d3fe8ed2.gif)
-- ![ccccz](https://user-images.githubusercontent.com/33975284/172111779-f6cd5366-eeca-47d5-86d0-5095eb912a06.PNG)
-- backend를 pm2를 사용하여 운용 중
-
-# 이슈 사항
-- cors policy 이슈로 인해 frontend와 backend 사이의 통신 문제
-- setHeader로 access control allow origin을 통해 통신을 허가할 ip주소를 할당하여 해결
-
-- 로그인을 위한 db user와 report를 위한 db의 다중 연결의 어려움
-- connection을 2개로 하여 각각의 model을 생성하여 이용하는 방식으로 해결
-
-
+ 
+ 
+ 
  # 메인화면
  ![image](https://user-images.githubusercontent.com/33484628/166213871-7b71c32e-dbe9-4d38-9cb8-702a94d41621.png)
 - JSX, SCSS 사용하여 각 컴포넌트, 페이지별 모듈화

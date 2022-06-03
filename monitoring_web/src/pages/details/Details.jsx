@@ -20,11 +20,8 @@ import dbContext from "../../db/DbContext";
 import { useContext } from 'react';
 
 const Details = () => {
-  var rows = []
-  const { Content, table, details } = useContext(dbContext)
+  const { details } = useContext(dbContext)
 
-  rows = Array.from(table)
-  //console.log(rows);
   return (
     <div className="Details">
       <Sidebar />
@@ -60,21 +57,6 @@ const Details = () => {
   )
 }
 
-//같은 timestamp당 1개의 row
-// const rows = [
-//   createData('2022-04-16T09:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 9,1
-//   , 
-//   ),
-//   createData('2022-04-15T10:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 6,0),
-//   createData('2022-05-14T15:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,1),
-//   createData('2022-05-13T11:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
-//   createData('2022-04-12T08:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 1,2),
-//   createData('2022-04-11T07:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 10,1),
-//   createData('2022-04-10T20:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 8,1),
-//   createData('2022-04-09T14:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 7,0),
-//   createData('2022-04-08T18:27:18Z',"65.61.137.117", "testwebsiteteam2.shop", 5,0),
-// ];
-
 //DB 상세 내용 넣어야 할 부분
 // function createData(Timestamp, Hostname, IP, NumberOfFound, Warning, Details, Summary, SpecificResult) {
 //   return {
@@ -106,7 +88,7 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row" sx={{ fontSize: 15 }}>
-          <Link to="/details/reportpage" style={{ textDecoration: "none" }}
+          <Link to="/details" style={{ textDecoration: "none" }}
             state={{ DBurl: row.Timestamp }}>
             {row.Timestamp}
           </Link>
@@ -165,26 +147,5 @@ function Row(props) {
     </React.Fragment>
   );
 }
-
-
-// Row.propTypes = {
-//   row: PropTypes.shape({
-//     calories: PropTypes.number.isRequired,
-//     carbs: PropTypes.number.isRequired,
-//     fat: PropTypes.number.isRequired,
-//     history: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         amount: PropTypes.number.isRequired,
-//         customerId: PropTypes.string.isRequired,
-//         date: PropTypes.string.isRequired,
-//       }),
-//     ).isRequired,
-//     name: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     protein: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
-
-
 
 export default Details

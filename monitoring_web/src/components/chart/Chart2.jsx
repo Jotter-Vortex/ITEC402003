@@ -2,8 +2,16 @@ import "./Chart2.scss";
 import React from 'react';
 import { Treemap, ResponsiveContainer } from 'recharts';
 import { PureComponent } from 'react';
+import dbContext from "../../db/DbContext";
+import { useContext } from 'react';
 
 const Chart2 = () => {
+  const { vtype } = useContext(dbContext)
+  const data = [{ name : '', size : 0 }]
+
+  for(var i = 0; i < vtype.length; i++) {
+    data.push( {name : vtype[i].name, size : Math.round(10 / vtype.length)})
+  }
 
     return (
         <div className = "chart_card">
@@ -38,45 +46,45 @@ const Chart2 = () => {
   )
 }
 
-const data = [
-  {
-    name: 'Cleartext Transmission',
-    children: [
-      { name: 'Cleartext', size: 3 },
-    ],
-  },
-  {
-    name: 'SSL/TLS',
-    children: [
-      { name: 'SSL/TLS', size: 2 },
-    ],
-  },
-  {
-    name: 'others',
-    children: [
-      { name: 'others', size: 1 },
-    ],
-  },
-  {
-    name: 'others2',
-    children: [
-      { name: 'others', size: 1 },
-    ],
-  },
-  {
-    name: 'others3',
-    children: [
-      { name: 'others', size: 1 },
-    ],
-  },
-  {
-    name: 'others3',
-    children: [
-      { name: 'others', size: 1 },
-    ],
-  },
+// const data = [
+//   {
+//     name: 'Cleartext Transmission',
+//     children: [
+//       { size: 3 },
+//     ],
+//   },
+//   {
+//     name: 'SSL/TLS',
+//     children: [
+//       { name: 'SSL/TLS', size: 2 },
+//     ],
+//   },
+//   {
+//     name: 'others',
+//     children: [
+//       { name: 'others', size: 1 },
+//     ],
+//   },
+//   {
+//     name: 'others2',
+//     children: [
+//       { name: 'others', size: 1 },
+//     ],
+//   },
+//   {
+//     name: 'others3',
+//     children: [
+//       { name: 'others', size: 1 },
+//     ],
+//   },
+//   {
+//     name: 'others3',
+//     children: [
+//       { name: 'others', size: 1 },
+//     ],
+//   },
   
-];
+// ];
 
 const COLORS = ['#dbc981', '#003458', '#008d62', '#464964', '#800000', '#392f31'];
 
@@ -102,7 +110,7 @@ class CustomizedContent extends PureComponent {
           <text x={x + width / 2} y={y + height / 2 + 7} 
             textAnchor="middle"
             fill="#fff" 
-            fontSize={25}
+            fontSize={20}
             // scaleToFit={true}
             >
               {name}
@@ -110,7 +118,7 @@ class CustomizedContent extends PureComponent {
         ) : null}
         {depth === 1 ? (
           <text x={x + 10} y={y + 28} fill="#fff" fontSize={25} fillOpacity={0.9}>
-            {index + 1}
+            {index}
           </text>
         ) : null}
       </g>

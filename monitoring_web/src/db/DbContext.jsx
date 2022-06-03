@@ -5,12 +5,14 @@ import { createContext, useEffect, useState } from 'react'
 const dbContext = createContext();
 
 export function DbProvider({ children }) {
-  var rHigh = 0, rMiddle = 0, rLow = 0, rTotal = 0, tHigh = 0, tMiddle = 0, tLow = 0, tTotal = 0, nveArr = [], details = [], tables = []
+  var rHigh = 0, rMiddle = 0, rLow = 0, rTotal = 0, tHigh = 0, tMiddle = 0, tLow = 0, tTotal = 0, nveArr = [], details = [], tables = [], vtypes = [], highs = []
   const [report, setReport] = useState([])
   const [vul, setVul] = useState([])
   const [nve, setNve] = useState([])
   const [table, setTable] = useState([])
   const [detail, setDetail] = useState([])
+  const [vtype, setVtype] = useState([])
+  const [high, setHigh] = useState([])
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -92,6 +94,42 @@ export function DbProvider({ children }) {
     fetchReports()
   }, [])
 
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/vtype');
+        setVtype(response.data)
+      }
+      catch (err) {
+        if (err.response) {
+          console.log('error')
+        }
+      }
+    }
+
+    fetchReports()
+  }, [])
+
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/high');
+        setHigh(response.data)
+      }
+      catch (err) {
+        if (err.response) {
+          console.log('error')
+        }
+      }
+    }
+
+    fetchReports()
+  }, [])
+
+  if(high.length !== 0) {
+    highs = high
+  }
+
   if(nve.length !== 0) {
     nveArr = nve
   }
@@ -102,6 +140,10 @@ export function DbProvider({ children }) {
 
   if(table.length !== 0) {
     tables = table
+  }
+
+  if(vtype.length !== 0) {
+    vtypes = vtype
   }
 
   if (vul.length !== 0) {
@@ -142,7 +184,9 @@ export function DbProvider({ children }) {
       tTotal : tTotal,
       nveArray : nveArr,
       details : details,
-      table : tables
+      table : tables,
+      vtype : vtypes,
+      high : highs
     }}>
       {children}
     </dbContext.Provider>
