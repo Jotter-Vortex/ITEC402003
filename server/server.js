@@ -3,8 +3,8 @@ const cors = require('cors')
 const connect = require('./schema')
 const app = express();
 const PORT = process.env.PORT || 5000;
-const userRoutes = require("./db/user");
-const authRoutes = require("./db/auth");
+// const userRoutes = require("./db/user");
+// const authRoutes = require("./db/auth");
 
 connect();
 
