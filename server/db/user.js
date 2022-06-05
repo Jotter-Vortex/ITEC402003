@@ -1,53 +1,34 @@
 const router = require("express").Router();
-const mongoose = require('mongoose');
-const { getUserModel } = require("../schema/userDb");
+const mongoose = require("mongoose")
 
-router.get("/", async (req, res) => {
-	let userModel = await getUserModel();
-	let doc = await userModel.findOneAndUpdate()
-	if (!doc) {
-		res.setHeader('Access-Control-Allow-Origin: *');
-		res.send(JSON.stringify(doc))
-	}
-	// const connect = () => {
-	// 	//mongodb connection
-	// 	mongoose.connect(MONGODB_URI, {
-	// 	  useNewUrlParser: true,
-	// 	  useUnifiedTopology: true
-	// 	})
-	//   }
+const ID = 'Report'
+const PW = 'report'
+var conn2 = mongoose.createConnection('mongodb+srv://' + ID + ':' + PW + '@cluster0.2nwmd.mongodb.net/users?retryWrites=true&w=majority');
 
-	//   connect();
+router.post("/", async (req, res) => {
+	console.log(req.body.ID)
+	const User = conn2.model(req.body.ID, new mongoose.Schema({
+		ID: { type: String, required: true },
+		password: { type: String, required: true },
+		email: { type: String, required: true },
+	}), req.body.ID)
 
-	//   mongoose.connection.on('connected', () => {
-	// 	console.log('user connected')
-	//   })
+	User.find({})
+	.then((data) => {
+		if(data === undefined || data.length === 0) {
+			new User(req.body)
+			.save()
+			.catch((err) => {
+			  console.log(err.message);
+			});
 
-	// const userSchema = new mongoose.Schema({
-	// 	ID: { type: String, required: true },
-	// 	Password: { type: String, required: true },
-	// 	Email: { type: String, required: true },
-	// });
+			return res.status(201).send({ message: "회원가입 성공" });
+		}
 
-	// const User = mongoose.model("user", userSchema);
-
-	// try {
-	// 	const { error } = validate(req.body);
-	// 	if (error) {
-	// 		console.log(error)
-	// 		return res.status(400).send({ message: error.details[0].message });
-	// 	}
-
-	// 	const user = await User.findOne({ email: req.body.Email });
-	// 	if (user)
-	// 		return res
-	// 			.status(409)
-	// 			.send({ message: "User with given email already Exist!" });
-	// 	await new User({ ...req.body, Password: req.body.Password }).save();
-	// 	res.status(201).send({ message: "User created successfully" });
-	// } catch (error) {
-	// 	res.send({ error });
-	// }
+		else {
+			return res.status(401).send({ message: "이미 존재하는 아이디입니다" });
+		}
+	})
 });
 
 module.exports = router;

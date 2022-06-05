@@ -1,43 +1,31 @@
 const router = require("express").Router();
-const { User } = require("../schema/user");
-const Joi = require("joi");
+const mongoose = require("mongoose")
 
-router.options("/", async (req, res) => {
-	header('Access-Control-Allow-Origin: *');
-	header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-	header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+const ID = 'Report'
+const PW = 'report'
+var conn2 = mongoose.createConnection('mongodb+srv://' + ID + ':' + PW + '@cluster0.2nwmd.mongodb.net/users?retryWrites=true&w=majority');
 
-	try {
-		const { error } = validate(req.body);
-		if (error)
-			return res.status(400).send({ message: error.details[0].message });
+router.post("/", async (req, res) => {
+	const User = conn2.model(req.body.ID, new mongoose.Schema({
+		ID: { type: String, required: true },
+		password: { type: String, required: true },
+		email: { type: String, required: true },
+	}), req.body.ID)
 
-		const user = await User.findOne({ email: req.body.email });
-		if (!user)
-			return res.status(401).send({ message: "Invalid Email or Password" });
+	User.find({})
+	.then((data) => {
+		if(data === undefined || data.length === 0) {		
+			return res.status(401).send({ message: "회원가입이 필요합니다" });
+		}
 
-		const validPassword = await compare(
-			req.body.password,
-			user.password
-		);
+		else if(data[0].password !== req.body.password) {
+			return res.status(401).send({ message: "비밀번호가 틀렸습니다" });
+		}
 
-		if (!validPassword)
-			return res.status(401).send({ message: "Invalid Email or Password" });
-
-		const token = user.generateAuthToken();
-		console.log(token)
-		res.status(200).send({ data: token, message: "logged in successfully" });
-	} catch (error) {
-		res.send({ error });
-	}
+		else {
+			return res.status(201).send({ message: "로그인 완료" });
+		}
+	})
 });
-
-const validate = (data) => {
-	const schema = Joi.object({
-		email: Joi.string().email().required().label("Email"),
-		password: Joi.string().required().label("Password"),
-	});
-	return schema.validate(data);
-};
 
 module.exports = router;
