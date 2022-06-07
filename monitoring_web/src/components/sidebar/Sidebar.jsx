@@ -5,81 +5,91 @@ import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {Link} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
-import {teal } from '@mui/material/colors';
+import { teal } from '@mui/material/colors';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+		localStorage.removeItem("token");
+    navigate("/");
+		window.location.reload();
+	};
+  
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{textDecoration:"none"}}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <span className="logo">DASH BOARD</span>
         </Link>
       </div>
-      <hr/>
+      <hr />
       <div className="center">
         <h2>Hello, KNU!</h2>
-        
+
         <div className="user_info">
-            <StyledBadge
-              overlap="circular"
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              variant="dot"      
-            >
-              {/* <Avatar 
+          <StyledBadge
+            overlap="circular"
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            variant="dot"
+          >
+            {/* <Avatar 
                 alt="KNU" 
                 src="../../src/images/knu.png"
                 sx={{ width: 150, height: 150 }}
                 /> */}
-                <Avatar 
-                  sx={{ 
-                    bgcolor: teal[500], 
-                    width: 1, 
-                    height: 1,              
-                    }}>KNU</Avatar>
-            </StyledBadge>
+            <Avatar
+              sx={{
+                bgcolor: teal[500],
+                width: 1,
+                height: 1,
+              }}>KNU</Avatar>
+          </StyledBadge>
         </div>
-        <hr/>
+        <hr />
         <ul>
           <p className="title">MAIN</p>
-          <Link to="/" style={{textDecoration:"none"}}>
+          <Link to="/home" style={{ textDecoration: "none" }}>
             <li>
-              <DashboardIcon className="icon"/>
+              <DashboardIcon className="icon" />
               <span>Dashboard</span>
             </li>
           </Link>
-          <Link to="/details" style={{textDecoration:"none"}}>
+          <Link to="/details" style={{ textDecoration: "none" }}>
             <li>
-              <ContentPasteSearchIcon className="icon"/>
+              <ContentPasteSearchIcon className="icon" />
               <span>Details</span>
             </li>
           </Link>
-          <Link to="/chart" style={{textDecoration:"none"}}>
+          <Link to="/chart" style={{ textDecoration: "none" }}>
             <li>
-              <BarChartIcon className="icon"/>
+              <BarChartIcon className="icon" />
               <span>Charts</span>
             </li>
           </Link>
-          <hr/>
+          <hr />
           <p className="title">SERVICE</p>
           <li>
-            <NotificationsNoneIcon className="icon"/>
+            <NotificationsNoneIcon className="icon" />
             <span>Alarm</span>
           </li>
-          <li>
-            <SettingsIcon className="icon"/>
-            <span>Settings</span>
-          </li>
+          <Link to="/" style={{ textDecoration: "none" }} onClick = {handleLogout}>
+            <li>
+              <SettingsIcon className="icon" />
+              <span>Log out</span>
+            </li>
+          </Link>
         </ul>
       </div>
       <div className="bottom">
         <div className="colorOption"></div>
         <div className="colorOption"></div>
       </div>
-    
+
     </div>
   )
 }

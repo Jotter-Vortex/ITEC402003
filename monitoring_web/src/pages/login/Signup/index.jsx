@@ -21,7 +21,7 @@ const Signup = () => {
 		try {
 			const url = "http://localhost:5000/user";
 			const { data: res } = await axios.post(url, data);
-			navigate("/login");
+			navigate("/");
 			console.log(res.message);
 		} catch (error) {
 			if (
@@ -39,7 +39,7 @@ const Signup = () => {
 			<div className={styles.signup_form_container}>
 				<div className={styles.left}>
 					<h1>Welcome Back</h1>
-					<Link to="/login">
+					<Link to="/">
 						<button type="button" className={styles.white_btn}>
 							Sign in
 						</button>

@@ -4,49 +4,56 @@ const router = express.Router();
 const Report = require('../schema/schema')
 const app = express();
 
-var coll = [], DataSend = []
+var Details = [], blank = [], coll = []
 
-mongoose.connection.on('connected', () => {
-    mongoose.connection.db.listCollections().toArray(function (err, names) {
-        if (err) {
-            console.log(err);
-        }
+//cors policy avoid
+router.get('/', (req, res) => {
+    if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
+        mongoose.connection.db.listCollections().toArray(function (err, names) {
+            coll = []
+            if (coll.length === 0) {
+                if (err) {
+                    console.log(err);
+                }
 
-        else {
-            names.forEach(function (e, i, a) {
-                coll.push(e.name)
-            })
-        }
+                else {
+                    names.forEach(function (e, i, a) {
+                        coll.push(e.name)
+                    })
+                }
 
-        function sortFunction(a, b) {
-            if (a === b) {
-                return 0;
+                function sortFunction(a, b) {
+                    if (a === b) {
+                        return 0;
+                    }
+
+                    else {
+                        return (a < b) ? -1 : 1;
+                    }
+                }
             }
 
-            else {
-                return (a < b) ? -1 : 1;
-            }
-        }
+            coll.sort(sortFunction);
 
-        coll.sort(sortFunction);
+            Details = []
+            var report = mongoose.model('report', Report, coll[coll.length - 1]);
+            report.find((error, data) => {
+                if (data.length !== 0) {
+                    if (error) {
+                        console.log(error)
+                    }
 
-        var Details = []
-        const dbReport = mongoose.model(coll[item], Report)
-        dbReport.find({})
-            .then((data) => {            
-                for (item in data) {
-                    Details.push({ name: data[item]['NVT Name'] })
+                    else {
+                        for (item in data) {
+                            Details.push({ name: data[item]['NVT Name'] })
+                        }
+                    }
                 }
             })
-
-        //cors policy avoid
-        router.get('/', (req, res) => {
-            res.setHeader('Access-Control-Allow-origin', '*');
-            res.json(Details)
         })
-    })
+    }
 
-    console.log('Mongoose is connected!!!!');
+    res.json(Details)
 })
 
 module.exports = router

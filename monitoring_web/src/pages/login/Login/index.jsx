@@ -1,11 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 
 const Login = () => {
-	const [data, setData] = useState({ ID: "", password: "" });
+	const [data, setData] = useState({ ID: "", password: ""});
 	const [error, setError] = useState("");
+	const navigate = useNavigate();
 
 	const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
@@ -17,7 +18,8 @@ const Login = () => {
 			const url = "http://localhost:5000/auth";
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("token", res.data);
-			window.location = "/home";
+			navigate("/home");
+			window.location.reload();
 		} catch (error) {
 			if (
 				error.response &&
