@@ -40,7 +40,11 @@
     −  * 설명 : 웹 취약점 모니터링 포탈
     -  public IPv4 : 43.200.5.235
 #### 자세한 내용은 아래 링크 참고
-##### https://github.com/Jotter-Vortex/ITEC402003/tree/main/monitoring_web
+
+
+#### [Front-END](https://github.com/Jotter-Vortex/ITEC402003/tree/main/client)
+
+#### [Back-End](https://github.com/Jotter-Vortex/ITEC402003/tree/main/server)
 
 
 # Test Web Site
@@ -49,7 +53,7 @@
     − ID : test@test.com 
     − PassWord : 111111
 #### 자세한 내용은 아래 링크 참고
-##### https://github.com/Jotter-Vortex/ITEC402003/tree/main/test_website/nodejs
+#### [./TestingHTTP](https://github.com/Jotter-Vortex/ITEC402003/tree/main/test_website/nodejs)
     
 
 <br/>
