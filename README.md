@@ -54,7 +54,7 @@
     − ID : test@test.com 
     − PassWord : 111111
 #### 자세한 내용은 아래 링크 참고
-#### [./TestingHTTP](https://github.com/Jotter-Vortex/ITEC402003/tree/main/test_website/nodejs)
+#### [./TestingHTTP](https://github.com/Jotter-Vortex/ITEC402003/tree/main/TestingHTTP/nodejs)
     
 
 <br/>
