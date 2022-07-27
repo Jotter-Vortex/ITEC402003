@@ -1,0 +1,68 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const router = express.Router();
+const Report = require('../schema/schema')
+const app = express();
+
+var coll = [], DataSend = [], blank = []
+
+//cors policy avoid
+router.get('/', (req, res) => {
+    if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
+        mongoose.connection.db.listCollections().toArray(function (err, names) {
+            coll = []
+            if (coll.length === 0) {
+                if (err) {
+                    console.log(err);
+                }
+
+                else {
+                    names.forEach(function (e, i, a) {
+                        coll.push(e.name)
+                    })
+                }
+
+                function sortFunction(a, b) {
+                    if (a === b) {
+                        return 0;
+                    }
+
+                    else {
+                        return (a < b) ? -1 : 1;
+                    }
+                }
+            }
+
+            coll.sort(sortFunction);
+
+            DataSend = []
+            for (item in coll) {
+                var report = mongoose.model('report', Report, coll[item]);
+                report.find({})
+                    .then((data) => {
+                        if (data.length !== 0) {
+                            var iter = 0
+                            if (data.length !== 0) {
+                                DataSend.push({ time: data[iter].Timestamp, nve: data.length })
+                            }
+                        }
+                    })
+            }
+        })
+    }
+
+    function sortFunction(a, b) {
+        if (a.time === b.time) {
+            return 0;
+        }
+
+        else {
+            return (a.time < b.time) ? -1 : 1;
+        }
+    }
+
+    console.log(DataSend.sort(sortFunction))
+    res.json(DataSend.sort(sortFunction))
+})
+
+module.exports = router

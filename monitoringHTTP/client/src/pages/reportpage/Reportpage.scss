@@ -1,0 +1,41 @@
+
+.ReportPage{
+    display: flex;
+    width: 100%;
+    background-color: #e1e1e6;  
+    
+
+    .ReportPageContainer{
+        display: flex;
+        
+        flex: 1;
+        .ReportContent{
+
+            h1{
+                font-size: 50px;
+                color: rgb(80, 80, 80);
+                margin-bottom: 40px;
+            }
+
+            h2{
+                color: rgb(80, 80, 80);
+            }
+
+
+
+
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            align-items: column;
+            //width: 50%;
+            background-color: white;
+            padding: 100px;
+            margin-left: 60px;
+            margin-top: 80px;
+            margin-right: 80px;
+        }
+    
+    }
+
+}

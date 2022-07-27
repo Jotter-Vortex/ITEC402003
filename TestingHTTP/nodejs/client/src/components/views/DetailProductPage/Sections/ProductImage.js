@@ -11,8 +11,8 @@ function ProductImage(props) {
             props.detail.images.map(item =>{
                 // 서버에 올릴때는 여기 부분을 바꿔야함
                 images.push({
-                    original:`http://117.55.186.7:5000/${item}`,
-                    thumbnail: `http://117.55.186.7:5000/${item}`
+                    original:`http://changjinboondang.iptime.org:5000/${item}`,
+                    thumbnail: `http://changjinboondang.iptime.org:5000/${item}`
                 })
             })
             setImages(images)

@@ -5,7 +5,7 @@ function UserCardBlock(props) {
     const renderCartImage = (images) => {
         if(images.length>0){
             let image = images[0]
-            return `http://117.55.186.7:5000/${image}`
+            return `http://changjinboondang.iptime.org:5000/${image}`
         }
     }
 
